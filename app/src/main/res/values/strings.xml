@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ChatGPT</string>
+    <string name="chatgpt_ask">Ask</string>
+    <string name="chatgpt_query">Query</string>
+</resources>

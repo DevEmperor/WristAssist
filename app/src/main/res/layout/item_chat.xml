@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chat_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="16dp">
+
+    <ImageView
+        android:id="@+id/chat_item_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/chatgpt_logo" />
+
+    <TextView
+        android:id="@+id/chat_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chat_item_icon"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/chat_item_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chat_item_text"
+        android:layout_alignParentEnd="true"
+        android:textStyle="italic"
+        android:textSize="0sp"/>
+</RelativeLayout>

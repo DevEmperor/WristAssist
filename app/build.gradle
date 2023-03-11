@@ -1,0 +1,40 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'net.devemperor.chatgpt'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "net.devemperor.chatgpt"
+        minSdk 28
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'com.google.android.gms:play-services-wearable:18.0.0'
+    implementation 'androidx.percentlayout:percentlayout:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.wear:wear:1.2.0'
+
+    implementation 'androidx.wear:wear-input:1.1.0'
+    implementation 'com.theokanning.openai-gpt3-java:service:0.11.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+}
