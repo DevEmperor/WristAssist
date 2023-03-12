@@ -6,6 +6,15 @@
     android:paddingBottom="16dp"
     android:paddingHorizontal="32dp" >
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="#74AA9C"
+        android:visibility="gone" />
+
     <Button
         android:id="@+id/btn_ask"
         android:layout_width="match_parent"

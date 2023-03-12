@@ -10,4 +10,5 @@
     android:paddingVertical="32dp"
     android:scrollbars="vertical"
     android:keepScreenOn="true"
-    android:divider="@null"/>
+    android:divider="@null"
+    android:listSelector="@android:color/transparent" />

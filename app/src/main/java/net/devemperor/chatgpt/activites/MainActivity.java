@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.wear.input.RemoteInputIntentHelper;
 
@@ -36,26 +38,30 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends Activity {
 
-    private static final String TOKEN = "";
+    private static final String TOKEN = "";  // TODO: remove before commit
 
     ListView chatLv;
+    ProgressBar progressBar;
+    Button askBtn;
     ChatAdapter chatAdapter;
 
     OpenAiService service;
+    ExecutorService thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ask(null);
-
         chatLv = findViewById(R.id.chat_lv);
 
         chatAdapter = new ChatAdapter(this, new ArrayList<>());
 
         chatLv.setAdapter(chatAdapter);
-        chatLv.addFooterView(LayoutInflater.from(this).inflate(R.layout.layout_btn_ask, chatLv, false));
+        View footerView = LayoutInflater.from(this).inflate(R.layout.layout_btn_ask, chatLv, false);
+        chatLv.addFooterView(footerView);
+        progressBar = footerView.findViewById(R.id.progress_bar);
+        askBtn = footerView.findViewById(R.id.btn_ask);
 
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(TOKEN, Duration.ofSeconds(120)).newBuilder().build();
@@ -65,6 +71,8 @@ public class MainActivity extends Activity {
         service = new OpenAiService(api);
 
         chatLv.requestFocus();
+
+        ask(null);
     }
 
     @Override
@@ -75,19 +83,23 @@ public class MainActivity extends Activity {
             if (results != null) {
                 String query = results.getCharSequence("query").toString();
                 chatAdapter.add(new ChatItem(new ChatMessage("user", query), 0));
+                progressBar.setVisibility(View.VISIBLE);
+                askBtn.setEnabled(false);
                 ChatCompletionRequest ccr = ChatCompletionRequest.builder()
                         .model("gpt-3.5-turbo")
                         .messages(chatAdapter.getChatMessages())
                         .build();
 
-                ExecutorService thread = Executors.newSingleThreadExecutor();
+                thread = Executors.newSingleThreadExecutor();
                 thread.execute(() -> {
                     ChatCompletionResult result = service.createChatCompletion(ccr);
                     String answer = result.getChoices().get(0).getMessage().getContent().trim();
                     long cost = result.getUsage().getTotalTokens();
                     runOnUiThread(() -> {
+                        progressBar.setVisibility(View.GONE);
+                        askBtn.setEnabled(true);
                         chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
-                        chatLv.smoothScrollToPosition(chatAdapter.getCount());
+//                        chatLv.smoothScrollToPosition(chatAdapter.getCount());
                     });
                 });
             }
