@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">ChatGPT</string>
+    <string name="chatgpt_menu_new_chat">New chat</string>
     <string name="chatgpt_ask">Ask</string>
     <string name="chatgpt_query">Query</string>
     <string name="chatgpt_no_internet">Connection to OpenAI API failed. Please check your internet connection.</string>

@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activites;
+package net.devemperor.chatgpt.activities;
 
 import static com.theokanning.openai.service.OpenAiService.defaultClient;
 import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
@@ -38,7 +38,7 @@ import java.util.concurrent.Executors;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-public class MainActivity extends Activity {
+public class ChatActivity extends Activity {
 
     private static final String TOKEN = "";  // TODO: remove before commit
 
@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_chat);
 
         chatLv = findViewById(R.id.chat_lv);
 
@@ -76,7 +76,7 @@ public class MainActivity extends Activity {
 
         chatLv.requestFocus();
 
-        ask(null);
+        query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
     }
 
     @Override
@@ -85,42 +85,7 @@ public class MainActivity extends Activity {
         if (requestCode == 1337 && resultCode == RESULT_OK) {
             Bundle results = RemoteInput.getResultsFromIntent(data);
             if (results != null) {
-                String query = results.getCharSequence("query").toString();
-                chatAdapter.add(new ChatItem(new ChatMessage("user", query), 0));
-
-                progressBar.setVisibility(View.VISIBLE);
-                errorTv.setVisibility(View.GONE);
-                askBtn.setEnabled(false);
-
-                ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                        .model("gpt-3.5-turbo")
-                        .messages(chatAdapter.getChatMessages())
-                        .build();
-
-                thread = Executors.newSingleThreadExecutor();
-                thread.execute(() -> {
-                    try {
-                        ChatCompletionResult result = service.createChatCompletion(ccr);
-                        String answer = result.getChoices().get(0).getMessage().getContent().trim();
-                        long cost = result.getUsage().getTotalTokens();
-                        runOnUiThread(() -> {
-                            progressBar.setVisibility(View.GONE);
-                            askBtn.setEnabled(true);
-                            chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
-                        });
-                    } catch (RuntimeException e) {
-                        runOnUiThread(() -> {
-                            if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
-                                errorTv.setText(R.string.chatgpt_timeout);
-                            } else {
-                                errorTv.setText(R.string.chatgpt_no_internet);
-                            }
-                            progressBar.setVisibility(View.GONE);
-                            errorTv.setVisibility(View.VISIBLE);
-                            askBtn.setEnabled(true);
-                        });
-                    }
-                });
+                query(results.getCharSequence("query").toString());
             }
         }
     }
@@ -130,5 +95,43 @@ public class MainActivity extends Activity {
         Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
         RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
         startActivityForResult(intent, 1337);
+    }
+
+    private void query(String query) {
+        chatAdapter.add(new ChatItem(new ChatMessage("user", query), 0));
+
+        progressBar.setVisibility(View.VISIBLE);
+        errorTv.setVisibility(View.GONE);
+        askBtn.setEnabled(false);
+
+        ChatCompletionRequest ccr = ChatCompletionRequest.builder()
+                .model("gpt-3.5-turbo")
+                .messages(chatAdapter.getChatMessages())
+                .build();
+
+        thread = Executors.newSingleThreadExecutor();
+        thread.execute(() -> {
+            try {
+                ChatCompletionResult result = service.createChatCompletion(ccr);
+                String answer = result.getChoices().get(0).getMessage().getContent().trim();
+                long cost = result.getUsage().getTotalTokens();
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    askBtn.setEnabled(true);
+                    chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
+                });
+            } catch (RuntimeException e) {
+                runOnUiThread(() -> {
+                    if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
+                        errorTv.setText(R.string.chatgpt_timeout);
+                    } else {
+                        errorTv.setText(R.string.chatgpt_no_internet);
+                    }
+                    progressBar.setVisibility(View.GONE);
+                    errorTv.setVisibility(View.VISIBLE);
+                    askBtn.setEnabled(true);
+                });
+            }
+        });
     }
 }
