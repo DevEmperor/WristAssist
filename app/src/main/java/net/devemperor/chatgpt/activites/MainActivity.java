@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.wear.input.RemoteInputIntentHelper;
 
@@ -30,6 +31,7 @@ import net.devemperor.chatgpt.adapters.ChatItem;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,6 +45,7 @@ public class MainActivity extends Activity {
     ListView chatLv;
     ProgressBar progressBar;
     Button askBtn;
+    TextView errorTv;
     ChatAdapter chatAdapter;
 
     OpenAiService service;
@@ -61,7 +64,8 @@ public class MainActivity extends Activity {
         View footerView = LayoutInflater.from(this).inflate(R.layout.layout_btn_ask, chatLv, false);
         chatLv.addFooterView(footerView);
         progressBar = footerView.findViewById(R.id.progress_bar);
-        askBtn = footerView.findViewById(R.id.btn_ask);
+        askBtn = footerView.findViewById(R.id.ask_btn);
+        errorTv = footerView.findViewById(R.id.error_tv);
 
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(TOKEN, Duration.ofSeconds(120)).newBuilder().build();
@@ -83,8 +87,11 @@ public class MainActivity extends Activity {
             if (results != null) {
                 String query = results.getCharSequence("query").toString();
                 chatAdapter.add(new ChatItem(new ChatMessage("user", query), 0));
+
                 progressBar.setVisibility(View.VISIBLE);
+                errorTv.setVisibility(View.GONE);
                 askBtn.setEnabled(false);
+
                 ChatCompletionRequest ccr = ChatCompletionRequest.builder()
                         .model("gpt-3.5-turbo")
                         .messages(chatAdapter.getChatMessages())
@@ -92,15 +99,27 @@ public class MainActivity extends Activity {
 
                 thread = Executors.newSingleThreadExecutor();
                 thread.execute(() -> {
-                    ChatCompletionResult result = service.createChatCompletion(ccr);
-                    String answer = result.getChoices().get(0).getMessage().getContent().trim();
-                    long cost = result.getUsage().getTotalTokens();
-                    runOnUiThread(() -> {
-                        progressBar.setVisibility(View.GONE);
-                        askBtn.setEnabled(true);
-                        chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
-//                        chatLv.smoothScrollToPosition(chatAdapter.getCount());
-                    });
+                    try {
+                        ChatCompletionResult result = service.createChatCompletion(ccr);
+                        String answer = result.getChoices().get(0).getMessage().getContent().trim();
+                        long cost = result.getUsage().getTotalTokens();
+                        runOnUiThread(() -> {
+                            progressBar.setVisibility(View.GONE);
+                            askBtn.setEnabled(true);
+                            chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
+                        });
+                    } catch (RuntimeException e) {
+                        runOnUiThread(() -> {
+                            if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
+                                errorTv.setText(R.string.chatgpt_timeout);
+                            } else {
+                                errorTv.setText(R.string.chatgpt_no_internet);
+                            }
+                            progressBar.setVisibility(View.GONE);
+                            errorTv.setVisibility(View.VISIBLE);
+                            askBtn.setEnabled(true);
+                        });
+                    }
                 });
             }
         }

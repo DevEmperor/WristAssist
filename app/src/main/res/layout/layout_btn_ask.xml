@@ -6,6 +6,16 @@
     android:paddingBottom="16dp"
     android:paddingHorizontal="32dp" >
 
+    <TextView
+        android:id="@+id/error_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/chatgpt_no_internet"
+        android:textSize="11sp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
+
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyle"
@@ -16,9 +26,10 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/btn_ask"
+        android:id="@+id/ask_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/chatgpt_ask"
-        android:onClick="ask" />
+        android:onClick="ask"
+        android:layout_marginTop="8dp" />
 </LinearLayout>

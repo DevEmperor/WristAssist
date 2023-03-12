@@ -2,4 +2,6 @@
     <string name="app_name">ChatGPT</string>
     <string name="chatgpt_ask">Ask</string>
     <string name="chatgpt_query">Query</string>
+    <string name="chatgpt_no_internet">Connection to OpenAI API failed. Please check your internet connection.</string>
+    <string name="chatgpt_timeout">The timeout of 120 seconds was reached. Probably the answer was very long or ChatGPT is overloaded.</string>
 </resources>
