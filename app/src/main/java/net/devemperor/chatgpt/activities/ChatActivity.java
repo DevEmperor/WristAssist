@@ -40,8 +40,6 @@ import retrofit2.Retrofit;
 
 public class ChatActivity extends Activity {
 
-    private static final String TOKEN = "";  // TODO: remove before commit
-
     ListView chatLv;
     ProgressBar progressBar;
     Button askBtn;
@@ -67,8 +65,10 @@ public class ChatActivity extends Activity {
         askBtn = footerView.findViewById(R.id.ask_btn);
         errorTv = footerView.findViewById(R.id.error_tv);
 
+        String apiKey = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE)
+                .getString("net.devemperor.chatgpt.api_key", "noApiKey");
         ObjectMapper mapper = defaultObjectMapper();
-        OkHttpClient client = defaultClient(TOKEN, Duration.ofSeconds(120)).newBuilder().build();
+        OkHttpClient client = defaultClient(apiKey, Duration.ofSeconds(120)).newBuilder().build();
         Retrofit retrofit = defaultRetrofit(client, mapper);
         OpenAiApi api = retrofit.create(OpenAiApi.class);
 
@@ -124,6 +124,8 @@ public class ChatActivity extends Activity {
                 runOnUiThread(() -> {
                     if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
                         errorTv.setText(R.string.chatgpt_timeout);
+                    } else if (e.getMessage().contains("Incorrect API key provided")) {
+                        errorTv.setText(getString(R.string.chatgpt_invalid_api_key));
                     } else {
                         errorTv.setText(R.string.chatgpt_no_internet);
                     }
