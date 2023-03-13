@@ -1,1 +1,1 @@
-# ChatGPT TOGo
+# ChatGPT (for WearOS)
