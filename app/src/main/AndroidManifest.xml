@@ -28,6 +28,9 @@
             android:name=".activities.SettingsActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>

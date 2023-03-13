@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
         ArrayList<MainItem> menuItems = new ArrayList<>();
         menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.chatgpt_menu_new_chat)));
         menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.chatgpt_menu_settings)));
+        menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.chatgpt_menu_about)));
 
         mainWrv.setAdapter(new MainAdapter(menuItems, menuPosition -> {
             Intent intent;
@@ -43,6 +44,9 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 1337);
             } else if (menuPosition == 1) {
                 intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+            } else if (menuPosition == 2) {
+                intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
             }
         }));
