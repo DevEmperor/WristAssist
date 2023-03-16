@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#74aa9c"
-        android:textSize="14sp"
+        android:textSize="17sp"
+        android:maxLines="3"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
-        android:paddingTop="8dp" />
+        android:paddingTop="12dp" />
 </LinearLayout>
