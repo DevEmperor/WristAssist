@@ -124,6 +124,14 @@ public class ChatActivity extends Activity {
             firstAnswerComplete = true;
             saveThisChat = true;
             this.id = id;
+
+            if (chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getRole().equals("user")) {
+                try {
+                    query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
+                } catch (JSONException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         } else {
             try {
                 query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
