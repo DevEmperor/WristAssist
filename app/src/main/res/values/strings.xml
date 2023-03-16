@@ -6,6 +6,7 @@
 
     <string name="chatgpt_ask">Ask</string>
     <string name="chatgpt_query">Query</string>
+    <string name="chatgpt_ask_title">Set a chat title</string>
 
     <string name="chatgpt_change_api_key">Change API key</string>
     <string name="chatgpt_set_api_key">Set API key</string>

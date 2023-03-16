@@ -31,5 +31,17 @@
         android:layout_height="wrap_content"
         android:text="@string/chatgpt_ask"
         android:onClick="ask"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:textColor="#74AA9C"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/save_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/twotone_save_24"
+        android:layout_marginHorizontal="24dp"
+        android:onClick="save"
+        android:visibility="gone" />
 </LinearLayout>

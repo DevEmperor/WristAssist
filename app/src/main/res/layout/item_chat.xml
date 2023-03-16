@@ -29,5 +29,5 @@
         android:layout_below="@id/chat_item_text"
         android:layout_alignParentEnd="true"
         android:textStyle="italic"
-        android:textSize="0sp"/>
+        android:visibility="gone" />
 </RelativeLayout>

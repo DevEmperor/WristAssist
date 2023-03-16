@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,7 +28,12 @@ import com.theokanning.openai.service.OpenAiService;
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.adapters.ChatAdapter;
 import net.devemperor.chatgpt.adapters.ChatItem;
+import net.devemperor.chatgpt.database.ChatHistoryModel;
+import net.devemperor.chatgpt.database.DatabaseHelper;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,27 +49,40 @@ public class ChatActivity extends Activity {
     ListView chatLv;
     ProgressBar progressBar;
     Button askBtn;
+    ImageButton saveBtn;
     TextView errorTv;
+    TextView titleTv;
     ChatAdapter chatAdapter;
 
     OpenAiService service;
     ExecutorService thread;
+
+    DatabaseHelper databaseHelper;
+
+    boolean firstAnswerComplete = false;
+    boolean saveThisChat = false;
+    long id = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        chatAdapter = new ChatAdapter(this, new ArrayList<>());
         chatLv = findViewById(R.id.chat_lv);
 
-        chatAdapter = new ChatAdapter(this, new ArrayList<>());
-
         chatLv.setAdapter(chatAdapter);
-        View footerView = LayoutInflater.from(this).inflate(R.layout.layout_btn_ask, chatLv, false);
+        View footerView = LayoutInflater.from(this).inflate(R.layout.layout_chat_footer, chatLv, false);
         chatLv.addFooterView(footerView);
+        View headerView = LayoutInflater.from(this).inflate(R.layout.layout_chat_header, chatLv, false);
+        chatLv.addHeaderView(headerView);
         progressBar = footerView.findViewById(R.id.progress_bar);
         askBtn = footerView.findViewById(R.id.ask_btn);
+        saveBtn = footerView.findViewById(R.id.save_btn);
         errorTv = footerView.findViewById(R.id.error_tv);
+        titleTv = headerView.findViewById(R.id.title_tv);
+
+        databaseHelper = new DatabaseHelper(this);
 
         String apiKey = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE)
                 .getString("net.devemperor.chatgpt.api_key", "noApiKey");
@@ -76,7 +95,11 @@ public class ChatActivity extends Activity {
 
         chatLv.requestFocus();
 
-        query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
+        try {
+            query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
+        } catch (JSONException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -85,9 +108,35 @@ public class ChatActivity extends Activity {
         if (requestCode == 1337 && resultCode == RESULT_OK) {
             Bundle results = RemoteInput.getResultsFromIntent(data);
             if (results != null) {
-                query(results.getCharSequence("query").toString());
+                try {
+                    query(results.getCharSequence("query").toString());
+                } catch (JSONException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        } else if (requestCode == 1338 && resultCode == RESULT_OK) {
+            Bundle results = RemoteInput.getResultsFromIntent(data);
+            if (results != null) {
+                titleTv.setText(results.getCharSequence("title"));
+                titleTv.setVisibility(View.VISIBLE);
+
+                try {
+                    id = databaseHelper.add(this, new ChatHistoryModel(-1, titleTv.getText().toString(), chatAdapter.getChatItems()));
+                } catch (JSONException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+                saveBtn.setVisibility(View.GONE);
+                saveThisChat = true;
             }
         }
+    }
+
+    public void save(View view) {
+        RemoteInput remoteInput = new RemoteInput.Builder("title").setLabel(getString(R.string.chatgpt_ask_title)).build();
+        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        startActivityForResult(intent, 1338);
     }
 
     public void ask(View view) {
@@ -97,8 +146,12 @@ public class ChatActivity extends Activity {
         startActivityForResult(intent, 1337);
     }
 
-    private void query(String query) {
-        chatAdapter.add(new ChatItem(new ChatMessage("user", query), 0));
+    private void query(String query) throws JSONException, IOException {
+        ChatItem userItem = new ChatItem(new ChatMessage("user", query), 0);
+        chatAdapter.add(userItem);
+        if (saveThisChat) {
+            databaseHelper.edit(this, id, userItem);
+        }
 
         progressBar.setVisibility(View.VISIBLE);
         errorTv.setVisibility(View.GONE);
@@ -114,11 +167,19 @@ public class ChatActivity extends Activity {
             try {
                 ChatCompletionResult result = service.createChatCompletion(ccr);
                 String answer = result.getChoices().get(0).getMessage().getContent().trim();
-                long cost = result.getUsage().getTotalTokens();
+                ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), result.getUsage().getTotalTokens());
+                if (saveThisChat) {
+                    databaseHelper.edit(this, id, assistantItem);
+                }
                 runOnUiThread(() -> {
+                    chatAdapter.add(assistantItem);
                     progressBar.setVisibility(View.GONE);
                     askBtn.setEnabled(true);
-                    chatAdapter.add(new ChatItem(new ChatMessage("assistant", answer), cost));
+
+                    if (!firstAnswerComplete) {
+                        saveBtn.setVisibility(View.VISIBLE);
+                        firstAnswerComplete = true;
+                    }
                 });
             } catch (RuntimeException e) {
                 runOnUiThread(() -> {
@@ -133,6 +194,8 @@ public class ChatActivity extends Activity {
                     errorTv.setVisibility(View.VISIBLE);
                     askBtn.setEnabled(true);
                 });
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
             }
         });
     }

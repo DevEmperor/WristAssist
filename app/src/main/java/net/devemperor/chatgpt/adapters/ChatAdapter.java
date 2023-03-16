@@ -51,7 +51,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         if (totalCost > 0) {
             TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
             chatItemCost.setText(df.format(totalCost * 0.002 / 1000) + " $");
-            chatItemCost.setTextSize(12);
+            chatItemCost.setVisibility(View.VISIBLE);
         }
         return listItem;
     }
@@ -59,6 +59,10 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     public void add(ChatItem newItem) {
         objects.add(newItem);
         notifyDataSetChanged();
+    }
+
+    public List<ChatItem> getChatItems() {
+        return objects;
     }
 
     public List<ChatMessage> getChatMessages() {
