@@ -68,4 +68,8 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     public List<ChatMessage> getChatMessages() {
         return objects.stream().map(ChatItem::getChatMessage).collect(Collectors.toList());
     }
+
+    public int getCount() {
+        return objects.size();
+    }
 }

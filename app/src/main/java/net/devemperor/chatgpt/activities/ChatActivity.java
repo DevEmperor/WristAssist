@@ -139,18 +139,24 @@ public class ChatActivity extends Activity {
         startActivityForResult(intent, 1338);
     }
 
-    public void ask(View view) {
-        RemoteInput remoteInput = new RemoteInput.Builder("query").setLabel(getString(R.string.chatgpt_query)).build();
-        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
-        startActivityForResult(intent, 1337);
+    public void ask(View view) throws JSONException, IOException {
+        if (errorTv.getVisibility() == View.VISIBLE) {
+            query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
+        } else {
+            RemoteInput remoteInput = new RemoteInput.Builder("query").setLabel(getString(R.string.chatgpt_query)).build();
+            Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+            startActivityForResult(intent, 1337);
+        }
     }
 
     private void query(String query) throws JSONException, IOException {
-        ChatItem userItem = new ChatItem(new ChatMessage("user", query), 0);
-        chatAdapter.add(userItem);
-        if (saveThisChat) {
-            databaseHelper.edit(this, id, userItem);
+        if (errorTv.getVisibility() != View.VISIBLE) {
+            ChatItem userItem = new ChatItem(new ChatMessage("user", query), 0);
+            chatAdapter.add(userItem);
+            if (saveThisChat) {
+                databaseHelper.edit(this, id, userItem);
+            }
         }
 
         progressBar.setVisibility(View.VISIBLE);
