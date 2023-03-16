@@ -8,7 +8,7 @@
         android:id="@+id/title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="32dp"
+        android:paddingTop="16dp"
         android:paddingHorizontal="32dp"
         android:textAlignment="center"
         android:textColor="#74aa9c"
