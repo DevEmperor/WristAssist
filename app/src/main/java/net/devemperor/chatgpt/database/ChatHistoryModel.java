@@ -5,21 +5,21 @@ import net.devemperor.chatgpt.adapters.ChatItem;
 import java.util.List;
 
 public class ChatHistoryModel {
-    private int id;
+    private long id;
     private String title;
     private List<ChatItem> chatItems;
 
-    public ChatHistoryModel(int id, String title, List<ChatItem> chatItems) {
+    public ChatHistoryModel(long id, String title, List<ChatItem> chatItems) {
         this.id = id;
         this.title = title;
         this.chatItems = chatItems;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

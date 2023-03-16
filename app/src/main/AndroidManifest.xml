@@ -25,6 +25,9 @@
             android:name=".activities.ChatActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.SavedChatsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SettingsActivity"
             android:exported="false" />
         <activity

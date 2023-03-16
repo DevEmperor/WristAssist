@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
 
         ArrayList<MainItem> menuItems = new ArrayList<>();
         menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.chatgpt_menu_new_chat)));
+        menuItems.add(new MainItem(R.drawable.twotone_chat_24, getString(R.string.chatgpt_menu_saved_chats)));
         menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.chatgpt_menu_settings)));
         menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.chatgpt_menu_about)));
 
@@ -43,14 +44,18 @@ public class MainActivity extends Activity {
                 RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
                 startActivityForResult(intent, 1337);
             } else if (menuPosition == 1) {
-                intent = new Intent(this, SettingsActivity.class);
+                intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
             } else if (menuPosition == 2) {
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+            } else if (menuPosition == 3) {
                 intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
             }
         }));
         mainWrv.requestFocus();
+        mainWrv.postDelayed(() -> mainWrv.scrollBy(0, mainWrv.getChildAt(0).getHeight()), 100);
     }
 
     @Override

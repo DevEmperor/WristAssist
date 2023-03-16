@@ -31,8 +31,12 @@ import net.devemperor.chatgpt.adapters.ChatItem;
 import net.devemperor.chatgpt.database.ChatHistoryModel;
 import net.devemperor.chatgpt.database.DatabaseHelper;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -95,10 +99,37 @@ public class ChatActivity extends Activity {
 
         chatLv.requestFocus();
 
-        try {
-            query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
-        } catch (JSONException | IOException e) {
-            throw new RuntimeException(e);
+        if (getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1) != -1) {
+            long id = getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1);
+            titleTv.setText(databaseHelper.getTitle(id));
+            titleTv.setVisibility(View.VISIBLE);
+            saveBtn.setVisibility(View.GONE);
+
+            JSONArray chatObject;
+            try {
+                String filePath = getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
+                BufferedReader in = new BufferedReader(new FileReader(filePath));
+                chatObject = new JSONArray(in.readLine());
+                in.close();
+
+                for (int i = 0; i < chatObject.length(); i++) {
+                    JSONObject chatMessage = chatObject.optJSONObject(i);
+                    ChatItem chatItem = new ChatItem(new ChatMessage(chatMessage.getString("role"),
+                            chatMessage.getString("content")), chatMessage.getInt("cost"));
+                    chatAdapter.add(chatItem);
+                }
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
+            firstAnswerComplete = true;
+            saveThisChat = true;
+            this.id = id;
+        } else {
+            try {
+                query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
+            } catch (JSONException | IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

@@ -19,6 +19,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -79,5 +81,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.moveToFirst();
         cursor.close();
         db.close();
+    }
+
+    public String getTitle(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT TITLE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
+        cursor.moveToFirst();
+        String title = cursor.getString(0);
+        cursor.close();
+        db.close();
+        return title;
+    }
+
+    public List<ChatHistoryModel> getAllChats() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE", null);
+        List<ChatHistoryModel> chatHistoryModels = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            chatHistoryModels.add(new ChatHistoryModel(cursor.getLong(0), cursor.getString(1), null));
+        }
+        cursor.close();
+        db.close();
+        return chatHistoryModels;
     }
 }
