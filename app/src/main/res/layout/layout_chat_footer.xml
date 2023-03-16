@@ -28,19 +28,21 @@
     <Button
         android:id="@+id/ask_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:text="@string/chatgpt_ask"
         android:onClick="ask"
         android:layout_marginTop="8dp"
         android:textColor="#74AA9C"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="24sp"/>
 
     <ImageButton
         android:id="@+id/save_btn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@android:dimen/notification_large_icon_height"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/twotone_save_24"
+        android:scaleType="fitCenter"
         android:layout_marginHorizontal="24dp"
         android:onClick="save"
         android:visibility="gone" />
