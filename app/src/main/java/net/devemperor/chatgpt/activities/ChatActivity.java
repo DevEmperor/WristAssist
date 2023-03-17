@@ -190,7 +190,7 @@ public class ChatActivity extends Activity {
     }
 
     private void query(String query) throws JSONException, IOException {
-        if (errorTv.getVisibility() != View.VISIBLE) {
+        if (chatAdapter.getCount() == 0 || !chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getRole().equals("user")) {
             ChatItem userItem = new ChatItem(new ChatMessage("user", query), 0);
             chatAdapter.add(userItem);
             if (saveThisChat) {
