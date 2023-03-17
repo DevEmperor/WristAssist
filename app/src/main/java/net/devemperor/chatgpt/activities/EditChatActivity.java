@@ -45,7 +45,7 @@ public class EditChatActivity extends Activity {
         if (requestCode == 1337 && resultCode == RESULT_OK) {
             Bundle results = RemoteInput.getResultsFromIntent(data);
             if (results != null) {
-                String newTitle = results.getString("new_title");
+                String newTitle = results.getCharSequence("new_title").toString();
                 databaseHelper.setTitle(id, newTitle);
                 titleTv.setText(newTitle);
             }
