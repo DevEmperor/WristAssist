@@ -1,5 +1,6 @@
 package net.devemperor.chatgpt.activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class SavedChatsActivity extends Activity {
     WearableRecyclerView savedChatsWrv;
 
     DatabaseHelper databaseHelper;
+    SavedChatsAdapter savedChatsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,17 @@ public class SavedChatsActivity extends Activity {
         databaseHelper = new DatabaseHelper(this);
         List<ChatHistoryModel> chats = databaseHelper.getAllChats();
 
-        savedChatsWrv.setAdapter(new SavedChatsAdapter(chats, chatPosition -> {
-            Intent intent = new Intent(this, ChatActivity.class);
+        savedChatsAdapter = new SavedChatsAdapter(chats, (chatPosition, longClick) -> {
+            Intent intent;
+            if (!longClick) {
+                intent = new Intent(this, ChatActivity.class);
+            } else {
+                intent = new Intent(this, EditChatActivity.class);
+            }
             intent.putExtra("net.devemperor.chatgpt.chatId", chats.get(chatPosition).getId());
             startActivity(intent);
-        }));
+        });
+        savedChatsWrv.setAdapter(savedChatsAdapter);
 
         findViewById(R.id.no_saved_chats).setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
 
@@ -52,5 +60,14 @@ public class SavedChatsActivity extends Activity {
             }
             return false;
         });
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    @Override
+    protected void onResume() {
+        super.onResume();
+        savedChatsAdapter.getData().clear();
+        savedChatsAdapter.getData().addAll(databaseHelper.getAllChats());
+        savedChatsAdapter.notifyDataSetChanged();
     }
 }

@@ -75,9 +75,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         out.close();
     }
 
-    public void delete(ChatHistoryModel entry) {
+    public void delete(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("DELETE FROM CHAT_HISTORY_TABLE WHERE ID=" + entry.getId(), null);
+        Cursor cursor = db.rawQuery("DELETE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
         cursor.moveToFirst();
         cursor.close();
         db.close();
@@ -91,6 +91,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return title;
+    }
+
+    public void setTitle(long id, String newTitle) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("TITLE", newTitle);
+        db.update("CHAT_HISTORY_TABLE", cv, "ID=" + id, null);
+        db.close();
     }
 
     public List<ChatHistoryModel> getAllChats() {

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/edit_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:paddingHorizontal="32dp"
+        android:textAlignment="center"
+        android:textColor="#74AA9C"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/edit_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/edit_btn"
+        android:layout_width="0dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/twotone_edit_24"
+        android:background="@null"
+        android:onClick="editTitle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/delete_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title_tv" />
+
+    <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="0dp"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/twotone_delete_24"
+        android:background="@null"
+        android:onClick="deleteChat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edit_btn"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title_tv" />
+</androidx.constraintlayout.widget.ConstraintLayout>

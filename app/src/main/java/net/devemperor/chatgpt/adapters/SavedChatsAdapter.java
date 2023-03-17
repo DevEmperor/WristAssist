@@ -20,7 +20,7 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
     private final AdapterCallback callback;
 
     public interface AdapterCallback {
-        void onItemClicked(Integer menuPosition);
+        void onItemClicked(Integer menuPosition, boolean longClick);
     }
 
     public SavedChatsAdapter(List<ChatHistoryModel> data, AdapterCallback callback) {
@@ -54,8 +54,14 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
 
         holder.savedChatContainer.setOnClickListener(v -> {
             if (callback != null) {
-                callback.onItemClicked(position);
+                callback.onItemClicked(position, false);
             }
+        });
+        holder.savedChatContainer.setOnLongClickListener(v -> {
+            if (callback != null) {
+                callback.onItemClicked(position, true);
+            }
+            return true;
         });
     }
 
@@ -64,4 +70,7 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
         return data.size();
     }
 
+    public List<ChatHistoryModel> getData() {
+        return data;
+    }
 }

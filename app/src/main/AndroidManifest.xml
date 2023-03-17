@@ -28,6 +28,9 @@
             android:name=".activities.SavedChatsActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.EditChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.SettingsActivity"
             android:exported="false" />
         <activity
