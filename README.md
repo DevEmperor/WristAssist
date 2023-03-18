@@ -44,4 +44,4 @@ The app is overall very self-explanatory, but there are a few things to keep in 
 
 ## License
 
-ChatGPT for WearOS is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://github.com/DevEmperor/ChatGPT-WearOS/master/LICENSE)
+ChatGPT for WearOS is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/LICENSE)
