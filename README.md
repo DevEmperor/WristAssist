@@ -7,7 +7,7 @@
 | ![saved_chats.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/saved_chats.png) | ![edit.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/edit.png) | ![settings.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/settings.png) | ![about.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/about.png) |
 
 #### Or maybe a showcase video?
-[![Showcase](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/player.jpg)](https://streamable.com/g0lr4c "Showcase")
+[![Showcase](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/player.png)](https://streamable.com/g0lr4c "Showcase")
 
 
 ## Installation
