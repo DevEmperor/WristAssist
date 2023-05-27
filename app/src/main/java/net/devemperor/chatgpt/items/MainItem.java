@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.adapters;
+package net.devemperor.chatgpt.items;
 
 public class MainItem {
     private final String text;

@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import net.devemperor.chatgpt.adapters.ChatItem;
+import net.devemperor.chatgpt.items.ChatItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

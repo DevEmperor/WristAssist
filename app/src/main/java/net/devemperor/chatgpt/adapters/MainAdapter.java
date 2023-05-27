@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import net.devemperor.chatgpt.R;
+import net.devemperor.chatgpt.items.MainItem;
 
 import java.io.IOException;
 import java.util.List;

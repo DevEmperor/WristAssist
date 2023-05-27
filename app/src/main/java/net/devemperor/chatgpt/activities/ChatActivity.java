@@ -27,7 +27,7 @@ import com.theokanning.openai.service.OpenAiService;
 
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.adapters.ChatAdapter;
-import net.devemperor.chatgpt.adapters.ChatItem;
+import net.devemperor.chatgpt.items.ChatItem;
 import net.devemperor.chatgpt.database.ChatHistoryModel;
 import net.devemperor.chatgpt.database.DatabaseHelper;
 

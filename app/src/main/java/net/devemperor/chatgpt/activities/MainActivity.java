@@ -11,7 +11,7 @@ import androidx.wear.widget.WearableRecyclerView;
 
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.adapters.MainAdapter;
-import net.devemperor.chatgpt.adapters.MainItem;
+import net.devemperor.chatgpt.items.MainItem;
 
 import java.util.ArrayList;
 import java.util.Collections;

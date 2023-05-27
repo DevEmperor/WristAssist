@@ -1,13 +1,13 @@
 package net.devemperor.chatgpt.database;
 
-import net.devemperor.chatgpt.adapters.ChatItem;
+import net.devemperor.chatgpt.items.ChatItem;
 
 import java.util.List;
 
 public class ChatHistoryModel {
     private long id;
-    private String title;
-    private List<ChatItem> chatItems;
+    private final String title;
+    private final List<ChatItem> chatItems;
 
     public ChatHistoryModel(long id, String title, List<ChatItem> chatItems) {
         this.id = id;
@@ -27,15 +27,8 @@ public class ChatHistoryModel {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public List<ChatItem> getChatItems() {
         return chatItems;
     }
 
-    public void setChatItems(List<ChatItem> chatItems) {
-        this.chatItems = chatItems;
-    }
 }

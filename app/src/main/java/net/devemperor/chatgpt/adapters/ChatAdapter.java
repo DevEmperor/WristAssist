@@ -15,6 +15,7 @@ import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 
 import net.devemperor.chatgpt.R;
+import net.devemperor.chatgpt.items.ChatItem;
 
 import java.text.DecimalFormat;
 import java.util.List;

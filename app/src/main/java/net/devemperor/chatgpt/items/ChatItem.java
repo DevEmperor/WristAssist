@@ -1,10 +1,10 @@
-package net.devemperor.chatgpt.adapters;
+package net.devemperor.chatgpt.items;
 
 import com.theokanning.openai.completion.chat.ChatMessage;
 
 public class ChatItem {
-    private ChatMessage chatMessage;
-    private long totalCost;
+    private final ChatMessage chatMessage;
+    private final long totalCost;
 
     public ChatItem(ChatMessage chatMessage, long totalCost) {
         this.chatMessage = chatMessage;
@@ -15,15 +15,8 @@ public class ChatItem {
         return chatMessage;
     }
 
-    public void setChatMessage(ChatMessage chatMessage) {
-        this.chatMessage = chatMessage;
-    }
-
     public long getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(long totalCost) {
-        this.totalCost = totalCost;
-    }
 }
