@@ -212,7 +212,11 @@ public class ChatActivity extends Activity {
             try {
                 ChatCompletionResult result = service.createChatCompletion(ccr);
                 String answer = result.getChoices().get(0).getMessage().getContent().trim();
-                ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), result.getUsage().getTotalTokens());
+                long cost = result.getUsage().getTotalTokens();
+                ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), cost);
+                getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE).edit()
+                        .putLong("net.devemperor.chatgpt.total_tokens", getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE)
+                                .getLong("net.devemperor.chatgpt.total_tokens", 0) + cost).apply();
                 if (saveThisChat) {
                     databaseHelper.edit(this, id, assistantItem);
                 }

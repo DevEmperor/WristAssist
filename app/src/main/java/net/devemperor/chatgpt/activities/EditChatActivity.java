@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.wear.input.RemoteInputIntentHelper;
+import androidx.wear.widget.ConfirmationOverlay;
 
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.database.DatabaseHelper;
@@ -61,6 +62,6 @@ public class EditChatActivity extends Activity {
 
     public void deleteChat(View view) {
         databaseHelper.delete(id);
-        finish();
+        new ConfirmationOverlay().setOnAnimationFinishedListener(this::finish).showOn(this);
     }
 }

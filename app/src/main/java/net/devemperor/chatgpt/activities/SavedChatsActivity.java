@@ -69,5 +69,7 @@ public class SavedChatsActivity extends Activity {
         savedChatsAdapter.getData().clear();
         savedChatsAdapter.getData().addAll(databaseHelper.getAllChats());
         savedChatsAdapter.notifyDataSetChanged();
+
+        findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
     }
 }

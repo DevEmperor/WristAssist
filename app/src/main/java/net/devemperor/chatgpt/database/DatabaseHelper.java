@@ -105,9 +105,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE", null);
         List<ChatHistoryModel> chatHistoryModels = new ArrayList<>();
-        while (cursor.moveToNext()) {
+        cursor.moveToLast();
+        do {
             chatHistoryModels.add(new ChatHistoryModel(cursor.getLong(0), cursor.getString(1), null));
-        }
+        } while (cursor.moveToPrevious());
         cursor.close();
         db.close();
         return chatHistoryModels;

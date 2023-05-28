@@ -16,6 +16,7 @@ import com.theokanning.openai.completion.chat.ChatMessageRole;
 
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.items.ChatItem;
+import net.devemperor.chatgpt.util.Util;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -51,7 +52,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         long totalCost = objects.get(position).getTotalCost();
         if (totalCost > 0) {
             TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
-            chatItemCost.setText(df.format(totalCost * 0.002 / 1000) + " $");
+            chatItemCost.setText(df.format(Util.getFiatPrice(totalCost)) + " $");
             chatItemCost.setVisibility(View.VISIBLE);
         }
         return listItem;
