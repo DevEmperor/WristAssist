@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.app.RemoteInput;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -61,6 +63,8 @@ public class ChatActivity extends Activity {
     OpenAiService service;
     ExecutorService thread;
 
+    Vibrator vibrator;
+
     DatabaseHelper databaseHelper;
 
     boolean firstAnswerComplete = false;
@@ -85,6 +89,8 @@ public class ChatActivity extends Activity {
         saveBtn = footerView.findViewById(R.id.save_btn);
         errorTv = footerView.findViewById(R.id.error_tv);
         titleTv = headerView.findViewById(R.id.title_tv);
+
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         databaseHelper = new DatabaseHelper(this);
 
@@ -221,6 +227,8 @@ public class ChatActivity extends Activity {
                     databaseHelper.edit(this, id, assistantItem);
                 }
                 runOnUiThread(() -> {
+                    vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+
                     chatAdapter.add(assistantItem);
                     progressBar.setVisibility(View.GONE);
                     askBtn.setEnabled(true);
