@@ -2,14 +2,20 @@ package net.devemperor.chatgpt.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
+import android.text.style.LeadingMarginSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
@@ -42,12 +48,14 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
         chatItem.setText(objects.get(position).getChatMessage().getContent());
 
-        ImageView chatItemIcon = listItem.findViewById(R.id.chat_item_icon);
+        Drawable icon;
         if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.USER.value())) {
-            chatItemIcon.setImageResource(R.drawable.twotone_person_24);
+            icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
         } else {
-            chatItemIcon.setImageResource(R.drawable.chatgpt_logo);
+            icon = ContextCompat.getDrawable(context, R.drawable.chatgpt_logo);
         }
+        assert icon != null;
+        setLeadingMarginSpan(chatItem, icon);
 
         long totalCost = objects.get(position).getTotalCost();
         if (totalCost > 0) {
@@ -73,5 +81,20 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
     public int getCount() {
         return objects.size();
+    }
+
+    private void setLeadingMarginSpan(TextView textView, Drawable drawable) {
+        int drawableWidth = drawable.getIntrinsicWidth();
+        int drawableHeight = drawable.getIntrinsicHeight();
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(textView.getResources(), Util.drawableToBitmap(drawable));
+        bitmapDrawable.setBounds(0, 0, drawableWidth, drawableHeight);
+
+        SpannableString spannableString = new SpannableString("   " + textView.getText());
+        LeadingMarginSpan leadingMarginSpan = new LeadingMarginSpan.Standard(0, 0);
+        spannableString.setSpan(leadingMarginSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ImageSpan imageSpan = new ImageSpan(bitmapDrawable, ImageSpan.ALIGN_BASELINE);
+        spannableString.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        textView.setText(spannableString);
     }
 }
