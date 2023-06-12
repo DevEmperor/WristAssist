@@ -37,7 +37,7 @@ The app is overall very self-explanatory, but there are a few things to keep in 
 
 - [x] each answer shows the cost
 - [x] chats should be able to be saved
-- [ ] show total consumption in settings
+- [x] show total consumption in settings
 - [ ] possibility to switch between GPT 3.5 and GPT 4 (as soon as access is possible)
 - [ ] intro explaining how to generate an API key
 - [ ] PlayStore release

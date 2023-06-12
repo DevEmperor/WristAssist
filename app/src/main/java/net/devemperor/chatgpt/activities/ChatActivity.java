@@ -12,7 +12,6 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -29,9 +28,9 @@ import com.theokanning.openai.service.OpenAiService;
 
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.adapters.ChatAdapter;
-import net.devemperor.chatgpt.items.ChatItem;
 import net.devemperor.chatgpt.database.ChatHistoryModel;
 import net.devemperor.chatgpt.database.DatabaseHelper;
+import net.devemperor.chatgpt.items.ChatItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +53,7 @@ public class ChatActivity extends Activity {
 
     ListView chatLv;
     ProgressBar progressBar;
-    Button askBtn;
+    ImageButton askBtn;
     ImageButton saveBtn;
     TextView errorTv;
     TextView titleTv;
@@ -207,6 +206,7 @@ public class ChatActivity extends Activity {
         progressBar.setVisibility(View.VISIBLE);
         errorTv.setVisibility(View.GONE);
         askBtn.setEnabled(false);
+        askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24_off));
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
                 .model("gpt-3.5-turbo")
@@ -232,6 +232,7 @@ public class ChatActivity extends Activity {
                     chatAdapter.add(assistantItem);
                     progressBar.setVisibility(View.GONE);
                     askBtn.setEnabled(true);
+                    askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
 
                     if (!firstAnswerComplete) {
                         saveBtn.setVisibility(View.VISIBLE);
@@ -250,6 +251,7 @@ public class ChatActivity extends Activity {
                     progressBar.setVisibility(View.GONE);
                     errorTv.setVisibility(View.VISIBLE);
                     askBtn.setEnabled(true);
+                    askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
                 });
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

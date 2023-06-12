@@ -25,25 +25,25 @@
         android:indeterminateTint="#74AA9C"
         android:visibility="gone" />
 
-    <Button
+    <ImageButton
         android:id="@+id/ask_btn"
         android:layout_width="match_parent"
-        android:layout_height="@android:dimen/notification_large_icon_height"
-        android:text="@string/chatgpt_ask"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/twotone_keyboard_24"
+        android:background="@null"
+        android:scaleType="fitCenter"
         android:onClick="ask"
-        android:layout_marginTop="8dp"
-        android:textColor="#74AA9C"
-        android:textStyle="bold"
-        android:textSize="24sp"/>
+        android:layout_marginTop="8dp"/>
 
     <ImageButton
         android:id="@+id/save_btn"
         android:layout_width="match_parent"
-        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/twotone_save_24"
+        android:background="@null"
         android:scaleType="fitCenter"
         android:layout_marginHorizontal="24dp"
-        android:onClick="save"
-        android:visibility="gone" />
+        android:onClick="save" />
 </LinearLayout>
