@@ -29,13 +29,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private final Context context;
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "chatHistory.db", null, 2);
+        super(context, "chatHistory.db", null, 3);
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE CHAT_HISTORY_TABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT)");
+        db.execSQL("CREATE TABLE CHAT_HISTORY_TABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, LAST_EDIT LONG)");
     }
 
     @Override
@@ -58,13 +58,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             }
         }
+        if (oldVersion < 3 && newVersion == 3) {
+            db.execSQL("ALTER TABLE CHAT_HISTORY_TABLE ADD COLUMN LAST_EDIT LONG");
+
+            List<Long> ids = new ArrayList<>();
+            Cursor cursor = db.rawQuery("SELECT ID FROM CHAT_HISTORY_TABLE", null);
+            while (cursor.moveToNext()) {
+                ids.add(cursor.getLong(0));
+            }
+            cursor.close();
+
+            for (Long id : ids) {
+                ContentValues cv = new ContentValues();
+                cv.put("LAST_EDIT", 0);
+                db.update("CHAT_HISTORY_TABLE", cv, "ID=" + id, null);
+            }
+        }
     }
 
     public long add(Context context, ChatHistoryModel entry) throws JSONException, IOException {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("TITLE", entry.getTitle());
+        cv.put("LAST_EDIT", System.currentTimeMillis());
         long id = db.insert("CHAT_HISTORY_TABLE", null, cv);
+        db.close();
 
         JSONArray chatObject = new JSONArray();
         for (ChatItem chatItem : entry.getChatItems()) {
@@ -83,6 +101,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void edit(Context context, long id, ChatItem item) throws IOException, JSONException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("LAST_EDIT", System.currentTimeMillis());
+        db.update("CHAT_HISTORY_TABLE", cv, "ID=" + id, null);
+        db.close();
+
         String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
         BufferedReader in = new BufferedReader(new FileReader(filePath));
         JSONArray chatObject = new JSONArray(in.readLine());
@@ -100,17 +124,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void delete(Context context, long id) {
-        String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
-        new File(filePath).delete();
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("DELETE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
         cursor.moveToFirst();
         cursor.close();
         db.close();
+
+        String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
+        new File(filePath).delete();
     }
 
     public void reset(Context context, long id, ChatItem item) throws IOException, JSONException {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("LAST_EDIT", System.currentTimeMillis());
+        db.update("CHAT_HISTORY_TABLE", cv, "ID=" + id, null);
+        db.close();
+
         String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
         JSONArray chatObject = new JSONArray();
 
@@ -139,18 +169,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("TITLE", newTitle);
+        cv.put("LAST_EDIT", System.currentTimeMillis());
         db.update("CHAT_HISTORY_TABLE", cv, "ID=" + id, null);
         db.close();
     }
 
     public List<ChatHistoryModel> getAllChats() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE ORDER BY LAST_EDIT DESC", null);
         List<ChatHistoryModel> chatHistoryModels = new ArrayList<>();
-        cursor.moveToLast();
+        cursor.moveToFirst();
         do {
             chatHistoryModels.add(new ChatHistoryModel(cursor.getLong(0), cursor.getString(1), null));
-        } while (cursor.moveToPrevious());
+        } while (cursor.moveToNext());
         cursor.close();
         db.close();
         return chatHistoryModels;
