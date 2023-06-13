@@ -83,6 +83,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void reset(Context context, long id, ChatItem item) throws IOException, JSONException {
+        String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
+        JSONArray chatObject = new JSONArray();
+
+        JSONObject chatItemObject = new JSONObject();
+        chatItemObject.put("role", item.getChatMessage().getRole());
+        chatItemObject.put("content", item.getChatMessage().getContent());
+        chatItemObject.put("cost", item.getTotalCost());
+        chatObject.put(chatItemObject);
+
+        BufferedWriter out = new BufferedWriter(new FileWriter(filePath));
+        out.write(chatObject.toString());
+        out.close();
+    }
+
     public String getTitle(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT TITLE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);

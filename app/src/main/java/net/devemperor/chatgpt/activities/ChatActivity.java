@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.wear.input.RemoteInputIntentHelper;
+import androidx.wear.widget.ConfirmationOverlay;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theokanning.openai.OpenAiApi;
@@ -54,7 +55,7 @@ public class ChatActivity extends Activity {
     ListView chatLv;
     ProgressBar progressBar;
     ImageButton askBtn;
-    ImageButton saveBtn;
+    ImageButton saveResetBtn;
     TextView errorTv;
     TextView titleTv;
     ChatAdapter chatAdapter;
@@ -85,7 +86,7 @@ public class ChatActivity extends Activity {
         chatLv.addHeaderView(headerView);
         progressBar = footerView.findViewById(R.id.progress_bar);
         askBtn = footerView.findViewById(R.id.ask_btn);
-        saveBtn = footerView.findViewById(R.id.save_btn);
+        saveResetBtn = footerView.findViewById(R.id.save_btn);
         errorTv = footerView.findViewById(R.id.error_tv);
         titleTv = headerView.findViewById(R.id.title_tv);
 
@@ -108,7 +109,8 @@ public class ChatActivity extends Activity {
             long id = getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1);
             titleTv.setText(databaseHelper.getTitle(id));
             titleTv.setVisibility(View.VISIBLE);
-            saveBtn.setVisibility(View.GONE);
+            saveResetBtn.setVisibility(View.VISIBLE);
+            saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
 
             JSONArray chatObject;
             try {
@@ -126,7 +128,10 @@ public class ChatActivity extends Activity {
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
-            firstAnswerComplete = true;
+            if (chatAdapter.getCount() > 1) {
+                firstAnswerComplete = true;
+                saveResetBtn.setVisibility(View.VISIBLE);
+            }
             saveThisChat = true;
             this.id = id;
 
@@ -170,17 +175,28 @@ public class ChatActivity extends Activity {
                     throw new RuntimeException(e);
                 }
 
-                saveBtn.setVisibility(View.GONE);
+                saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
                 saveThisChat = true;
             }
         }
     }
 
-    public void save(View view) {
-        RemoteInput remoteInput = new RemoteInput.Builder("title").setLabel(getString(R.string.chatgpt_ask_title)).build();
-        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
-        startActivityForResult(intent, 1338);
+    public void saveReset(View view) throws JSONException, IOException {
+        if (!saveThisChat) {
+            RemoteInput remoteInput = new RemoteInput.Builder("title").setLabel(getString(R.string.chatgpt_ask_title)).build();
+            Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+            startActivityForResult(intent, 1338);
+        } else {
+            for (int i = chatAdapter.getCount() - 1; i > 0; i--) {
+                chatAdapter.remove(chatAdapter.getItem(i));
+            }
+            databaseHelper.reset(this, id, chatAdapter.getChatItems().get(0));
+            firstAnswerComplete = false;
+            saveResetBtn.setVisibility(View.GONE);
+            new ConfirmationOverlay().showOn(this);
+            query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
+        }
     }
 
     public void ask(View view) throws JSONException, IOException {
@@ -207,6 +223,10 @@ public class ChatActivity extends Activity {
         errorTv.setVisibility(View.GONE);
         askBtn.setEnabled(false);
         askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24_off));
+        saveResetBtn.setEnabled(false);
+        if (saveThisChat) {
+            saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24_off));
+        }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
                 .model("gpt-3.5-turbo")
@@ -233,9 +253,13 @@ public class ChatActivity extends Activity {
                     progressBar.setVisibility(View.GONE);
                     askBtn.setEnabled(true);
                     askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
+                    saveResetBtn.setEnabled(true);
+                    if (saveThisChat) {
+                        saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
+                    }
 
                     if (!firstAnswerComplete) {
-                        saveBtn.setVisibility(View.VISIBLE);
+                        saveResetBtn.setVisibility(View.VISIBLE);
                         firstAnswerComplete = true;
                     }
                 });
@@ -252,6 +276,8 @@ public class ChatActivity extends Activity {
                     errorTv.setVisibility(View.VISIBLE);
                     askBtn.setEnabled(true);
                     askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
+                    saveResetBtn.setEnabled(true);
+                    saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
                 });
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);

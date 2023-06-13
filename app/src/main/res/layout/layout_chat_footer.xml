@@ -45,5 +45,6 @@
         android:background="@null"
         android:scaleType="fitCenter"
         android:layout_marginHorizontal="24dp"
-        android:onClick="save" />
+        android:onClick="saveReset"
+        android:visibility="gone"/>
 </LinearLayout>
