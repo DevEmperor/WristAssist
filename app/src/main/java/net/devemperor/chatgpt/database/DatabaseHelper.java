@@ -16,16 +16,21 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private final Context context;
+
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "chatHistory.db", null, 1);
+        super(context, "chatHistory.db", null, 2);
+        this.context = context;
     }
 
     @Override
@@ -34,7 +39,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion == 1 && newVersion == 2) {
+            List<Long> ids = new ArrayList<>();
+            Cursor cursor = db.rawQuery("SELECT ID FROM CHAT_HISTORY_TABLE", null);
+            while (cursor.moveToNext()) {
+                ids.add(cursor.getLong(0));
+            }
+            cursor.close();
+
+            if (context == null) { return; }
+            for (File file : Objects.requireNonNull(context.getFilesDir().listFiles())) {
+                if (file.getName().startsWith("chat_")) {
+                    long id = Long.parseLong(file.getName().substring(5, file.getName().length() - 5));
+                    if (!ids.contains(id)) {
+                        file.delete();
+                    }
+                }
+            }
+        }
+    }
 
     public long add(Context context, ChatHistoryModel entry) throws JSONException, IOException {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -75,7 +99,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         out.close();
     }
 
-    public void delete(long id) {
+    public void delete(Context context, long id) {
+        String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
+        new File(filePath).delete();
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("DELETE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
         cursor.moveToFirst();

@@ -61,7 +61,7 @@ public class EditChatActivity extends Activity {
     }
 
     public void deleteChat(View view) {
-        databaseHelper.delete(id);
+        databaseHelper.delete(this, id);
         new ConfirmationOverlay().setOnAnimationFinishedListener(this::finish).showOn(this);
     }
 }
