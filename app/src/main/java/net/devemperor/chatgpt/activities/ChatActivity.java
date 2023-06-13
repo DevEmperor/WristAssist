@@ -229,7 +229,7 @@ public class ChatActivity extends Activity {
         }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                .model("gpt-3.5-turbo")
+                .model("gpt-3.5-turbo-0301")
                 .messages(chatAdapter.getChatMessages())
                 .build();
 

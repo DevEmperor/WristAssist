@@ -27,7 +27,8 @@ If this explanation was not enough, you can find a detailed explanation [here](h
 
 The app is overall very self-explanatory, but there are a few things to keep in mind:
 
-- Before the first use, an API key must be set in the settings. You can **get an API key for one month for free from [OpenAI](https://platform.openai.com/)**, after that you have to specify a credit card, because the usage costs a little money (< 1$).
+- Before the first use, an API key must be set in the settings. 
+  You can **get an API key for one month for free from [OpenAI](https://platform.openai.com/)**, after that you have to specify a credit card, because the usage costs a little money (< 1$).
 - After the first request in a chat, a Save-button appears, which saves the entire chat (including future ones).
 - With a touch on a saved chat, a new interface appears to change the title or delete it.
 - If you click on the About activity, you'll find the total cost of all your requests. A long press on this label resets it.
@@ -41,7 +42,7 @@ The app is overall very self-explanatory, but there are a few things to keep in 
 - [x] chats should be able to be saved
 - [x] show total consumption in settings
 - [x] reset button for long chats
-- [ ] order saved chats by latest edits
+- [x] order saved chats by latest edits
 - [ ] possibility to switch between GPT 3.5 and GPT 4 (as soon as access is possible)
 - [ ] intro explaining how to generate an API key
 - [ ] PlayStore release
