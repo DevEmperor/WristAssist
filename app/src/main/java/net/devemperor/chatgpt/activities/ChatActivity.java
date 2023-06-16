@@ -2,7 +2,6 @@ package net.devemperor.chatgpt.activities;
 
 import static com.theokanning.openai.service.OpenAiService.defaultClient;
 import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
-import static com.theokanning.openai.service.OpenAiService.defaultRetrofit;
 
 import android.app.Activity;
 import android.app.RemoteInput;
@@ -49,6 +48,8 @@ import java.util.concurrent.Executors;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class ChatActivity extends Activity {
 
@@ -98,7 +99,12 @@ public class ChatActivity extends Activity {
                 .getString("net.devemperor.chatgpt.api_key", "noApiKey");
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(apiKey, Duration.ofSeconds(120)).newBuilder().build();
-        Retrofit retrofit = defaultRetrofit(client, mapper);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.openai.com/")
+                .client(client)
+                .addConverterFactory(JacksonConverterFactory.create(mapper))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build();
         OpenAiApi api = retrofit.create(OpenAiApi.class);
 
         service = new OpenAiService(api);
@@ -265,10 +271,11 @@ public class ChatActivity extends Activity {
                 });
             } catch (RuntimeException e) {
                 runOnUiThread(() -> {
+                    e.printStackTrace();
                     if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
                         errorTv.setText(R.string.chatgpt_timeout);
-                    } else if (e.getMessage().contains("Incorrect API key provided")) {
-                        errorTv.setText(getString(R.string.chatgpt_invalid_api_key));
+                    } else if (e.getMessage().contains("API key")) {
+                        errorTv.setText(getString(R.string.chatgpt_invalid_api_key_message));
                     } else {
                         errorTv.setText(R.string.chatgpt_no_internet);
                     }
