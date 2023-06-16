@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.ConfirmationOverlay;
 
@@ -116,7 +117,7 @@ public class ChatActivity extends Activity {
             titleTv.setText(databaseHelper.getTitle(id));
             titleTv.setVisibility(View.VISIBLE);
             saveResetBtn.setVisibility(View.VISIBLE);
-            saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
+            saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
 
             JSONArray chatObject;
             try {
@@ -181,7 +182,7 @@ public class ChatActivity extends Activity {
                     throw new RuntimeException(e);
                 }
 
-                saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
+                saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
                 saveThisChat = true;
             }
         }
@@ -228,10 +229,10 @@ public class ChatActivity extends Activity {
         progressBar.setVisibility(View.VISIBLE);
         errorTv.setVisibility(View.GONE);
         askBtn.setEnabled(false);
-        askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24_off));
+        askBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_keyboard_24_off));
         saveResetBtn.setEnabled(false);
         if (saveThisChat) {
-            saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24_off));
+            saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24_off));
         }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
@@ -258,10 +259,10 @@ public class ChatActivity extends Activity {
                     chatAdapter.add(assistantItem);
                     progressBar.setVisibility(View.GONE);
                     askBtn.setEnabled(true);
-                    askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
+                    askBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_keyboard_24));
                     saveResetBtn.setEnabled(true);
                     if (saveThisChat) {
-                        saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
+                        saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
                     }
 
                     if (!firstAnswerComplete) {
@@ -282,9 +283,9 @@ public class ChatActivity extends Activity {
                     progressBar.setVisibility(View.GONE);
                     errorTv.setVisibility(View.VISIBLE);
                     askBtn.setEnabled(true);
-                    askBtn.setImageDrawable(getDrawable(R.drawable.twotone_keyboard_24));
+                    askBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_keyboard_24));
                     saveResetBtn.setEnabled(true);
-                    saveResetBtn.setImageDrawable(getDrawable(R.drawable.twotone_change_circle_24));
+                    saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
                 });
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
