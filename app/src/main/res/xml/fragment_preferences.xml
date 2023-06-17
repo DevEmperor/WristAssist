@@ -7,7 +7,10 @@
     <EditTextPreference
         app:key="net.devemperor.chatgpt.api_key"
         app:title="@string/chatgpt_change_api_key"
-        app:summary="@string/chatgpt_no_api_key" />
+        app:summary="@string/chatgpt_no_api_key"
+        app:positiveButtonText="@string/chatgpt_okay"
+        app:negativeButtonText="@string/chatgpt_cancel"
+        app:dialogTitle=" "/>
 
     <ListPreference
         app:key="net.devemperor.chatgpt.api_host"
@@ -15,6 +18,8 @@
         app:summary="@string/chatgpt_select_api_host_message"
         app:entries="@array/api_hosts"
         app:entryValues="@array/api_hosts_values"
+        app:negativeButtonText="@string/chatgpt_cancel"
+        app:dialogTitle=""
         android:defaultValue="https://api.openai.com/"/>
 
     <SeekBarPreference
