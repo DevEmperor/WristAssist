@@ -20,6 +20,8 @@
     <string name="chatgpt_vibrate">Vibrate</string>
     <string name="chatgpt_vibrate_message">Vibrate when an answer appears</string>
     <string name="chatgpt_font_size">Font size</string>
+    <string name="chatgpt_show_cost">Show cost</string>
+    <string name="chatgpt_show_cost_message">Show the cost for each answer</string>
 
     <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
     <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s $</string>

@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 public class Util {
 
     public static double getFiatPrice(long price) {
-        return price * 0.002 / 1000;
+        return price * 0.0015 / 1000;
     }
 
     public static Bitmap drawableToBitmap(Drawable drawable) {

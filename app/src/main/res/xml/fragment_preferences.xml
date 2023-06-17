@@ -31,4 +31,10 @@
         app:summary="@string/chatgpt_vibrate_message"
         android:defaultValue="true"/>
 
+    <SwitchPreference
+        app:key="net.devemperor.chatgpt.show_cost"
+        app:title="@string/chatgpt_show_cost"
+        app:summary="@string/chatgpt_show_cost_message"
+        android:defaultValue="false"/>
+
 </PreferenceScreen>

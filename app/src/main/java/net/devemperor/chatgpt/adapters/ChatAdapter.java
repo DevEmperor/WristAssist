@@ -59,7 +59,8 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         setLeadingMarginSpan(chatItem, icon);
 
         long totalCost = objects.get(position).getTotalCost();
-        if (totalCost > 0) {
+        if (totalCost > 0 && context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE)
+                .getBoolean("net.devemperor.chatgpt.show_cost", false)) {
             TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
             chatItemCost.setText(df.format(Util.getFiatPrice(totalCost)) + " $");
             chatItemCost.setVisibility(View.VISIBLE);
