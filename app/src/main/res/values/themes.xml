@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.ChatGPT" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/chatgpt_green</item>
+        <item name="colorPrimaryVariant">@color/chatgpt_green</item>
+        <item name="colorOnPrimary">@color/chatgpt_black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/chatgpt_green</item>
+        <item name="colorSecondaryVariant">@color/chatgpt_green</item>
+        <item name="colorOnSecondary">@color/chatgpt_black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <item name="android:windowBackground">@color/chatgpt_black</item>
+    </style>
+</resources>
