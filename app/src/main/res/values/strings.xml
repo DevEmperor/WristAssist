@@ -7,17 +7,18 @@
 
     <string name="chatgpt_query">Query</string>
     <string name="chatgpt_ask_title">Set a chat title</string>
+    <string name="chatgpt_no_internet">Connection to OpenAI API failed. Please check your internet connection.</string>
+    <string name="chatgpt_timeout">The timeout of 120 seconds was reached. Probably the answer was very long or ChatGPT is overloaded.</string>
+    <string name="chatgpt_invalid_api_key_message">The API key you entered is invalid. Go to the settings and check the API Key you provided.</string>
 
     <string name="chatgpt_no_saved_chats">You haven\'t saved any chats yet.\nTouch the Save-Button in a new chat to save.</string>
 
     <string name="chatgpt_change_api_key">Change API key</string>
-    <string name="chatgpt_set_api_key">Set API key</string>
     <string name="chatgpt_no_api_key">No API key set</string>
-    <string name="chatgpt_invalid_api_key">Invalid API key</string>
-    <string name="chatgpt_invalid_api_key_message">The API key you entered is invalid. Go to the settings and check the API Key you provided.</string>
-
-    <string name="chatgpt_no_internet">Connection to OpenAI API failed. Please check your internet connection.</string>
-    <string name="chatgpt_timeout">The timeout of 120 seconds was reached. Probably the answer was very long or ChatGPT is overloaded.</string>
+    <string name="chatgpt_select_api_host">Select API host</string>
+    <string name="chatgpt_select_api_host_message">Select the API host for ChatGPT</string>
+    <string name="chatgpt_vibrate">Vibrate</string>
+    <string name="chatgpt_vibrate_message">Vibrate when an answer appears</string>
 
     <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
     <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s $</string>

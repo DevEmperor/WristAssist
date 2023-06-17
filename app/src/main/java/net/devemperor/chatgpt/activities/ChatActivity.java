@@ -6,6 +6,7 @@ import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
 import android.app.Activity;
 import android.app.RemoteInput;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -68,6 +69,7 @@ public class ChatActivity extends Activity {
     Vibrator vibrator;
 
     DatabaseHelper databaseHelper;
+    SharedPreferences sp;
 
     boolean firstAnswerComplete = false;
     boolean saveThisChat = false;
@@ -95,13 +97,14 @@ public class ChatActivity extends Activity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         databaseHelper = new DatabaseHelper(this);
+        sp = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE);
 
-        String apiKey = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE)
-                .getString("net.devemperor.chatgpt.api_key", "noApiKey");
+        String apiKey = sp.getString("net.devemperor.chatgpt.api_key", "noApiKey");
+        String apiHost = sp.getString("net.devemperor.chatgpt.api_host", "https://api.openai.com/");
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(apiKey, Duration.ofSeconds(120)).newBuilder().build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.openai.com/")
+                .baseUrl(apiHost)
                 .client(client)
                 .addConverterFactory(JacksonConverterFactory.create(mapper))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -247,14 +250,14 @@ public class ChatActivity extends Activity {
                 String answer = result.getChoices().get(0).getMessage().getContent().trim();
                 long cost = result.getUsage().getTotalTokens();
                 ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), cost);
-                getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE).edit()
-                        .putLong("net.devemperor.chatgpt.total_tokens", getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE)
-                                .getLong("net.devemperor.chatgpt.total_tokens", 0) + cost).apply();
+                sp.edit().putLong("net.devemperor.chatgpt.total_tokens", sp.getLong("net.devemperor.chatgpt.total_tokens", 0) + cost).apply();
                 if (saveThisChat) {
                     databaseHelper.edit(this, id, assistantItem);
                 }
                 runOnUiThread(() -> {
-                    vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+                    if (sp.getBoolean("net.devemperor.chatgpt.vibrate", true)) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+                    }
 
                     chatAdapter.add(assistantItem);
                     progressBar.setVisibility(View.GONE);

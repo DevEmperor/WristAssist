@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="api_hosts">
+        <item name="openai">openai.com</item>
+        <item name="pawan">pawan.krd</item>
+    </string-array>
+
+    <string-array name="api_hosts_values">
+        <item name="openai">https://api.openai.com/</item>
+        <item name="pawan">https://api.pawan.krd/</item>
+    </string-array>
+</resources>
