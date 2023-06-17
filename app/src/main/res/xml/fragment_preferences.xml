@@ -17,6 +17,14 @@
         app:entryValues="@array/api_hosts_values"
         android:defaultValue="https://api.openai.com/"/>
 
+    <SeekBarPreference
+        app:key="net.devemperor.chatgpt.font_size"
+        app:title="@string/chatgpt_font_size"
+        app:showSeekBarValue="true"
+        app:min="11"
+        app:defaultValue="15"
+        android:max="18"/>
+
     <SwitchPreference
         app:key="net.devemperor.chatgpt.vibrate"
         app:title="@string/chatgpt_vibrate"

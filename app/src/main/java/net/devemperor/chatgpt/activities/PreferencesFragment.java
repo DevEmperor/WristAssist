@@ -30,7 +30,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             });
 
             apiKeyPreference.setOnBindEditTextListener(editText -> {
-                editText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+                editText.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                 editText.setSingleLine(true);
             });
         }

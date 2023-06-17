@@ -19,6 +19,7 @@
     <string name="chatgpt_select_api_host_message">Select the API host for ChatGPT</string>
     <string name="chatgpt_vibrate">Vibrate</string>
     <string name="chatgpt_vibrate_message">Vibrate when an answer appears</string>
+    <string name="chatgpt_font_size">Font size</string>
 
     <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
     <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s $</string>

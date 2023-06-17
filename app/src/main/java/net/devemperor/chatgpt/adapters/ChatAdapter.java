@@ -46,6 +46,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         View listItem = LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false);
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
+        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE).getInt("net.devemperor.chatgpt.font_size", 15));
         chatItem.setText(objects.get(position).getChatMessage().getContent());
 
         Drawable icon;
