@@ -22,6 +22,16 @@
         app:dialogTitle=""
         android:defaultValue="https://api.openai.com/"/>
 
+    <ListPreference
+        app:key="net.devemperor.chatgpt.model"
+        app:title="@string/chatgpt_select_model"
+        app:summary="@string/chatgpt_select_model_message"
+        app:entries="@array/models"
+        app:entryValues="@array/models_values"
+        app:negativeButtonText="@string/chatgpt_cancel"
+        app:dialogTitle=""
+        android:defaultValue="gpt-3.5-turbo"/>
+
     <SeekBarPreference
         app:key="net.devemperor.chatgpt.font_size"
         app:title="@string/chatgpt_font_size"

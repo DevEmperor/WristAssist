@@ -9,4 +9,14 @@
         <item name="openai">https://api.openai.com/</item>
         <item name="pawan">https://api.pawan.krd/</item>
     </string-array>
+
+    <string-array name="models">
+        <item name="gpt-3.5-turbo">GPT-3.5 Turbo</item>
+        <item name="gpt-3.5-turbo-16k">GPT-3.5 Turbo 16K</item>
+    </string-array>
+
+    <string-array name="models_values">
+        <item name="gpt-3.5-turbo">gpt-3.5-turbo</item>
+        <item name="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</item>
+    </string-array>
 </resources>

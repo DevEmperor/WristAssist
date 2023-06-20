@@ -245,7 +245,7 @@ public class ChatActivity extends Activity {
         }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                .model("gpt-3.5-turbo")
+                .model(sp.getString("net.devemperor.chatgpt.model", "gpt3.5-turbo"))
                 .messages(chatAdapter.getChatMessages())
                 .build();
 

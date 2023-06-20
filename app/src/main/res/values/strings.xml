@@ -22,6 +22,8 @@
     <string name="chatgpt_font_size">Font size</string>
     <string name="chatgpt_show_cost">Show cost</string>
     <string name="chatgpt_show_cost_message">Show the cost for each answer</string>
+    <string name="chatgpt_select_model">Select GPT model</string>
+    <string name="chatgpt_select_model_message">Select the GPT model for all chat conversations</string>
 
     <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
     <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s k</string>
