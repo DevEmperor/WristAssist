@@ -162,6 +162,12 @@ public class ChatActivity extends Activity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        thread.shutdownNow();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1337 && resultCode == RESULT_OK) {
@@ -251,6 +257,9 @@ public class ChatActivity extends Activity {
                 long cost = result.getUsage().getTotalTokens();
                 ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), cost);
                 sp.edit().putLong("net.devemperor.chatgpt.total_tokens", sp.getLong("net.devemperor.chatgpt.total_tokens", 0) + cost).apply();
+                if (Thread.interrupted()) {
+                    return;
+                }
                 if (saveThisChat) {
                     databaseHelper.edit(this, id, assistantItem);
                 }
