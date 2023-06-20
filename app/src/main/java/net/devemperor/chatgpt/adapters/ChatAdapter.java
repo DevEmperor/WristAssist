@@ -32,7 +32,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     final Context context;
     final List<ChatItem> objects;
 
-    DecimalFormat df = new DecimalFormat("#.#####");
+    DecimalFormat df = new DecimalFormat("#.#");
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
@@ -62,7 +62,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         if (totalCost > 0 && context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE)
                 .getBoolean("net.devemperor.chatgpt.show_cost", false)) {
             TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
-            chatItemCost.setText(df.format(Util.getFiatPrice(totalCost)) + " $");
+            chatItemCost.setText(df.format(totalCost / 1000.0) + " k");
             chatItemCost.setVisibility(View.VISIBLE);
         }
         return listItem;

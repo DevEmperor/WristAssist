@@ -24,7 +24,7 @@
     <string name="chatgpt_show_cost_message">Show the cost for each answer</string>
 
     <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
-    <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s $</string>
+    <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s k</string>
     <string name="chatgpt_reset_cost_message">Reset total cost</string>
 
     <string name="chatgpt_okay">OK</string>
