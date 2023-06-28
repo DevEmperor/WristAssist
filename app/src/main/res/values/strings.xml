@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChatGPT</string>
+    <string name="app_name" translatable="false">ChatGPT</string>
     <string name="chatgpt_menu_new_chat">New chat</string>
     <string name="chatgpt_menu_saved_chats">Saved chats</string>
     <string name="chatgpt_menu_settings">Settings</string>
@@ -25,7 +25,7 @@
     <string name="chatgpt_select_model">Select GPT model</string>
     <string name="chatgpt_select_model_message">Select the GPT model for all chat conversations</string>
 
-    <string name="chatgpt_about" formatted="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
+    <string name="chatgpt_about" formatted="false" translatable="false">ChatGPT %1$s\n© 2023 Jannis Zahn</string>
     <string name="chatgpt_total_cost" formatted="false">Total cost: %1$s k</string>
     <string name="chatgpt_reset_cost_message">Reset total cost</string>
 
