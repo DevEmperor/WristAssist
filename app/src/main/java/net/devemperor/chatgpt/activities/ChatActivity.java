@@ -164,7 +164,9 @@ public class ChatActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        thread.shutdownNow();
+        if (thread != null) {
+            thread.shutdownNow();
+        }
     }
 
     @Override
