@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="chatgpt_menu_new_chat">Neuer Chat</string>
-    <string name="chatgpt_menu_saved_chats">Gespeicherte Chats</string>
+    <string name="chatgpt_menu_saved_chats">Chats</string>
     <string name="chatgpt_menu_settings">Einstellungen</string>
     <string name="chatgpt_menu_about">Über</string>
     <string name="chatgpt_query">Anfrage</string>

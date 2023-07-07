@@ -19,7 +19,7 @@
         app:entries="@array/api_hosts"
         app:entryValues="@array/api_hosts_values"
         app:negativeButtonText="@string/chatgpt_cancel"
-        app:dialogTitle=""
+        app:dialogTitle=" "
         android:defaultValue="https://api.openai.com/"/>
 
     <ListPreference
@@ -29,7 +29,7 @@
         app:entries="@array/models"
         app:entryValues="@array/models_values"
         app:negativeButtonText="@string/chatgpt_cancel"
-        app:dialogTitle=""
+        app:dialogTitle=" "
         android:defaultValue="gpt-3.5-turbo"/>
 
     <SeekBarPreference
