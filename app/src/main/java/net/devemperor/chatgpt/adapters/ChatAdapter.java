@@ -2,6 +2,7 @@ package net.devemperor.chatgpt.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
@@ -33,6 +34,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     final List<ChatItem> objects;
 
     DecimalFormat df = new DecimalFormat("#.#");
+    boolean showSystemMessage = false;
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
@@ -47,15 +49,29 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE).getInt("net.devemperor.chatgpt.font_size", 15));
-        chatItem.setText(objects.get(position).getChatMessage().getContent());
 
         Drawable icon;
         if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.USER.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
+            chatItem.setText(objects.get(position).getChatMessage().getContent());
         } else if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.ASSISTANT.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.chatgpt_logo);
+            chatItem.setText(objects.get(position).getChatMessage().getContent());
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
+            chatItem.setText(R.string.chatgpt_click_to_reveal);
+            chatItem.setTypeface(chatItem.getTypeface(), Typeface.ITALIC);
+
+            chatItem.setOnClickListener(v -> {
+                showSystemMessage = !showSystemMessage;
+                if (showSystemMessage) {
+                    chatItem.setText(objects.get(position).getChatMessage().getContent());
+                } else {
+                    chatItem.setText(R.string.chatgpt_click_to_reveal);
+                }
+                assert icon != null;
+                setLeadingMarginSpan(chatItem, icon);
+            });
         }
         assert icon != null;
         setLeadingMarginSpan(chatItem, icon);

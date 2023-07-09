@@ -32,4 +32,5 @@
     <string name="chatgpt_okay">OK</string>
     <string name="chatgpt_cancel">Cancel</string>
     <string name="chatgpt_system_query">Define the role</string>
+    <string name="chatgpt_click_to_reveal">Click to reveal</string>
 </resources>
