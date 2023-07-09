@@ -52,8 +52,10 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         Drawable icon;
         if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.USER.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
-        } else {
+        } else if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.ASSISTANT.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.chatgpt_logo);
+        } else {
+            icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
         }
         assert icon != null;
         setLeadingMarginSpan(chatItem, icon);

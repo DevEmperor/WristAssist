@@ -22,7 +22,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RecyclerViewHo
     private final AdapterCallback callback;
 
     public interface AdapterCallback {
-        void onItemClicked(Integer menuPosition) throws IOException;
+        void onItemClicked(Integer menuPosition, boolean longClick) throws IOException;
     }
 
     public MainAdapter(List<MainItem> data, AdapterCallback callback) {
@@ -59,11 +59,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RecyclerViewHo
         holder.menuContainer.setOnClickListener(v -> {
             if (callback != null) {
                 try {
-                    callback.onItemClicked(position);
+                    callback.onItemClicked(position, false);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             }
+        });
+        holder.menuContainer.setOnLongClickListener(v -> {
+            if (callback != null) {
+                try {
+                    callback.onItemClicked(position, true);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return true;
         });
     }
 

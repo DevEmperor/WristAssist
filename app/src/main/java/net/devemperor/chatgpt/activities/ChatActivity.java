@@ -153,6 +153,12 @@ public class ChatActivity extends Activity {
                 }
             }
         } else {
+            String systemQuery = getIntent().getStringExtra("net.devemperor.chatgpt.system_query");
+            if (systemQuery != null) {
+                ChatItem systemItem = new ChatItem(new ChatMessage("system", systemQuery), 0);
+                chatAdapter.add(systemItem);
+            }
+
             try {
                 query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
             } catch (JSONException | IOException e) {
