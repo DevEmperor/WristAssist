@@ -134,7 +134,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         new File(filePath).delete();
     }
 
-    public void reset(Context context, long id, ChatItem item) throws IOException, JSONException {
+    public void reset(Context context, long id, List<ChatItem> items) throws IOException, JSONException {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put("LAST_EDIT", System.currentTimeMillis());
@@ -144,11 +144,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
         JSONArray chatObject = new JSONArray();
 
-        JSONObject chatItemObject = new JSONObject();
-        chatItemObject.put("role", item.getChatMessage().getRole());
-        chatItemObject.put("content", item.getChatMessage().getContent());
-        chatItemObject.put("cost", item.getTotalCost());
-        chatObject.put(chatItemObject);
+        for (ChatItem item : items) {
+            JSONObject chatItemObject = new JSONObject();
+            chatItemObject.put("role", item.getChatMessage().getRole());
+            chatItemObject.put("content", item.getChatMessage().getContent());
+            chatItemObject.put("cost", item.getTotalCost());
+            chatObject.put(chatItemObject);
+        }
 
         BufferedWriter out = new BufferedWriter(new FileWriter(filePath));
         out.write(chatObject.toString());

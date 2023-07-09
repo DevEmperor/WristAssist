@@ -51,12 +51,13 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE).getInt("net.devemperor.chatgpt.font_size", 15));
 
         Drawable icon;
-        if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.USER.value())) {
+        ChatMessage chatMessage = objects.get(position).getChatMessage();
+        if (chatMessage.getRole().equals(ChatMessageRole.USER.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
-            chatItem.setText(objects.get(position).getChatMessage().getContent());
-        } else if (objects.get(position).getChatMessage().getRole().equals(ChatMessageRole.ASSISTANT.value())) {
+            chatItem.setText(chatMessage.getContent());
+        } else if (chatMessage.getRole().equals(ChatMessageRole.ASSISTANT.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.chatgpt_logo);
-            chatItem.setText(objects.get(position).getChatMessage().getContent());
+            chatItem.setText(chatMessage.getContent());
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
             chatItem.setText(R.string.chatgpt_click_to_reveal);
@@ -65,7 +66,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             chatItem.setOnClickListener(v -> {
                 showSystemMessage = !showSystemMessage;
                 if (showSystemMessage) {
-                    chatItem.setText(objects.get(position).getChatMessage().getContent());
+                    chatItem.setText(chatMessage.getContent());
                 } else {
                     chatItem.setText(R.string.chatgpt_click_to_reveal);
                 }

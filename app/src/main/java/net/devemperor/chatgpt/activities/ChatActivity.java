@@ -26,6 +26,7 @@ import com.theokanning.openai.OpenAiApi;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.completion.chat.ChatMessage;
+import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
 
 import net.devemperor.chatgpt.R;
@@ -212,10 +213,10 @@ public class ChatActivity extends Activity {
             RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
             startActivityForResult(intent, 1338);
         } else {
-            for (int i = chatAdapter.getCount() - 1; i > 0; i--) {
+            for (int i = chatAdapter.getCount() - 1; i > ((chatAdapter.getItem(0).getChatMessage().getRole().equals(ChatMessageRole.SYSTEM.value())) ? 1 : 0); i--) {
                 chatAdapter.remove(chatAdapter.getItem(i));
             }
-            databaseHelper.reset(this, id, chatAdapter.getChatItems().get(0));
+            databaseHelper.reset(this, id, chatAdapter.getChatItems());
             firstAnswerComplete = false;
             saveResetBtn.setVisibility(View.GONE);
             new ConfirmationOverlay().showOn(this);
