@@ -25,15 +25,16 @@ If this explanation was not enough, you can find a detailed explanation [here](h
 
 ## Usage
 
-The app is overall very self-explanatory, but there are a few things to keep in mind:
+The app is overall very **self-explanatory**, but there are a few things to keep in mind:
 
-- Before the first use, an API key must be set in the settings. There are two options for this:
-  1. You can get an API key for one month for free from [OpenAI](https://platform.openai.com/), after that you have to specify a credit card, because the usage costs a little money (< 1$).
-  2. You can visit [this community project](https://github.com/PawanOsman/ChatGPT#use-our-hosted-api-reverse-proxy) and get a free API key to this API proxy. If you choose this option, you will have to change the API host in the settings.
-- After the first request in a chat, a Save-button appears, which saves the entire chat (including future ones).
-- With a touch on a saved chat, a new interface appears to change the title or delete it.
-- If you click on the About activity, you'll find the total cost of all your requests. A long press on this label resets it.
-- Every saved chat has a Reset-button that resets the chat to the first prompt. This is useful if you have a long chat history, which consumes a lot of tokens, but only the prompt is important for you (e.g. a translator prompt).
+- Before the first use, an **API key** must be set in the settings. There are two options for this:
+  1. You can get an API key for one month for free from **[OpenAI](https://platform.openai.com/)**, after that you have to specify a credit card, because the usage costs a little money (< 1$).
+  2. You can visit [this community project](https://github.com/PawanOsman/ChatGPT#use-our-hosted-api-reverse-proxy) and get **a free API key** to this API proxy. If you choose this option, you will have to change the API host in the settings.
+- After the first request in a chat, a **Save-button** appears, which saves the entire chat (including future ones).
+- With a long press on a saved chat, a new interface appears to **change the title or delete it**.
+- If you click on the About activity, you'll find the **total cost** of all your requests. A long press on this label resets it.
+- Every saved chat has a **Reset-button** that resets the chat to the first prompt. This is useful if you have a long chat history, which consumes a lot of tokens, but only the prompt is important for you (e.g. a translator prompt).
+- If you want to set a **system role** for a conversation, you can do a long press on "New chat". The first keyboard allows you to define a system role.
 
 
 
