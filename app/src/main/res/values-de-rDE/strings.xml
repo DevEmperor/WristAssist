@@ -27,4 +27,6 @@
     <string name="chatgpt_cancel">Abbrechen</string>
     <string name="chatgpt_system_query">Definiere die Rolle</string>
     <string name="chatgpt_click_to_reveal">Klicke zum Anzeigen</string>
+    <string name="chatgpt_last_edit" formatted="false">Letzte Änderung:\n%1$s</string>
+    <string name="chatgpt_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
 </resources>

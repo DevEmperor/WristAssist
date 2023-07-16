@@ -33,4 +33,6 @@
     <string name="chatgpt_cancel">Cancel</string>
     <string name="chatgpt_system_query">Define the role</string>
     <string name="chatgpt_click_to_reveal">Click to reveal</string>
+    <string name="chatgpt_last_edit" formatted="false">Last edit:\n%1$s</string>
+    <string name="chatgpt_chat_cost" formatted="false">Chat cost:\n%1$s k</string>
 </resources>

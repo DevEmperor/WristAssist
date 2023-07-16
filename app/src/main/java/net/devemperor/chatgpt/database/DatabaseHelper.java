@@ -176,6 +176,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    public long getModified(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT LAST_EDIT FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
+        cursor.moveToFirst();
+        long lastEdit = cursor.getLong(0);
+        cursor.close();
+        db.close();
+        return lastEdit;
+    }
+
+    public long getChatCost(Context context, long id) throws IOException, JSONException {
+        String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
+        BufferedReader in = new BufferedReader(new FileReader(filePath));
+        JSONArray chatObject = new JSONArray(in.readLine());
+        in.close();
+
+        long totalCost = 0;
+        for (int i = 0; i < chatObject.length(); i++) {
+            totalCost += chatObject.getJSONObject(i).getLong("cost");
+        }
+        return totalCost;
+    }
+
     public List<ChatHistoryModel> getAllChats() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE ORDER BY LAST_EDIT DESC", null);

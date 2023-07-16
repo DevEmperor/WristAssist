@@ -14,16 +14,25 @@ import androidx.wear.widget.ConfirmationOverlay;
 import net.devemperor.chatgpt.R;
 import net.devemperor.chatgpt.database.DatabaseHelper;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Locale;
 
 public class EditChatActivity extends Activity {
 
     TextView titleTv;
+    TextView modifiedTv;
+    TextView chatCostTv;
     ImageButton editTitleBtn;
     ImageButton deleteChatBtn;
 
     DatabaseHelper databaseHelper;
     long id;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,8 @@ public class EditChatActivity extends Activity {
         setContentView(R.layout.activity_edit_chat);
 
         titleTv = findViewById(R.id.edit_title_tv);
+        modifiedTv = findViewById(R.id.modified_tv);
+        chatCostTv = findViewById(R.id.chat_cost_tv);
         editTitleBtn = findViewById(R.id.edit_btn);
         deleteChatBtn = findViewById(R.id.delete_btn);
 
@@ -38,6 +49,15 @@ public class EditChatActivity extends Activity {
         id = getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1);
 
         titleTv.setText(databaseHelper.getTitle(id));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        modifiedTv.setText(getString(R.string.chatgpt_last_edit, formatter.format(databaseHelper.getModified(id))));
+
+        try {
+            chatCostTv.setText(getString(R.string.chatgpt_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
+        } catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
