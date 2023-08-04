@@ -203,10 +203,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM CHAT_HISTORY_TABLE ORDER BY LAST_EDIT DESC", null);
         List<ChatHistoryModel> chatHistoryModels = new ArrayList<>();
-        cursor.moveToFirst();
-        do {
-            chatHistoryModels.add(new ChatHistoryModel(cursor.getLong(0), cursor.getString(1), null));
-        } while (cursor.moveToNext());
+        if (cursor.moveToFirst()) {
+            do {
+                chatHistoryModels.add(new ChatHistoryModel(cursor.getLong(0), cursor.getString(1), null));
+            } while (cursor.moveToNext());
+        }
         cursor.close();
         db.close();
         return chatHistoryModels;

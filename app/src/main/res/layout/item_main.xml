@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/menu_text"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/menu_icon"
         android:textSize="24sp" />
