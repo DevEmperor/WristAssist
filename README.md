@@ -1,23 +1,23 @@
-# ChatGPT (for WearOS)
+# WristAssist
 
-#### ChatGPT for WearOS is the first app for all WearOS watches that fully brings the classic ChatGPT features to your wrist. Since a picture is worth a thousand words, here are some screenshots:
+#### WristAssist is the first app for all WearOS watches that fully brings the classic ChatGPT features to your wrist. Since a picture is worth a thousand words, here are some screenshots:
 
-| ![menu.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/menu.png) | ![query.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/query.png) | ![answer.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/answer.png) | ![buttons.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/buttons.png) |
+| ![menu.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/menu.png) | ![query.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/query.png) | ![answer.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/answer.png) | ![buttons.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/buttons.png) |
 | :----------------------------------------------------------: | :--: | :--: | :--: |
-| ![saved_chats.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/saved_chats.png) | ![edit.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/edit.png) | ![settings.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/settings.png) | ![about.png](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/about.png) |
+| ![saved_chats.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/saved_chats.png) | ![edit.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/edit.png) | ![settings.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/settings.png) | ![about.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/about.png) |
 
 #### Or maybe a showcase video?
-[![Showcase](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/img/player.png)](https://streamable.com/nwd4pu "Showcase")
+[![Showcase](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/player.png)](https://streamable.com/nwd4pu "Showcase")
 
 
 ## Installation
 
-I plan to release the app to the PlayStore as soon as possible. Until then, you can **download an APK** from the **[release page](https://github.com/DevEmperor/ChatGPT-WearOS/releases)**. The APK can be installed as follows:
+I plan to release the app to the PlayStore as soon as possible. Until then, you can **download an APK** from the **[release page](https://github.com/DevEmperor/WristAssist/releases)**. The APK can be installed as follows:
 
 1. **Enable developer options on your watch:** Open the watch's **Settings**. Tap **System > About**. Scroll to **Build number** and tap the build number seven times. A dialog appears confirming that you are now a developer.
 2. **Enable Wi-Fi debugging:** Open the watch's **Settings**. Tap **Developer options > Debug over Wi-Fi**. After a moment, the screen displays the watch's IP address, such as `192.168.1.100`. You need this for the next step, so make a note of it.
 3. **Connect the debugger to the watch:** Connect the debugger to the watch using the watch's IP address and a port  number. For example, if the IP address is `192.168.1.100` and the port number is `5555`, the  `adb connect` command look like this: `adb connect 192.168.1.100:5555`
-4. **Install the ADB:** `adb install ChatGPT_WearOS_1.3.apk`
+4. **Install the ADB:** `adb install WristAssist_1.4.1.apk`
 
 If this explanation was not enough, you can find a detailed explanation [here](https://www.guidingtech.com/how-to-install-apks-on-wear-os-smartwatches/).
 
@@ -54,4 +54,4 @@ The app is overall very **self-explanatory**, but there are a few things to keep
 
 ## License
 
-ChatGPT for WearOS is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://raw.githubusercontent.com/DevEmperor/ChatGPT-WearOS/master/LICENSE)
+WristAssist is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/LICENSE)
