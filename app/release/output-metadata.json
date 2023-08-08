@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "net.devemperor.chatgpt",
+  "applicationId": "net.devemperor.wristassist",
   "variantName": "release",
   "elements": [
     {

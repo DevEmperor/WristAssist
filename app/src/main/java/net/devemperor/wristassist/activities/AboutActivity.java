@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 import androidx.wear.widget.ConfirmationOverlay;
 
-import net.devemperor.chatgpt.BuildConfig;
-import net.devemperor.chatgpt.R;
+import net.devemperor.wristassist.BuildConfig;
+import net.devemperor.wristassist.R;
 
 import java.text.DecimalFormat;
 
@@ -25,21 +25,21 @@ public class AboutActivity extends Activity {
         setContentView(R.layout.activity_about);
 
         TextView aboutText = findViewById(R.id.version_tv);
-        aboutText.setText(getString(R.string.chatgpt_about, BuildConfig.VERSION_NAME));
+        aboutText.setText(getString(R.string.wristassist_about, BuildConfig.VERSION_NAME));
 
         totalCost = findViewById(R.id.total_cost_tv);
-        sp = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE);
+        sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
         refreshTotalCostTv();
 
         totalCost.setOnLongClickListener(v -> {
-            sp.edit().putLong("net.devemperor.chatgpt.total_tokens", 0).apply();
-            new ConfirmationOverlay().setMessage(getString(R.string.chatgpt_reset_cost_message)).showOn(this);
+            sp.edit().putLong("net.devemperor.wristassist.total_tokens", 0).apply();
+            new ConfirmationOverlay().setMessage(getString(R.string.wristassist_reset_cost_message)).showOn(this);
             refreshTotalCostTv();
             return true;
         });
     }
 
     private void refreshTotalCostTv() {
-        totalCost.setText(getString(R.string.chatgpt_total_cost, df.format(sp.getLong("net.devemperor.chatgpt.total_tokens", 0) / 1000.0)));
+        totalCost.setText(getString(R.string.wristassist_total_cost, df.format(sp.getLong("net.devemperor.wristassist.total_tokens", 0) / 1000.0)));
     }
 }

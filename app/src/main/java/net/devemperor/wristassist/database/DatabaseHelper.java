@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.database;
+package net.devemperor.wristassist.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import net.devemperor.chatgpt.items.ChatItem;
+import net.devemperor.wristassist.items.ChatItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;

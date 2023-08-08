@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,10 +11,10 @@ import androidx.core.view.MotionEventCompat;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.adapters.SavedChatsAdapter;
-import net.devemperor.chatgpt.database.ChatHistoryModel;
-import net.devemperor.chatgpt.database.DatabaseHelper;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.adapters.SavedChatsAdapter;
+import net.devemperor.wristassist.database.ChatHistoryModel;
+import net.devemperor.wristassist.database.DatabaseHelper;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class SavedChatsActivity extends Activity {
             } else {
                 intent = new Intent(this, EditChatActivity.class);
             }
-            intent.putExtra("net.devemperor.chatgpt.chatId", chats.get(chatPosition).getId());
+            intent.putExtra("net.devemperor.wristassist.chatId", chats.get(chatPosition).getId());
             startActivity(intent);
         });
         savedChatsWrv.setAdapter(savedChatsAdapter);

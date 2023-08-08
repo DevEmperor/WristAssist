@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'net.devemperor.chatgpt'
+    namespace 'net.devemperor.wristassist'
     compileSdk 33
 
     defaultConfig {
-        applicationId "net.devemperor.chatgpt"
+        applicationId 'net.devemperor.wristassist'
         minSdk 28
         targetSdk 33
         versionCode 6

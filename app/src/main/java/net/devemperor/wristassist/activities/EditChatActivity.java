@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
 import android.app.RemoteInput;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.ConfirmationOverlay;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.database.DatabaseHelper;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.database.DatabaseHelper;
 
 import org.json.JSONException;
 
@@ -46,15 +46,15 @@ public class EditChatActivity extends Activity {
         deleteChatBtn = findViewById(R.id.delete_btn);
 
         databaseHelper = new DatabaseHelper(this);
-        id = getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1);
+        id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
 
         titleTv.setText(databaseHelper.getTitle(id));
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        modifiedTv.setText(getString(R.string.chatgpt_last_edit, formatter.format(databaseHelper.getModified(id))));
+        modifiedTv.setText(getString(R.string.wristassist_last_edit, formatter.format(databaseHelper.getModified(id))));
 
         try {
-            chatCostTv.setText(getString(R.string.chatgpt_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
+            chatCostTv.setText(getString(R.string.wristassist_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
@@ -74,7 +74,7 @@ public class EditChatActivity extends Activity {
     }
 
     public void editTitle(View view) {
-        RemoteInput remoteInput = new RemoteInput.Builder("new_title").setLabel(getString(R.string.chatgpt_ask_title)).build();
+        RemoteInput remoteInput = new RemoteInput.Builder("new_title").setLabel(getString(R.string.wristassist_ask_title)).build();
         Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
         RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
         startActivityForResult(intent, 1337);

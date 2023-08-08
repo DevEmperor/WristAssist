@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.adapters;
+package net.devemperor.wristassist.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.items.MainItem;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.items.MainItem;
 
 import java.io.IOException;
 import java.util.List;

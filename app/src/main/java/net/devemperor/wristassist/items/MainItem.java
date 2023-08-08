@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.items;
+package net.devemperor.wristassist.items;
 
 public class MainItem {
     private final String text;

@@ -12,7 +12,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ChatGPT">
+        android:theme="@style/Theme.WristAssist">
 
         <meta-data
             android:name="com.google.android.wearable.standalone"

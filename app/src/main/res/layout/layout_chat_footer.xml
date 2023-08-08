@@ -10,7 +10,7 @@
         android:id="@+id/error_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/chatgpt_no_internet"
+        android:text="@string/wristassist_no_internet"
         android:textSize="13sp"
         android:textAlignment="center"
         android:textColor="#cc0000"

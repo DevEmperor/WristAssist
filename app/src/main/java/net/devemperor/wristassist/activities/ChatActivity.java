@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import static com.theokanning.openai.service.OpenAiService.defaultClient;
 import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
@@ -29,11 +29,11 @@ import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.service.OpenAiService;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.adapters.ChatAdapter;
-import net.devemperor.chatgpt.database.ChatHistoryModel;
-import net.devemperor.chatgpt.database.DatabaseHelper;
-import net.devemperor.chatgpt.items.ChatItem;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.adapters.ChatAdapter;
+import net.devemperor.wristassist.database.ChatHistoryModel;
+import net.devemperor.wristassist.database.DatabaseHelper;
+import net.devemperor.wristassist.items.ChatItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -98,10 +98,10 @@ public class ChatActivity extends Activity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         databaseHelper = new DatabaseHelper(this);
-        sp = getSharedPreferences("net.devemperor.chatgpt", MODE_PRIVATE);
+        sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
 
-        String apiKey = sp.getString("net.devemperor.chatgpt.api_key", "noApiKey");
-        String apiHost = sp.getString("net.devemperor.chatgpt.api_host", "https://api.openai.com/");
+        String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
+        String apiHost = sp.getString("net.devemperor.wristassist.api_host", "https://api.openai.com/");
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(apiKey, Duration.ofSeconds(120)).newBuilder().build();
         Retrofit retrofit = new Retrofit.Builder()
@@ -116,8 +116,8 @@ public class ChatActivity extends Activity {
 
         chatLv.requestFocus();
 
-        if (getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1) != -1) {
-            long id = getIntent().getLongExtra("net.devemperor.chatgpt.chatId", -1);
+        if (getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1) != -1) {
+            long id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
             titleTv.setText(databaseHelper.getTitle(id));
             titleTv.setVisibility(View.VISIBLE);
             saveResetBtn.setVisibility(View.VISIBLE);
@@ -154,14 +154,14 @@ public class ChatActivity extends Activity {
                 }
             }
         } else {
-            String systemQuery = getIntent().getStringExtra("net.devemperor.chatgpt.system_query");
+            String systemQuery = getIntent().getStringExtra("net.devemperor.wristassist.system_query");
             if (systemQuery != null) {
                 ChatItem systemItem = new ChatItem(new ChatMessage("system", systemQuery), 0);
                 chatAdapter.add(systemItem);
             }
 
             try {
-                query(getIntent().getStringExtra("net.devemperor.chatgpt.query"));
+                query(getIntent().getStringExtra("net.devemperor.wristassist.query"));
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
@@ -208,7 +208,7 @@ public class ChatActivity extends Activity {
 
     public void saveReset(View view) throws JSONException, IOException {
         if (!saveThisChat) {
-            RemoteInput remoteInput = new RemoteInput.Builder("title").setLabel(getString(R.string.chatgpt_ask_title)).build();
+            RemoteInput remoteInput = new RemoteInput.Builder("title").setLabel(getString(R.string.wristassist_ask_title)).build();
             Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
             RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
             startActivityForResult(intent, 1338);
@@ -228,7 +228,7 @@ public class ChatActivity extends Activity {
         if (errorTv.getVisibility() == View.VISIBLE) {
             query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
         } else {
-            RemoteInput remoteInput = new RemoteInput.Builder("query").setLabel(getString(R.string.chatgpt_query)).build();
+            RemoteInput remoteInput = new RemoteInput.Builder("query").setLabel(getString(R.string.wristassist_query)).build();
             Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
             RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
             startActivityForResult(intent, 1337);
@@ -254,7 +254,7 @@ public class ChatActivity extends Activity {
         }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                .model(sp.getString("net.devemperor.chatgpt.model", "gpt3.5-turbo"))
+                .model(sp.getString("net.devemperor.wristassist.model", "gpt3.5-turbo"))
                 .messages(chatAdapter.getChatMessages())
                 .build();
 
@@ -265,7 +265,7 @@ public class ChatActivity extends Activity {
                 String answer = result.getChoices().get(0).getMessage().getContent().trim();
                 long cost = result.getUsage().getTotalTokens();
                 ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), cost);
-                sp.edit().putLong("net.devemperor.chatgpt.total_tokens", sp.getLong("net.devemperor.chatgpt.total_tokens", 0) + cost).apply();
+                sp.edit().putLong("net.devemperor.wristassist.total_tokens", sp.getLong("net.devemperor.wristassist.total_tokens", 0) + cost).apply();
                 if (Thread.interrupted()) {
                     return;
                 }
@@ -273,7 +273,7 @@ public class ChatActivity extends Activity {
                     databaseHelper.edit(this, id, assistantItem);
                 }
                 runOnUiThread(() -> {
-                    if (sp.getBoolean("net.devemperor.chatgpt.vibrate", true)) {
+                    if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {
                         vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
                     }
 
@@ -295,11 +295,11 @@ public class ChatActivity extends Activity {
                 runOnUiThread(() -> {
                     e.printStackTrace();
                     if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
-                        errorTv.setText(R.string.chatgpt_timeout);
+                        errorTv.setText(R.string.wristassist_timeout);
                     } else if (e.getMessage().contains("API key")) {
-                        errorTv.setText(getString(R.string.chatgpt_invalid_api_key_message));
+                        errorTv.setText(getString(R.string.wristassist_invalid_api_key_message));
                     } else {
-                        errorTv.setText(R.string.chatgpt_no_internet);
+                        errorTv.setText(R.string.wristassist_no_internet);
                     }
                     progressBar.setVisibility(View.GONE);
                     errorTv.setVisibility(View.VISIBLE);

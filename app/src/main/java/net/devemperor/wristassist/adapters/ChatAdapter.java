@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.adapters;
+package net.devemperor.wristassist.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -21,9 +21,9 @@ import androidx.core.content.ContextCompat;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.items.ChatItem;
-import net.devemperor.chatgpt.util.Util;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.items.ChatItem;
+import net.devemperor.wristassist.util.Util;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -42,13 +42,14 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         this.objects = objects;
     }
 
+    @NonNull
     @SuppressLint("SetTextI18n")
     @Override
-    public View getView (int position, View convertView, ViewGroup parent) {
+    public View getView (int position, View convertView, @NonNull ViewGroup parent) {
         View listItem = LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false);
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
-        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE).getInt("net.devemperor.chatgpt.font_size", 15));
+        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE).getInt("net.devemperor.wristassist.font_size", 15));
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();
@@ -56,11 +57,11 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
             chatItem.setText(chatMessage.getContent());
         } else if (chatMessage.getRole().equals(ChatMessageRole.ASSISTANT.value())) {
-            icon = ContextCompat.getDrawable(context, R.drawable.chatgpt_logo);
+            icon = ContextCompat.getDrawable(context, R.drawable.wristassist_logo);
             chatItem.setText(chatMessage.getContent());
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
-            chatItem.setText(R.string.chatgpt_click_to_reveal);
+            chatItem.setText(R.string.wristassist_click_to_reveal);
             chatItem.setTypeface(chatItem.getTypeface(), Typeface.ITALIC);
 
             chatItem.setOnClickListener(v -> {
@@ -68,7 +69,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
                 if (showSystemMessage) {
                     chatItem.setText(chatMessage.getContent());
                 } else {
-                    chatItem.setText(R.string.chatgpt_click_to_reveal);
+                    chatItem.setText(R.string.wristassist_click_to_reveal);
                 }
                 assert icon != null;
                 setLeadingMarginSpan(chatItem, icon);
@@ -78,8 +79,8 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         setLeadingMarginSpan(chatItem, icon);
 
         long totalCost = objects.get(position).getTotalCost();
-        if (totalCost > 0 && context.getSharedPreferences("net.devemperor.chatgpt", Context.MODE_PRIVATE)
-                .getBoolean("net.devemperor.chatgpt.show_cost", false)) {
+        if (totalCost > 0 && context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getBoolean("net.devemperor.wristassist.show_cost", false)) {
             TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
             chatItemCost.setText(df.format(totalCost / 1000.0) + " k");
             chatItemCost.setVisibility(View.VISIBLE);

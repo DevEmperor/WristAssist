@@ -1,10 +1,10 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import net.devemperor.chatgpt.R;
+import net.devemperor.wristassist.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

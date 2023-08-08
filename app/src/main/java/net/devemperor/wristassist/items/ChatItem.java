@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.items;
+package net.devemperor.wristassist.items;
 
 import com.theokanning.openai.completion.chat.ChatMessage;
 

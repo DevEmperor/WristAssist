@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="chatgpt_menu_new_chat">Neuer Chat</string>
-    <string name="chatgpt_menu_saved_chats">Chats</string>
-    <string name="chatgpt_menu_settings">Einstellungen</string>
-    <string name="chatgpt_menu_about">Über</string>
-    <string name="chatgpt_query">Anfrage</string>
-    <string name="chatgpt_ask_title">Wähle einen Chat-Titel</string>
-    <string name="chatgpt_no_internet">Verbindung zu OpenAI API fehlgeschlagen. Bitte kontrolliere deine Internet Verbindung.</string>
-    <string name="chatgpt_timeout">Der Timeout von 120 Sekunden wurde erreicht. Wahrscheinlich war die Antwort sehr lang oder ChatGPT ist überlastet.</string>
-    <string name="chatgpt_invalid_api_key_message">Der von Ihnen eingegebene API-Schlüssel ist ungültig. Gehen Sie zu den Einstellungen und überprüfen Sie den von Ihnen angegebenen API-Schlüssel.</string>
-    <string name="chatgpt_no_saved_chats">Sie haben noch keine Chats gespeichert.\nTippen Sie in einem neuen Chat auf den Speichern-Button, um zu speichern.</string>
-    <string name="chatgpt_change_api_key">API-Schlüssel ändern</string>
-    <string name="chatgpt_no_api_key">Kein API-Schlüssel festgelegt</string>
-    <string name="chatgpt_select_api_host">API Host wechseln</string>
-    <string name="chatgpt_select_api_host_message">Wähle den API Host für ChatGPT</string>
-    <string name="chatgpt_vibrate">Vibrieren</string>
-    <string name="chatgpt_vibrate_message">Vibrieren, wenn eine Antwort erscheint</string>
-    <string name="chatgpt_font_size">Schriftgröße</string>
-    <string name="chatgpt_show_cost">Verbrauch anzeigen</string>
-    <string name="chatgpt_show_cost_message">Verbrauch für jede Antwort anzeigen</string>
-    <string name="chatgpt_select_model">GPT Model wechseln</string>
-    <string name="chatgpt_select_model_message">Wähle das GPT Model für alle Chat Unterhaltungen</string>
-    <string name="chatgpt_total_cost">Gesamtverbrauch: %1$s k</string>
-    <string name="chatgpt_reset_cost_message">Verbrauch zurücksetzen</string>
-    <string name="chatgpt_okay">OK</string>
-    <string name="chatgpt_cancel">Abbrechen</string>
-    <string name="chatgpt_system_query">Definiere die Rolle</string>
-    <string name="chatgpt_click_to_reveal">Klicke zum Anzeigen</string>
-    <string name="chatgpt_last_edit" formatted="false">Letzte Änderung:\n%1$s</string>
-    <string name="chatgpt_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
+    <string name="wristassist_menu_new_chat">Neuer Chat</string>
+    <string name="wristassist_menu_saved_chats">Chats</string>
+    <string name="wristassist_menu_settings">Einstellungen</string>
+    <string name="wristassist_menu_about">Über</string>
+    <string name="wristassist_query">Anfrage</string>
+    <string name="wristassist_ask_title">Wähle einen Chat-Titel</string>
+    <string name="wristassist_no_internet">Verbindung zu OpenAI API fehlgeschlagen. Bitte kontrolliere deine Internet Verbindung.</string>
+    <string name="wristassist_timeout">Der Timeout von 120 Sekunden wurde erreicht. Wahrscheinlich war die Antwort sehr lang oder ChatGPT ist überlastet.</string>
+    <string name="wristassist_invalid_api_key_message">Der von Ihnen eingegebene API-Schlüssel ist ungültig. Gehen Sie zu den Einstellungen und überprüfen Sie den von Ihnen angegebenen API-Schlüssel.</string>
+    <string name="wristassist_no_saved_chats">Sie haben noch keine Chats gespeichert.\nTippen Sie in einem neuen Chat auf den Speichern-Button, um zu speichern.</string>
+    <string name="wristassist_change_api_key">API-Schlüssel ändern</string>
+    <string name="wristassist_no_api_key">Kein API-Schlüssel festgelegt</string>
+    <string name="wristassist_select_api_host">API Host wechseln</string>
+    <string name="wristassist_select_api_host_message">Wähle den API Host für ChatGPT</string>
+    <string name="wristassist_vibrate">Vibrieren</string>
+    <string name="wristassist_vibrate_message">Vibrieren, wenn eine Antwort erscheint</string>
+    <string name="wristassist_font_size">Schriftgröße</string>
+    <string name="wristassist_show_cost">Verbrauch anzeigen</string>
+    <string name="wristassist_show_cost_message">Verbrauch für jede Antwort anzeigen</string>
+    <string name="wristassist_select_model">GPT Model wechseln</string>
+    <string name="wristassist_select_model_message">Wähle das GPT Model für alle Chat Unterhaltungen</string>
+    <string name="wristassist_total_cost">Gesamtverbrauch: %1$s k</string>
+    <string name="wristassist_reset_cost_message">Verbrauch zurücksetzen</string>
+    <string name="wristassist_okay">OK</string>
+    <string name="wristassist_cancel">Abbrechen</string>
+    <string name="wristassist_system_query">Definiere die Rolle</string>
+    <string name="wristassist_click_to_reveal">Klicke zum Anzeigen</string>
+    <string name="wristassist_last_edit" formatted="false">Letzte Änderung:\n%1$s</string>
+    <string name="wristassist_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
 </resources>

@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.util;
+package net.devemperor.wristassist.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

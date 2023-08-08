@@ -1,4 +1,4 @@
-package net.devemperor.chatgpt.activities;
+package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
 import android.app.RemoteInput;
@@ -9,9 +9,9 @@ import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
 
-import net.devemperor.chatgpt.R;
-import net.devemperor.chatgpt.adapters.MainAdapter;
-import net.devemperor.chatgpt.items.MainItem;
+import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.adapters.MainAdapter;
+import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -32,17 +32,17 @@ public class MainActivity extends Activity {
         mainWrv.setLayoutManager(new WearableLinearLayoutManager(this));
 
         ArrayList<MainItem> menuItems = new ArrayList<>();
-        menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.chatgpt_menu_new_chat)));
-        menuItems.add(new MainItem(R.drawable.twotone_chat_24, getString(R.string.chatgpt_menu_saved_chats)));
-        menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.chatgpt_menu_settings)));
-        menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.chatgpt_menu_about)));
+        menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.wristassist_menu_new_chat)));
+        menuItems.add(new MainItem(R.drawable.twotone_chat_24, getString(R.string.wristassist_menu_saved_chats)));
+        menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.wristassist_menu_settings)));
+        menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.wristassist_menu_about)));
 
         mainWrv.setAdapter(new MainAdapter(menuItems, (menuPosition, longClick) -> {
             Intent intent;
             if (menuPosition == 0 && !longClick) {
-                queryKeyboard(1337, "query", R.string.chatgpt_query);
+                queryKeyboard(1337, "query", R.string.wristassist_query);
             } else if (menuPosition == 0) {
-                queryKeyboard(1338, "system_query", R.string.chatgpt_system_query);
+                queryKeyboard(1338, "system_query", R.string.wristassist_system_query);
             } else if (menuPosition == 1) {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
@@ -75,13 +75,13 @@ public class MainActivity extends Activity {
             Bundle results = RemoteInput.getResultsFromIntent(data);
             if (results != null) {
                 String systemQuery = results.getCharSequence("system_query").toString();
-                systemQueryBundle.putString("net.devemperor.chatgpt.system_query", systemQuery);
+                systemQueryBundle.putString("net.devemperor.wristassist.system_query", systemQuery);
 
-                queryKeyboard(1339, "query", R.string.chatgpt_query);
+                queryKeyboard(1339, "query", R.string.wristassist_query);
             }
         }
         if (requestCode == 1339 && resultCode == RESULT_OK) {
-            startChatActivity(data, systemQueryBundle.getString("net.devemperor.chatgpt.system_query"));
+            startChatActivity(data, systemQueryBundle.getString("net.devemperor.wristassist.system_query"));
         }
     }
 
@@ -90,8 +90,8 @@ public class MainActivity extends Activity {
         if (results != null) {
             String query = results.getCharSequence("query").toString();
             Intent intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("net.devemperor.chatgpt.query", query);
-            intent.putExtra("net.devemperor.chatgpt.system_query", systemQuery);
+            intent.putExtra("net.devemperor.wristassist.query", query);
+            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
             startActivity(intent);
         }
     }

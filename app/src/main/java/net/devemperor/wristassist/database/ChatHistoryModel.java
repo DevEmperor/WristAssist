@@ -1,6 +1,6 @@
-package net.devemperor.chatgpt.database;
+package net.devemperor.wristassist.database;
 
-import net.devemperor.chatgpt.items.ChatItem;
+import net.devemperor.wristassist.items.ChatItem;
 
 import java.util.List;
 

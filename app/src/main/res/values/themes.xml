@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.ChatGPT" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.WristAssist" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/chatgpt_green</item>
-        <item name="colorPrimaryVariant">@color/chatgpt_green</item>
-        <item name="colorOnPrimary">@color/chatgpt_black</item>
+        <item name="colorPrimary">@color/wristassist_green</item>
+        <item name="colorPrimaryVariant">@color/wristassist_green</item>
+        <item name="colorOnPrimary">@color/wristassist_black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/chatgpt_green</item>
-        <item name="colorSecondaryVariant">@color/chatgpt_green</item>
-        <item name="colorOnSecondary">@color/chatgpt_black</item>
+        <item name="colorSecondary">@color/wristassist_green</item>
+        <item name="colorSecondaryVariant">@color/wristassist_green</item>
+        <item name="colorOnSecondary">@color/wristassist_black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
 
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/chatgpt_black</item>
+        <item name="android:windowBackground">@color/wristassist_black</item>
         <item name="dialogTheme">@style/AlertDialogStyle</item>
         <item name="alertDialogTheme">@style/AlertDialogStyle</item>
         <item name="alertDialogStyle">@style/AlertDialogStyle</item>
     </style>
 
     <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
-        <item name="colorPrimary">@color/chatgpt_green</item>
-        <item name="colorPrimaryDark">@color/chatgpt_black</item>
-        <item name="colorAccent">@color/chatgpt_green</item>
-        <item name="android:textColor">@color/chatgpt_white</item>
-        <item name="android:background">@color/chatgpt_black</item>
-        <item name="android:popupBackground">@color/chatgpt_black</item>
-        <item name="android:windowBackground">@color/chatgpt_black</item>
-        <item name="android:itemBackground">@color/chatgpt_black</item>
+        <item name="colorPrimary">@color/wristassist_green</item>
+        <item name="colorPrimaryDark">@color/wristassist_black</item>
+        <item name="colorAccent">@color/wristassist_green</item>
+        <item name="android:textColor">@color/wristassist_white</item>
+        <item name="android:background">@color/wristassist_black</item>
+        <item name="android:popupBackground">@color/wristassist_black</item>
+        <item name="android:windowBackground">@color/wristassist_black</item>
+        <item name="android:itemBackground">@color/wristassist_black</item>
     </style>
 </resources>
