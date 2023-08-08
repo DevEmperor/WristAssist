@@ -2,12 +2,12 @@
 <resources>
     <style name="Theme.WristAssist" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/wristassist_green</item>
-        <item name="colorPrimaryVariant">@color/wristassist_green</item>
+        <item name="colorPrimary">@color/wristassist_purple</item>
+        <item name="colorPrimaryVariant">@color/wristassist_purple</item>
         <item name="colorOnPrimary">@color/wristassist_black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/wristassist_green</item>
-        <item name="colorSecondaryVariant">@color/wristassist_green</item>
+        <item name="colorSecondary">@color/wristassist_purple</item>
+        <item name="colorSecondaryVariant">@color/wristassist_purple</item>
         <item name="colorOnSecondary">@color/wristassist_black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
@@ -20,9 +20,9 @@
     </style>
 
     <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
-        <item name="colorPrimary">@color/wristassist_green</item>
+        <item name="colorPrimary">@color/wristassist_purple</item>
         <item name="colorPrimaryDark">@color/wristassist_black</item>
-        <item name="colorAccent">@color/wristassist_green</item>
+        <item name="colorAccent">@color/wristassist_purple</item>
         <item name="android:textColor">@color/wristassist_white</item>
         <item name="android:background">@color/wristassist_black</item>
         <item name="android:popupBackground">@color/wristassist_black</item>
