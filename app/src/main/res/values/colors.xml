@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wristassist_purple">#9C27B0</color>
+    <color name="wristassist_purple">#7B1FA2</color>
     <color name="wristassist_white">#ffffff</color>
     <color name="wristassist_black">#000000</color>
     <color name="wristassist_grey">#A8A8A8</color>
