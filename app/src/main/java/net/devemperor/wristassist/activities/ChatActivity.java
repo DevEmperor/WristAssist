@@ -22,7 +22,7 @@ import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.ConfirmationOverlay;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.theokanning.openai.OpenAiApi;
+import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
 import com.theokanning.openai.completion.chat.ChatMessage;
