@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.speech.tts.TextToSpeech;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 
@@ -27,19 +30,35 @@ import net.devemperor.wristassist.util.Util;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class ChatAdapter extends ArrayAdapter<ChatItem> {
     final Context context;
     final List<ChatItem> objects;
 
+    TextToSpeech tts;
+    LanguageIdentifier langId;
     DecimalFormat df = new DecimalFormat("#.#");
     boolean showSystemMessage = false;
+    boolean ttsEnabled = false;
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
         this.context = context;
         this.objects = objects;
+
+        tts = new TextToSpeech(context, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                ttsEnabled = true;
+            }
+        });
+        langId = LanguageIdentification.getClient();
+    }
+
+    public void shutdownServices() {
+        tts.shutdown();
+        langId.close();
     }
 
     @NonNull
@@ -50,6 +69,22 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE).getInt("net.devemperor.wristassist.font_size", 15));
+
+        chatItem.setOnClickListener(v -> {
+            if (!ttsEnabled) return;
+            String text = chatItem.getText().toString();
+
+            if (tts.isSpeaking()) tts.stop();
+
+            langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
+                Locale locale = Locale.forLanguageTag(languageCode);
+                tts.setLanguage(locale);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            }).addOnFailureListener(e -> {
+                tts.setLanguage(Locale.ENGLISH);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+            });
+        });
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();

@@ -174,6 +174,7 @@ public class ChatActivity extends Activity {
         if (thread != null) {
             thread.shutdownNow();
         }
+        chatAdapter.shutdownServices();
     }
 
     @Override
