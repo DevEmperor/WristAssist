@@ -11,7 +11,7 @@
         android:paddingTop="16dp"
         android:paddingHorizontal="32dp"
         android:textAlignment="center"
-        android:textColor="#9C27B0"
+        android:textColor="#7B1FA2"
         android:textStyle="bold"
         android:visibility="gone"/>
 </LinearLayout>
