@@ -42,6 +42,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     DecimalFormat df = new DecimalFormat("#.#");
     boolean showSystemMessage = false;
     boolean ttsEnabled = false;
+    String lastText = "";
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
@@ -72,13 +73,16 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         chatItem.setOnClickListener(v -> {
             if (!ttsEnabled) return;
+
             String text = chatItem.getText().toString();
+            if (tts.isSpeaking()) {
+                tts.stop();
+                if (lastText.equals(text)) return;
+            }
 
-            if (tts.isSpeaking()) tts.stop();
-
+            lastText = text;
             langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
-                Locale locale = Locale.forLanguageTag(languageCode);
-                tts.setLanguage(locale);
+                tts.setLanguage(Locale.forLanguageTag(languageCode));
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
             }).addOnFailureListener(e -> {
                 tts.setLanguage(Locale.ENGLISH);
