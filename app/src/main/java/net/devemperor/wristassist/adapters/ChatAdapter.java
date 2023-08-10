@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -69,26 +70,33 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         View listItem = LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false);
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
-        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE).getInt("net.devemperor.wristassist.font_size", 15));
+        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getInt("net.devemperor.wristassist.font_size", 15));
 
-        chatItem.setOnClickListener(v -> {
-            if (!ttsEnabled) return;
+        if (context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getBoolean("net.devemperor.wristassist.tts", true)) {
+            chatItem.setOnClickListener(v -> {
+                if (!ttsEnabled) return;
 
-            String text = chatItem.getText().toString();
-            if (tts.isSpeaking()) {
-                tts.stop();
-                if (lastText.equals(text)) return;
-            }
+                String text = chatItem.getText().toString();
+                if (tts.isSpeaking()) {
+                    tts.stop();
+                    if (lastText.equals(text)) return;
+                }
 
-            lastText = text;
-            langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
-                tts.setLanguage(Locale.forLanguageTag(languageCode));
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
-            }).addOnFailureListener(e -> {
-                tts.setLanguage(Locale.ENGLISH);
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null);
+                lastText = text;
+                Bundle params = new Bundle();
+                params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                        .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
+                langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
+                    tts.setLanguage(Locale.forLanguageTag(languageCode));
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
+                }).addOnFailureListener(e -> {
+                    tts.setLanguage(Locale.ENGLISH);
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
+                });
             });
-        });
+        }
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();

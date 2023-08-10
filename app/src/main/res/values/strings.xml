@@ -24,6 +24,12 @@
     <string name="wristassist_show_cost_message">Show the cost for each answer</string>
     <string name="wristassist_select_model">Select GPT model</string>
     <string name="wristassist_select_model_message">Select the GPT model for all chat conversations</string>
+    <string name="wristassist_gpt_settings">GPT settings</string>
+    <string name="wristassist_chat_settings">Chat settings</string>
+    <string name="wristassist_tts_settings">TTS settings</string>
+    <string name="wristassist_tts">TTS</string>
+    <string name="wristassist_tts_message">Read the answer out loud</string>
+    <string name="wristassist_tts_volume">TTS volume</string>
 
     <string name="wristassist_about" formatted="false" translatable="false">WristAssist %1$s\n© 2023 Jannis Zahn</string>
     <string name="wristassist_total_cost" formatted="false">Total cost: %1$s k</string>

@@ -4,52 +4,83 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_preferences">
 
-    <EditTextPreference
-        app:key="net.devemperor.wristassist.api_key"
-        app:title="@string/wristassist_change_api_key"
-        app:summary="@string/wristassist_no_api_key"
-        app:positiveButtonText="@string/wristassist_okay"
-        app:negativeButtonText="@string/wristassist_cancel"
-        app:dialogTitle=" "/>
 
-    <ListPreference
-        app:key="net.devemperor.wristassist.api_host"
-        app:title="@string/wristassist_select_api_host"
-        app:summary="@string/wristassist_select_api_host_message"
-        app:entries="@array/api_hosts"
-        app:entryValues="@array/api_hosts_values"
-        app:negativeButtonText="@string/wristassist_cancel"
-        app:dialogTitle=" "
-        android:defaultValue="https://api.openai.com/"/>
+    <PreferenceCategory
+        app:title="@string/wristassist_gpt_settings">
 
-    <ListPreference
-        app:key="net.devemperor.wristassist.model"
-        app:title="@string/wristassist_select_model"
-        app:summary="@string/wristassist_select_model_message"
-        app:entries="@array/models"
-        app:entryValues="@array/models_values"
-        app:negativeButtonText="@string/wristassist_cancel"
-        app:dialogTitle=" "
-        android:defaultValue="gpt-3.5-turbo"/>
+        <EditTextPreference
+            app:key="net.devemperor.wristassist.api_key"
+            app:title="@string/wristassist_change_api_key"
+            app:summary="@string/wristassist_no_api_key"
+            app:positiveButtonText="@string/wristassist_okay"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "/>
 
-    <SeekBarPreference
-        app:key="net.devemperor.wristassist.font_size"
-        app:title="@string/wristassist_font_size"
-        app:showSeekBarValue="true"
-        app:min="11"
-        app:defaultValue="15"
-        android:max="18"/>
+        <ListPreference
+            app:key="net.devemperor.wristassist.api_host"
+            app:title="@string/wristassist_select_api_host"
+            app:summary="@string/wristassist_select_api_host_message"
+            app:entries="@array/api_hosts"
+            app:entryValues="@array/api_hosts_values"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "
+            android:defaultValue="https://api.openai.com/"/>
 
-    <SwitchPreference
-        app:key="net.devemperor.wristassist.vibrate"
-        app:title="@string/wristassist_vibrate"
-        app:summary="@string/wristassist_vibrate_message"
-        android:defaultValue="true"/>
+        <ListPreference
+            app:key="net.devemperor.wristassist.model"
+            app:title="@string/wristassist_select_model"
+            app:summary="@string/wristassist_select_model_message"
+            app:entries="@array/models"
+            app:entryValues="@array/models_values"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "
+            android:defaultValue="gpt-3.5-turbo"/>
 
-    <SwitchPreference
-        app:key="net.devemperor.wristassist.show_cost"
-        app:title="@string/wristassist_show_cost"
-        app:summary="@string/wristassist_show_cost_message"
-        android:defaultValue="false"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/wristassist_chat_settings">
+
+        <SeekBarPreference
+            app:key="net.devemperor.wristassist.font_size"
+            app:title="@string/wristassist_font_size"
+            app:showSeekBarValue="true"
+            app:min="11"
+            app:defaultValue="15"
+            android:max="18"/>
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.vibrate"
+            app:title="@string/wristassist_vibrate"
+            app:summary="@string/wristassist_vibrate_message"
+            android:defaultValue="true"/>
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.show_cost"
+            app:title="@string/wristassist_show_cost"
+            app:summary="@string/wristassist_show_cost_message"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/wristassist_tts_settings">
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.tts"
+            app:title="@string/wristassist_tts"
+            app:summary="@string/wristassist_tts_message"
+            android:defaultValue="true"/>
+
+        <SeekBarPreference
+            app:key="net.devemperor.wristassist.tts_volume"
+            app:title="@string/wristassist_tts_volume"
+            app:dependency="net.devemperor.wristassist.tts"
+            app:showSeekBarValue="true"
+            app:min="0"
+            app:defaultValue="5"
+            android:max="10"/>
+
+    </PreferenceCategory>
 
 </PreferenceScreen>
