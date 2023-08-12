@@ -7,8 +7,8 @@
 | ![saved_chats.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/saved_chats.png) | ![edit.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/edit.png) | ![settings.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/settings.png) | ![about.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/about.png) |
 
 #### Or maybe a showcase video?
-[![Showcase](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/player.png)](https://streamable.com/nwd4pu "Showcase")
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/goIoDTxPllc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<br>
 
 ## Installation
 
