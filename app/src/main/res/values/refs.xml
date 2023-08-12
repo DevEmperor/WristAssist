@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <item name="confirmation_animation" type="drawable" tools:override="true">@drawable/my_confirmation_animation</item>
+</resources>
