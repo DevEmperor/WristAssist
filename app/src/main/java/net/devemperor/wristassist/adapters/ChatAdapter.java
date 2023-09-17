@@ -104,7 +104,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
             chatItem.setText(chatMessage.getContent());
         } else if (chatMessage.getRole().equals(ChatMessageRole.ASSISTANT.value())) {
-            icon = ContextCompat.getDrawable(context, R.drawable.wristassist_logo);
+            icon = ContextCompat.getDrawable(context, R.drawable.twotone_auto_awesome_24);
             chatItem.setText(chatMessage.getContent());
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
