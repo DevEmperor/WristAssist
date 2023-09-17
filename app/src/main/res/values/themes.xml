@@ -19,6 +19,12 @@
         <item name="alertDialogStyle">@style/AlertDialogStyle</item>
     </style>
 
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/wristassist_black</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/wristassist_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.WristAssist</item>
+    </style>
+
     <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
         <item name="colorPrimary">@color/wristassist_purple</item>
         <item name="colorPrimaryDark">@color/wristassist_black</item>

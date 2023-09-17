@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
+import androidx.core.splashscreen.SplashScreen;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.MainAdapter;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
         }
 
         super.onCreate(savedInstanceState);
+        SplashScreen.installSplashScreen(this);
         setContentView(R.layout.activity_main);
 
         mainWrv = findViewById(R.id.main_wrv);

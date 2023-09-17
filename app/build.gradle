@@ -35,6 +35,7 @@ dependencies {
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'com.google.mlkit:language-id:17.0.4'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
 
     implementation 'com.theokanning.openai-gpt3-java:service:0.15.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
