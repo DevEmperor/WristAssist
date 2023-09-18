@@ -50,15 +50,19 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         this.context = context;
         this.objects = objects;
 
-        tts = new TextToSpeech(context, status -> {
-            if (status == TextToSpeech.SUCCESS) {
-                ttsEnabled = true;
-            }
-        });
-        langId = LanguageIdentification.getClient();
+        if (context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getBoolean("net.devemperor.wristassist.tts", true)) {
+            tts = new TextToSpeech(context, status -> {
+                if (status == TextToSpeech.SUCCESS) {
+                    ttsEnabled = true;
+                }
+            });
+            langId = LanguageIdentification.getClient();
+        }
     }
 
     public void shutdownServices() {
+        if (tts == null || langId == null) return;
         tts.shutdown();
         langId.close();
     }
@@ -73,30 +77,27 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getInt("net.devemperor.wristassist.font_size", 15));
 
-        if (context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getBoolean("net.devemperor.wristassist.tts", true)) {
-            chatItem.setOnClickListener(v -> {
-                if (!ttsEnabled) return;
+        chatItem.setOnClickListener(v -> {
+            if (!ttsEnabled || langId == null) return;
 
-                String text = chatItem.getText().toString();
-                if (tts.isSpeaking()) {
-                    tts.stop();
-                    if (lastText.equals(text)) return;
-                }
+            String text = chatItem.getText().toString();
+            if (tts.isSpeaking()) {
+                tts.stop();
+                if (lastText.equals(text)) return;
+            }
 
-                lastText = text;
-                Bundle params = new Bundle();
-                params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                        .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
-                langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
-                    tts.setLanguage(Locale.forLanguageTag(languageCode));
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
-                }).addOnFailureListener(e -> {
-                    tts.setLanguage(Locale.ENGLISH);
-                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
-                });
+            lastText = text;
+            Bundle params = new Bundle();
+            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                    .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
+            langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
+                tts.setLanguage(Locale.forLanguageTag(languageCode));
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
+            }).addOnFailureListener(e -> {
+                tts.setLanguage(Locale.ENGLISH);
+                tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
             });
-        }
+        });
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();
