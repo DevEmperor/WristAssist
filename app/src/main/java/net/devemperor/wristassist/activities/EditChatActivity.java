@@ -1,14 +1,12 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
-import android.app.RemoteInput;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.ConfirmationOverlay;
 
 import net.devemperor.wristassist.R;
@@ -19,7 +17,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Locale;
 
 public class EditChatActivity extends Activity {
@@ -64,20 +61,14 @@ public class EditChatActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1337 && resultCode == RESULT_OK) {
-            Bundle results = RemoteInput.getResultsFromIntent(data);
-            if (results != null) {
-                String newTitle = results.getCharSequence("new_title").toString();
-                databaseHelper.setTitle(id, newTitle);
-                titleTv.setText(newTitle);
-            }
+            String newTitle = data.getStringExtra("result_text");
+            databaseHelper.setTitle(id, newTitle);
+            titleTv.setText(newTitle);
         }
     }
 
     public void editTitle(View view) {
-        RemoteInput remoteInput = new RemoteInput.Builder("new_title").setLabel(getString(R.string.wristassist_ask_title)).build();
-        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
-        startActivityForResult(intent, 1337);
+        startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1337);
     }
 
     public void deleteChat(View view) {
