@@ -46,12 +46,15 @@ public class EditChatActivity extends Activity {
         id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
 
         titleTv.setText(databaseHelper.getTitle(id));
+        titleTv.setTextSize(16 * getResources().getConfiguration().fontScale);
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         modifiedTv.setText(getString(R.string.wristassist_last_edit, formatter.format(databaseHelper.getModified(id))));
+        modifiedTv.setTextSize(14 * getResources().getConfiguration().fontScale);
 
         try {
             chatCostTv.setText(getString(R.string.wristassist_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
+            chatCostTv.setTextSize(14 * getResources().getConfiguration().fontScale);
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }

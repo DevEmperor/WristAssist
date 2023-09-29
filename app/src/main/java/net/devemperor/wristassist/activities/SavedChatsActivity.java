@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.widget.TextView;
 
 import androidx.core.view.InputDeviceCompat;
 import androidx.core.view.MotionEventCompat;
@@ -50,7 +51,9 @@ public class SavedChatsActivity extends Activity {
         });
         savedChatsWrv.setAdapter(savedChatsAdapter);
 
-        findViewById(R.id.no_saved_chats).setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+        TextView noSavedChats = findViewById(R.id.no_saved_chats);
+        noSavedChats.setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+        noSavedChats.setTextSize(16 * getResources().getConfiguration().fontScale);
 
         savedChatsWrv.requestFocus();
         savedChatsWrv.setOnGenericMotionListener((v, ev) -> {

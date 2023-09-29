@@ -26,8 +26,10 @@ public class AboutActivity extends Activity {
 
         TextView aboutText = findViewById(R.id.version_tv);
         aboutText.setText(getString(R.string.wristassist_about, BuildConfig.VERSION_NAME));
+        aboutText.setTextSize(16 * getResources().getConfiguration().fontScale);
 
         totalCost = findViewById(R.id.total_cost_tv);
+        totalCost.setTextSize(16 * getResources().getConfiguration().fontScale);
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
         refreshTotalCostTv();
 

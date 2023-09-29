@@ -51,6 +51,7 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
         ChatHistoryModel dataProvider = data.get(position);
 
         holder.savedChatTitle.setText(dataProvider.getTitle());
+        holder.savedChatTitle.setTextSize(18 * holder.savedChatTitle.getContext().getResources().getConfiguration().fontScale);
 
         holder.savedChatContainer.setOnClickListener(v -> {
             if (callback != null) {
