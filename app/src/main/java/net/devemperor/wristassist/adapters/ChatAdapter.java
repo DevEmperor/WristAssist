@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -78,7 +79,10 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
                 .getInt("net.devemperor.wristassist.font_size", 15) * context.getResources().getConfiguration().fontScale);
 
         chatItem.setOnClickListener(v -> {
-            if (!ttsEnabled || langId == null) return;
+            if (!ttsEnabled || langId == null) {
+                Toast.makeText(context, R.string.wristassist_tts_not_available, Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             String text = chatItem.getText().toString();
             if (tts.isSpeaking()) {
@@ -91,6 +95,10 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                     .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
             langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
+                if (tts.isLanguageAvailable(Locale.forLanguageTag(languageCode)) < TextToSpeech.LANG_AVAILABLE) {
+                    Toast.makeText(context, R.string.wristassist_tts_lang_not_available, Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 tts.setLanguage(Locale.forLanguageTag(languageCode));
                 tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
             }).addOnFailureListener(e -> {

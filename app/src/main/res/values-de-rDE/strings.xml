@@ -34,4 +34,6 @@
     <string name="wristassist_tts">TTS</string>
     <string name="wristassist_tts_message">Lies die Nachricht laut vor</string>
     <string name="wristassist_tts_volume">TTS Lautstärke</string>
+    <string name="wristassist_tts_lang_not_available">TTS-Sprache nicht verfügbar. Download in den Einstellungen.</string>
+    <string name="wristassist_tts_not_available">Verbindung zur TTS-Engine konnte nicht hergestellt werden.</string>
 </resources>
