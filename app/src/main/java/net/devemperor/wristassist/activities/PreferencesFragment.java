@@ -1,6 +1,7 @@
 package net.devemperor.wristassist.activities;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.InputType;
 import android.text.TextUtils;
 
@@ -34,5 +35,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 editText.setSingleLine(true);
             });
         }
+
+        new TextToSpeech(getContext(), status -> {
+            if (status != TextToSpeech.SUCCESS) {
+                findPreference("net.devemperor.wristassist.tts").setEnabled(false);
+            }
+        });
     }
 }
