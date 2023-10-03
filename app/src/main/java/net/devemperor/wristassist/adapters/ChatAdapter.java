@@ -56,6 +56,8 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             tts = new TextToSpeech(context, status -> {
                 if (status == TextToSpeech.SUCCESS) {
                     ttsEnabled = true;
+                } else {
+                    Toast.makeText(context, R.string.wristassist_tts_not_available, Toast.LENGTH_SHORT).show();
                 }
             });
             langId = LanguageIdentification.getClient();
@@ -80,7 +82,6 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         chatItem.setOnClickListener(v -> {
             if (!ttsEnabled || langId == null) {
-                Toast.makeText(context, R.string.wristassist_tts_not_available, Toast.LENGTH_SHORT).show();
                 return;
             }
 
