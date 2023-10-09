@@ -287,6 +287,10 @@ public class ChatActivity extends Activity {
                         saveResetBtn.setVisibility(View.VISIBLE);
                         firstAnswerComplete = true;
                     }
+
+                    if (sp.getBoolean("net.devemperor.wristassist.auto_tts", false)) {
+                        chatAdapter.launchTTS(answer);
+                    }
                 });
             } catch (RuntimeException e) {
                 runOnUiThread(() -> {

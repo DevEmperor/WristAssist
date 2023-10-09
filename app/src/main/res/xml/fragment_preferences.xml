@@ -72,6 +72,13 @@
             app:summary="@string/wristassist_tts_message"
             android:defaultValue="true"/>
 
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.auto_tts"
+            app:title="@string/wristassist_auto_tts"
+            app:summary="@string/wristassist_auto_tts_message"
+            app:dependency="net.devemperor.wristassist.tts"
+            android:defaultValue="false"/>
+
         <SeekBarPreference
             app:key="net.devemperor.wristassist.tts_volume"
             app:title="@string/wristassist_tts_volume"

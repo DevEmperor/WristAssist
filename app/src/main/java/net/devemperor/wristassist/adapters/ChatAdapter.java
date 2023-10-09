@@ -80,33 +80,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getInt("net.devemperor.wristassist.font_size", 15) * context.getResources().getConfiguration().fontScale);
 
-        chatItem.setOnClickListener(v -> {
-            if (!ttsEnabled || langId == null) {
-                return;
-            }
-
-            String text = chatItem.getText().toString();
-            if (tts.isSpeaking()) {
-                tts.stop();
-                if (lastText.equals(text)) return;
-            }
-
-            lastText = text;
-            Bundle params = new Bundle();
-            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                    .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
-            langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
-                if (tts.isLanguageAvailable(Locale.forLanguageTag(languageCode)) < TextToSpeech.LANG_AVAILABLE) {
-                    Toast.makeText(context, R.string.wristassist_tts_lang_not_available, Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                tts.setLanguage(Locale.forLanguageTag(languageCode));
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
-            }).addOnFailureListener(e -> {
-                tts.setLanguage(Locale.ENGLISH);
-                tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
-            });
-        });
+        chatItem.setOnClickListener(v -> launchTTS(chatItem.getText().toString()));
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();
@@ -143,6 +117,33 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
             chatItemCost.setVisibility(View.VISIBLE);
         }
         return listItem;
+    }
+
+    public void launchTTS(String text) {
+        if (!ttsEnabled || langId == null) {
+            return;
+        }
+
+        if (tts.isSpeaking()) {
+            tts.stop();
+            if (lastText.equals(text)) return;
+        }
+
+        lastText = text;
+        Bundle params = new Bundle();
+        params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
+        langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
+            if (tts.isLanguageAvailable(Locale.forLanguageTag(languageCode)) < TextToSpeech.LANG_AVAILABLE) {
+                Toast.makeText(context, R.string.wristassist_tts_lang_not_available, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            tts.setLanguage(Locale.forLanguageTag(languageCode));
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
+        }).addOnFailureListener(e -> {
+            tts.setLanguage(Locale.ENGLISH);
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, params, null);
+        });
     }
 
     public void add(ChatItem newItem) {
