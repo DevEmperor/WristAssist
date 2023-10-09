@@ -257,6 +257,7 @@ public class ChatActivity extends Activity {
         askBtn.setEnabled(false);
         askBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_keyboard_24_off));
         saveResetBtn.setEnabled(false);
+        saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_save_24_off));
         if (saveThisChat) {
             saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24_off));
         }
@@ -290,6 +291,7 @@ public class ChatActivity extends Activity {
                     askBtn.setEnabled(true);
                     askBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_keyboard_24));
                     saveResetBtn.setEnabled(true);
+                    saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_save_24));
                     if (saveThisChat) {
                         saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
                     }
