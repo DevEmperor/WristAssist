@@ -4,6 +4,7 @@ import static com.theokanning.openai.service.OpenAiService.defaultClient;
 import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
 
 import android.app.Activity;
+import android.app.RemoteInput;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.ConfirmationOverlay;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,6 +44,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -177,14 +180,15 @@ public class ChatActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1337 && resultCode == RESULT_OK) {
+        CharSequence result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        if (requestCode == 1337 && resultCode == RESULT_OK && result_text != null) {
             try {
-                query(data.getStringExtra("result_text"));
+                query(result_text.toString());
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
         } else if (requestCode == 1338 && resultCode == RESULT_OK) {
-            titleTv.setText(data.getStringExtra("result_text"));
+            titleTv.setText(result_text);
             titleTv.setVisibility(View.VISIBLE);
 
             try {
@@ -198,9 +202,16 @@ public class ChatActivity extends Activity {
         }
     }
 
+    private void openKeyboard(int returnCode) {
+        RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
+        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        startActivityForResult(intent, returnCode);
+    }
+
     public void saveReset(View view) throws JSONException, IOException {
         if (!saveThisChat) {
-            startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1338);
+            openKeyboard(1338);
         } else {
             for (int i = chatAdapter.getCount() - 1; i > ((chatAdapter.getItem(0).getChatMessage().getRole().equals(ChatMessageRole.SYSTEM.value())) ? 1 : 0); i--) {
                 chatAdapter.remove(chatAdapter.getItem(i));
@@ -217,7 +228,7 @@ public class ChatActivity extends Activity {
         if (errorTv.getVisibility() == View.VISIBLE) {
             query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
         } else {
-            startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1337);
+            openKeyboard(1337);
         }
     }
 

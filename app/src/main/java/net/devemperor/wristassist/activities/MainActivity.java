@@ -1,11 +1,13 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
+import android.app.RemoteInput;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import androidx.core.splashscreen.SplashScreen;
+import androidx.wear.input.RemoteInputIntentHelper;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
 
@@ -14,6 +16,7 @@ import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends Activity {
 
@@ -45,9 +48,9 @@ public class MainActivity extends Activity {
         mainWrv.setAdapter(new MainAdapter(menuItems, (menuPosition, longClick) -> {
             Intent intent;
             if (menuPosition == 0 && !longClick) {
-                startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1337);
+                openKeyboard(1337);
             } else if (menuPosition == 0) {
-                startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1338);
+                openKeyboard(1338);
             } else if (menuPosition == 1) {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
@@ -63,26 +66,39 @@ public class MainActivity extends Activity {
         mainWrv.postDelayed(() -> mainWrv.scrollBy(0, mainWrv.getChildAt(0).getHeight()), 100);
     }
 
+    private void openKeyboard(int returnCode) {
+        RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
+        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        startActivityForResult(intent, returnCode);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1337 && resultCode == RESULT_OK) {
-            startChatActivity(data.getStringExtra("result_text"), null);
+            startChatActivity(data, null);
         }
         if (requestCode == 1338 && resultCode == RESULT_OK) {
-            systemQueryBundle.putString("net.devemperor.wristassist.system_query", data.getStringExtra("result_text"));
+            CharSequence result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+            if (result_text != null) {
+                systemQueryBundle.putString("net.devemperor.wristassist.system_query", result_text.toString());
 
-            new Handler().postDelayed(() -> startActivityForResult(new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD"), 1339), 100);
+                new Handler().postDelayed(() -> openKeyboard(1339), 100);
+            }
         }
         if (requestCode == 1339 && resultCode == RESULT_OK) {
-            startChatActivity(data.getStringExtra("result_text"), systemQueryBundle.getString("net.devemperor.wristassist.system_query"));
+            startChatActivity(data, systemQueryBundle.getString("net.devemperor.wristassist.system_query"));
         }
     }
 
-    private void startChatActivity(String query, String systemQuery) {
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("net.devemperor.wristassist.query", query);
-        intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
-        startActivity(intent);
+    private void startChatActivity(Intent data, String systemQuery) {
+        CharSequence query = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        if (query != null) {
+            Intent intent = new Intent(this, ChatActivity.class);
+            intent.putExtra("net.devemperor.wristassist.query", query.toString());
+            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
+            startActivity(intent);
+        }
     }
 }
