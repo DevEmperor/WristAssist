@@ -3,6 +3,7 @@ package net.devemperor.wristassist.activities;
 import android.app.Activity;
 import android.app.RemoteInput;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -66,7 +67,12 @@ public class EditChatActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        CharSequence result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        CharSequence result_text;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            result_text = data.getStringExtra("result_text");
+        } else {
+            result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        }
         if (requestCode == 1337 && resultCode == RESULT_OK && result_text != null) {
             databaseHelper.setTitle(id, result_text.toString());
             titleTv.setText(result_text);
@@ -74,9 +80,14 @@ public class EditChatActivity extends Activity {
     }
 
     public void editTitle(View view) {
-        RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
-        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        Intent intent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            intent = new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD");
+        } else {
+            intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+            RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
+            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        }
         startActivityForResult(intent, 1337);
     }
 

@@ -3,6 +3,7 @@ package net.devemperor.wristassist.activities;
 import android.app.Activity;
 import android.app.RemoteInput;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -67,9 +68,14 @@ public class MainActivity extends Activity {
     }
 
     private void openKeyboard(int returnCode) {
-        RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
-        Intent intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-        RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        Intent intent;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            intent = new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD");
+        } else {
+            intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
+            RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
+            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
+        }
         startActivityForResult(intent, returnCode);
     }
 
@@ -80,7 +86,12 @@ public class MainActivity extends Activity {
             startChatActivity(data, null);
         }
         if (requestCode == 1338 && resultCode == RESULT_OK) {
-            CharSequence result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+            CharSequence result_text;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                result_text = data.getStringExtra("result_text");
+            } else {
+                result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+            }
             if (result_text != null) {
                 systemQueryBundle.putString("net.devemperor.wristassist.system_query", result_text.toString());
 
@@ -93,7 +104,12 @@ public class MainActivity extends Activity {
     }
 
     private void startChatActivity(Intent data, String systemQuery) {
-        CharSequence query = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        CharSequence query;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            query = data.getStringExtra("result_text");
+        } else {
+            query = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+        }
         if (query != null) {
             Intent intent = new Intent(this, ChatActivity.class);
             intent.putExtra("net.devemperor.wristassist.query", query.toString());
