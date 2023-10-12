@@ -16,6 +16,7 @@ import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.SavedChatsAdapter;
 import net.devemperor.wristassist.database.ChatHistoryModel;
 import net.devemperor.wristassist.database.DatabaseHelper;
+import net.devemperor.wristassist.util.Util;
 
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class SavedChatsActivity extends Activity {
 
         TextView noSavedChats = findViewById(R.id.no_saved_chats);
         noSavedChats.setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
-        noSavedChats.setTextSize(16 * getResources().getConfiguration().fontScale);
+        noSavedChats.setTextSize(16 * Util.getFontMultiplier(this));
 
         savedChatsWrv.requestFocus();
         savedChatsWrv.setOnGenericMotionListener((v, ev) -> {

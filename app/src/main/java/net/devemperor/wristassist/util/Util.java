@@ -1,5 +1,6 @@
 package net.devemperor.wristassist.util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,5 +21,17 @@ public class Util {
         drawable.draw(canvas);
 
         return bitmap;
+    }
+
+    public static float getFontMultiplier(Context context) {
+        float fs = context.getResources().getConfiguration().fontScale;
+        float diff = Math.abs(fs - 1.0f) * 0.3f;
+        if (fs > 1) {
+            System.out.println("Original FS: " + fs + " New FS: " + (1.0f + diff));
+            return 1.0f + diff;
+        } else {
+            System.out.println("Original FS: " + fs + " New FS: " + (1.0f - diff));
+            return 1.0f - diff;
+        }
     }
 }

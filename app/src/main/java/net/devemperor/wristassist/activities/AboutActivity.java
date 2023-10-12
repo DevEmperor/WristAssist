@@ -9,6 +9,7 @@ import androidx.wear.widget.ConfirmationOverlay;
 
 import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.util.Util;
 
 import java.text.DecimalFormat;
 
@@ -26,10 +27,10 @@ public class AboutActivity extends Activity {
 
         TextView aboutText = findViewById(R.id.version_tv);
         aboutText.setText(getString(R.string.wristassist_about, BuildConfig.VERSION_NAME));
-        aboutText.setTextSize(16 * getResources().getConfiguration().fontScale);
+        aboutText.setTextSize(16 * Util.getFontMultiplier(this));
 
         totalCost = findViewById(R.id.total_cost_tv);
-        totalCost.setTextSize(16 * getResources().getConfiguration().fontScale);
+        totalCost.setTextSize(16 * Util.getFontMultiplier(this));
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
         refreshTotalCostTv();
 

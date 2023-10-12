@@ -14,6 +14,7 @@ import androidx.wear.widget.ConfirmationOverlay;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.DatabaseHelper;
+import net.devemperor.wristassist.util.Util;
 
 import org.json.JSONException;
 
@@ -50,15 +51,15 @@ public class EditChatActivity extends Activity {
         id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
 
         titleTv.setText(databaseHelper.getTitle(id));
-        titleTv.setTextSize(16 * getResources().getConfiguration().fontScale);
+        titleTv.setTextSize(16 * Util.getFontMultiplier(this));
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        modifiedTv.setText(getString(R.string.wristassist_last_edit, formatter.format(databaseHelper.getModified(id))));
-        modifiedTv.setTextSize(14 * getResources().getConfiguration().fontScale);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault());
+        modifiedTv.setText(formatter.format(databaseHelper.getModified(id)));
+        modifiedTv.setTextSize(14 * Util.getFontMultiplier(this));
 
         try {
             chatCostTv.setText(getString(R.string.wristassist_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
-            chatCostTv.setTextSize(14 * getResources().getConfiguration().fontScale);
+            chatCostTv.setTextSize(14 * Util.getFontMultiplier(this));
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }

@@ -24,7 +24,6 @@
     <string name="wristassist_okay">OK</string>
     <string name="wristassist_cancel">Abbrechen</string>
     <string name="wristassist_click_to_reveal">Klicke zum Anzeigen</string>
-    <string name="wristassist_last_edit" formatted="false">Letzte Änderung:\n%1$s</string>
     <string name="wristassist_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
     <string name="wristassist_welcome">Willkommen bei\nWristAssist</string>
     <string name="wristassist_welcome_info">Bitte scanne den QR-Code, um Anweisungen zur Einrichtung und Nutzung von WristAssist zu erhalten.</string>
