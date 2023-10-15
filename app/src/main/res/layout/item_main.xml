@@ -3,8 +3,8 @@
     android:id="@+id/menu_container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="10dp"
-    android:paddingTop="10dp">
+    android:paddingHorizontal="6dp"
+    android:paddingVertical="10dp">
 
     <ImageView
         android:id="@+id/menu_icon"
