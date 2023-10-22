@@ -44,9 +44,9 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.Vi
         } else if (position == 2) {
             ImageView qrCodeIv = holder.itemView.findViewById(R.id.qrcode_iv);
             qrCodeIv.setOnClickListener(v -> {
-                activity.getSharedPreferences("net.devemperor.wristassist", Activity.MODE_PRIVATE)
-                        .edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
-                v.getContext().startActivity(new Intent(v.getContext(), MainActivity.class));
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                intent.putExtra("net.devemperor.wristassist.enter_api_key", true);
+                v.getContext().startActivity(intent);
                 activity.finish();
             });
         }

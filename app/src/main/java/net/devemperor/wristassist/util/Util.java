@@ -27,10 +27,8 @@ public class Util {
         float fs = context.getResources().getConfiguration().fontScale;
         float diff = Math.abs(fs - 1.0f) * 0.3f;
         if (fs > 1) {
-            System.out.println("Original FS: " + fs + " New FS: " + (1.0f + diff));
             return 1.0f + diff;
         } else {
-            System.out.println("Original FS: " + fs + " New FS: " + (1.0f - diff));
             return 1.0f - diff;
         }
     }

@@ -17,7 +17,7 @@ I plan to release the app to the PlayStore as soon as possible. Until then, you 
 1. **Enable developer options on your watch:** Open the watch's **Settings**. Tap **System > About**. Scroll to **Build number** and tap the build number seven times. A dialog appears confirming that you are now a developer.
 2. **Enable Wi-Fi debugging:** Open the watch's **Settings**. Tap **Developer options > Debug over Wi-Fi**. After a moment, the screen displays the watch's IP address, such as `192.168.1.100`. You need this for the next step, so make a note of it.
 3. **Connect the debugger to the watch:** Connect the debugger to the watch using the watch's IP address and a port  number. For example, if the IP address is `192.168.1.100` and the port number is `5555`, the  `adb connect` command look like this: `adb connect 192.168.1.100:5555`
-4. **Install the ADB:** `adb install WristAssist_2.0.apk`
+4. **Install the ADB:** `adb install WristAssist_2.1.0.apk`
 
 If this explanation was not enough, you can find a detailed explanation [here](https://www.guidingtech.com/how-to-install-apks-on-wear-os-smartwatches/).
 
@@ -31,12 +31,11 @@ You will find a detailed explaination on how to set up and use WristAssist on th
 
 ## Planned features
 
-- [x] chats should be able to be saved
-- [x] show total consumption in settings
-- [x] reset button for long chats
-- [x] option to choose pawan.krd as API host
 - [x] possibility to switch between GPT 3.5 and GPT 4 (as soon as access is possible)
 - [x] intro explaining how to generate an API key
+- [x] First time setup immediately opens the settings page
+- [ ] typewriter effect for the answer
+- [ ] Azure OpenAI API support
 - [ ] PlayStore release
 
 

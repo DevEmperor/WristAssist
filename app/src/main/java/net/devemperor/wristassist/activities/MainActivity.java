@@ -27,7 +27,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
-        if (!getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE).getBoolean("net.devemperor.wristassist.onboarding_complete", false)) {
+        if (getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
+            openKeyboard(1340);
+        }
+
+        if (!getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE).getBoolean("net.devemperor.wristassist.onboarding_complete", false)
+            && !getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
         }
@@ -100,6 +105,20 @@ public class MainActivity extends Activity {
         }
         if (requestCode == 1339 && resultCode == RESULT_OK) {
             startChatActivity(data, systemQueryBundle.getString("net.devemperor.wristassist.system_query"));
+        }
+        if (requestCode == 1340 && resultCode == RESULT_OK) {
+            CharSequence result_text;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                result_text = data.getStringExtra("result_text");
+            } else {
+                result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
+            }
+            if (result_text != null) {
+                getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE)
+                        .edit().putString("net.devemperor.wristassist.api_key", result_text.toString()).apply();
+                getSharedPreferences("net.devemperor.wristassist", Activity.MODE_PRIVATE)
+                        .edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
+            }
         }
     }
 
