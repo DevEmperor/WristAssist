@@ -68,6 +68,7 @@ public class EditChatActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) return;
         CharSequence result_text;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             result_text = data.getStringExtra("result_text");
