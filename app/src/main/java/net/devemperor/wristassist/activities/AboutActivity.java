@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
-
-import androidx.wear.widget.ConfirmationOverlay;
+import android.widget.Toast;
 
 import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
@@ -36,7 +35,7 @@ public class AboutActivity extends Activity {
 
         totalCost.setOnLongClickListener(v -> {
             sp.edit().putLong("net.devemperor.wristassist.total_tokens", 0).apply();
-            new ConfirmationOverlay().setMessage(getString(R.string.wristassist_reset_cost_message)).showOn(this);
+            Toast.makeText(v.getContext(), R.string.wristassist_reset_cost_message, Toast.LENGTH_SHORT).show();
             refreshTotalCostTv();
             return true;
         });

@@ -17,10 +17,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.wear.input.RemoteInputIntentHelper;
-import androidx.wear.widget.ConfirmationOverlay;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theokanning.openai.client.OpenAiApi;
@@ -231,7 +231,7 @@ public class ChatActivity extends Activity {
             databaseHelper.reset(this, id, chatAdapter.getChatItems());
             firstAnswerComplete = false;
             saveResetBtn.setVisibility(View.GONE);
-            new ConfirmationOverlay().showOn(this);
+            Toast.makeText(this, R.string.wristassist_chat_reset, Toast.LENGTH_SHORT).show();
             query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
         }
     }

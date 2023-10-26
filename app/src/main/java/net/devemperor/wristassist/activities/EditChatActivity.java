@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.wear.input.RemoteInputIntentHelper;
-import androidx.wear.widget.ConfirmationOverlay;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.DatabaseHelper;
@@ -95,6 +95,7 @@ public class EditChatActivity extends Activity {
 
     public void deleteChat(View view) {
         databaseHelper.delete(this, id);
-        new ConfirmationOverlay().setOnAnimationFinishedListener(this::finish).showOn(this);
+        Toast.makeText(this, R.string.wristassist_chat_deleted, Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
