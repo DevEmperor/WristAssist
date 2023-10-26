@@ -1,9 +1,10 @@
 # WristAssist
-<a href='https://play.google.com/store/apps/details?id=net.devemperor.wristassist'><img alt='Get it on Google Play' src='https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/google-play-badge.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=net.devemperor.wristassist'><img alt='Get it on Google Play' width="258px" height="100px" src='https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/google-play-badge.png'/></a>
+
 
 #### WristAssist is the first app for all WearOS watches that fully brings the classic ChatGPT features to your wrist. Since a picture is worth a thousand words, here is a showcase video and some screenshots:
 
-| [![showcase cideo](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/player.png)](https://www.youtube.com/watch?v=goIoDTxPllc) | ![query.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/query.png) | ![answer.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/answer.png) | ![buttons.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/buttons.png) |
+| <a href='https://www.youtube.com/watch?v=goIoDTxPllc'><img src='https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/player.png'/></a> | ![query.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/query.png) | ![answer.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/answer.png) | ![buttons.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/buttons.png) |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | ![saved_chats.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/saved_chats.png) | ![edit.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/edit.png) | ![settings.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/settings.png) | ![about.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/about.png) |
 
