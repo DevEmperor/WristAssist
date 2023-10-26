@@ -6,8 +6,8 @@
     <string name="wristassist_menu_about">Über</string>
     <string name="wristassist_no_internet">Verbindung zu OpenAI API fehlgeschlagen. Bitte kontrolliere deine Internet Verbindung.</string>
     <string name="wristassist_timeout">Der Timeout von 120 Sekunden wurde erreicht. Wahrscheinlich war die Antwort sehr lang oder ChatGPT ist überlastet.</string>
-    <string name="wristassist_invalid_api_key_message">Der von Ihnen eingegebene API-Schlüssel ist ungültig. Gehen Sie zu den Einstellungen und überprüfen Sie den von Ihnen angegebenen API-Schlüssel.</string>
-    <string name="wristassist_no_saved_chats">Sie haben noch keine Chats gespeichert.\nTippen Sie in einem neuen Chat auf den Speichern-Button, um zu speichern.</string>
+    <string name="wristassist_invalid_api_key_message">Der von dir eingegebene API-Schlüssel ist ungültig. Gehe zu den Einstellungen und überprüfe den von dir angegebenen API-Schlüssel.</string>
+    <string name="wristassist_no_saved_chats">Du hast noch keine Chats gespeichert.\nTippe in einem neuen Chat auf den Speichern-Button, um zu speichern.</string>
     <string name="wristassist_change_api_key">API-Schlüssel ändern</string>
     <string name="wristassist_no_api_key">Kein API-Schlüssel festgelegt</string>
     <string name="wristassist_select_api_host">API Host wechseln</string>
