@@ -35,7 +35,7 @@ public class AboutActivity extends Activity {
 
         totalCost.setOnLongClickListener(v -> {
             sp.edit().putLong("net.devemperor.wristassist.total_tokens", 0).apply();
-            Toast.makeText(v.getContext(), R.string.wristassist_reset_cost_message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), R.string.wristassist_reset_cost, Toast.LENGTH_SHORT).show();
             refreshTotalCostTv();
             return true;
         });

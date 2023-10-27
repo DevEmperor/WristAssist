@@ -41,9 +41,12 @@
             android:name=".activities.OnboardingActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.InputActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
-            android:theme="@style/Theme.App.Starting"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

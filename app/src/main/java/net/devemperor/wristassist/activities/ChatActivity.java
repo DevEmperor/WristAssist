@@ -4,10 +4,8 @@ import static com.theokanning.openai.service.OpenAiService.defaultClient;
 import static com.theokanning.openai.service.OpenAiService.defaultObjectMapper;
 
 import android.app.Activity;
-import android.app.RemoteInput;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -20,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
-import androidx.wear.input.RemoteInputIntentHelper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.theokanning.openai.client.OpenAiApi;
@@ -45,7 +42,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -181,25 +177,21 @@ public class ChatActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) return;
-        CharSequence result_text;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            result_text = data.getStringExtra("result_text");
-        } else {
-            result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
-        }
-        if (requestCode == 1337 && resultCode == RESULT_OK && result_text != null) {
+        if (resultCode != RESULT_OK) return;
+
+        String content = data.getStringExtra("net.devemperor.wristassist.input.content");
+        if (requestCode == 1337) {
             try {
-                query(result_text.toString());
+                query(content);
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
-        } else if (requestCode == 1338 && resultCode == RESULT_OK) {
-            titleTv.setText(result_text);
+        } else if (requestCode == 1338) {
+            titleTv.setText(content);
             titleTv.setVisibility(View.VISIBLE);
 
             try {
-                id = databaseHelper.add(this, new ChatHistoryModel(-1, titleTv.getText().toString(), chatAdapter.getChatItems()));
+                id = databaseHelper.add(this, new ChatHistoryModel(-1, content, chatAdapter.getChatItems()));
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
@@ -209,21 +201,12 @@ public class ChatActivity extends Activity {
         }
     }
 
-    private void openKeyboard(int returnCode) {
-        Intent intent;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            intent = new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD");
-        } else {
-            intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-            RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
-            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
-        }
-        startActivityForResult(intent, returnCode);
-    }
-
     public void saveReset(View view) throws JSONException, IOException {
         if (!saveThisChat) {
-            openKeyboard(1338);
+            Intent intent = new Intent(this, InputActivity.class);
+            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_chat_title));
+            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_chat_title));
+            startActivityForResult(intent, 1338);
         } else {
             for (int i = chatAdapter.getCount() - 1; i > ((chatAdapter.getItem(0).getChatMessage().getRole().equals(ChatMessageRole.SYSTEM.value())) ? 1 : 0); i--) {
                 chatAdapter.remove(chatAdapter.getItem(i));
@@ -240,7 +223,10 @@ public class ChatActivity extends Activity {
         if (errorTv.getVisibility() == View.VISIBLE) {
             query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
         } else {
-            openKeyboard(1337);
+            Intent intent = new Intent(this, InputActivity.class);
+            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
+            startActivityForResult(intent, 1337);
         }
     }
 

@@ -1,16 +1,12 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
-import android.app.RemoteInput;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.wear.input.RemoteInputIntentHelper;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.DatabaseHelper;
@@ -21,7 +17,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Locale;
 
 public class EditChatActivity extends Activity {
@@ -68,28 +63,19 @@ public class EditChatActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data == null) return;
-        CharSequence result_text;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            result_text = data.getStringExtra("result_text");
-        } else {
-            result_text = RemoteInput.getResultsFromIntent(data).getCharSequence("result_text");
-        }
-        if (requestCode == 1337 && resultCode == RESULT_OK && result_text != null) {
-            databaseHelper.setTitle(id, result_text.toString());
-            titleTv.setText(result_text);
+
+        if (resultCode != RESULT_OK) return;
+        if (requestCode == 1337) {
+            String content = data.getStringExtra("net.devemperor.wristassist.input.content");
+            databaseHelper.setTitle(id, content);
+            titleTv.setText(content);
         }
     }
 
     public void editTitle(View view) {
-        Intent intent;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            intent = new Intent("com.google.android.wearable.action.LAUNCH_KEYBOARD");
-        } else {
-            intent = RemoteInputIntentHelper.createActionRemoteInputIntent();
-            RemoteInput remoteInput = new RemoteInput.Builder("result_text").build();
-            RemoteInputIntentHelper.putRemoteInputsExtra(intent, Collections.singletonList(remoteInput));
-        }
+        Intent intent = new Intent(this, InputActivity.class);
+        intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_edit_chat_title));
+        intent.putExtra("net.devemperor.wristassist.input.content", titleTv.getText().toString());
         startActivityForResult(intent, 1337);
     }
 

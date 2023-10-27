@@ -39,11 +39,20 @@
 
     <string name="wristassist_about" formatted="false" translatable="false">WristAssist %1$s\n© 2023 Jannis Zahn</string>
     <string name="wristassist_total_cost" formatted="false">Total cost: %1$s k</string>
-    <string name="wristassist_reset_cost_message">Reset total cost</string>
+    <string name="wristassist_reset_cost">Reset total cost</string>
 
     <string name="wristassist_okay">OK</string>
     <string name="wristassist_cancel">Cancel</string>
 
     <string name="wristassist_welcome">Welcome to\nWristAssist</string>
     <string name="wristassist_welcome_info">Please scan the QR code for instructions on how to set up and use WristAssist.</string>
+    <string name="wristassist_edit_chat_title">Edit chat title</string>
+    <string name="wristassist_enter_prompt">Enter a prompt</string>
+    <string name="wristassist_prompt">Prompt</string>
+    <string name="wristassist_enter_system_prompt">Enter a system prompt</string>
+    <string name="wristassist_system_prompt">System prompt</string>
+    <string name="wristassist_set_api_key">Set API key</string>
+    <string name="wristassist_api_key">API key</string>
+    <string name="wristassist_set_chat_title">Set chat title</string>
+    <string name="wristassist_chat_title">Chat title</string>
 </resources>

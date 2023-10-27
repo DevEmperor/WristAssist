@@ -14,19 +14,19 @@
 
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/wristassist_black</item>
-        <item name="dialogTheme">@style/AlertDialogStyle</item>
-        <item name="alertDialogTheme">@style/AlertDialogStyle</item>
-        <item name="alertDialogStyle">@style/AlertDialogStyle</item>
+        <item name="dialogTheme">@style/Theme.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
+        <item name="alertDialogStyle">@style/Theme.AlertDialog</item>
     </style>
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
+    <style name="Theme.Starting" parent="Theme.SplashScreen.IconBackground">
         <item name="windowSplashScreenBackground">@color/wristassist_black</item>
         <item name="windowSplashScreenIconBackgroundColor">@color/wristassist_purple</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/wristassist_splash</item>
         <item name="postSplashScreenTheme">@style/Theme.WristAssist</item>
     </style>
 
-    <style name="AlertDialogStyle" parent="AlertDialog.AppCompat">
+    <style name="Theme.AlertDialog" parent="AlertDialog.AppCompat">
         <item name="colorPrimary">@color/wristassist_purple</item>
         <item name="colorPrimaryDark">@color/wristassist_black</item>
         <item name="colorAccent">@color/wristassist_purple</item>
