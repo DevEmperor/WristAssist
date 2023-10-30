@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'net.devemperor.wristassist'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId 'net.devemperor.wristassist'
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 18
         versionName "2.2.0"
     }
@@ -33,11 +33,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'com.google.mlkit:language-id:17.0.4'
     implementation 'androidx.core:core-splashscreen:1.0.1'
 
-    implementation 'com.theokanning.openai-gpt3-java:service:0.15.0'
+    implementation 'com.theokanning.openai-gpt3-java:service:0.16.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
