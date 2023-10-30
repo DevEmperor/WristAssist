@@ -10,8 +10,8 @@ android {
         applicationId 'net.devemperor.wristassist'
         minSdk 26
         targetSdk 33
-        versionCode 17
-        versionName "2.1.4"
+        versionCode 18
+        versionName "2.2.0"
     }
 
     buildTypes {
