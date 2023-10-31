@@ -296,6 +296,7 @@ public class ChatActivity extends Activity {
             } catch (RuntimeException e) {
                 FirebaseCrashlytics fc = FirebaseCrashlytics.getInstance();
                 fc.setCustomKey("settings", sp.getAll().toString());
+                fc.setUserId(sp.getString("net.devemperor.wristassist.uuid", "null"));
                 fc.recordException(e);
                 fc.sendUnsentReports();
 
