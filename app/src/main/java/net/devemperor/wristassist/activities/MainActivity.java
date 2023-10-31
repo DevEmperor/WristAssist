@@ -2,17 +2,21 @@ package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
 
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class MainActivity extends Activity {
 
@@ -21,6 +25,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
+        SharedPreferences sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
+        if (sp.getString("net.devemperor.wristassist.uuid", null) == null) {
+            sp.edit().putString("net.devemperor.wristassist.uuid", UUID.randomUUID().toString()).apply();
+        }
+        FirebaseCrashlytics.getInstance().setUserId(sp.getString("net.devemperor.wristassist.uuid", "null"));
+
         if (getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_api_key));
@@ -28,7 +38,7 @@ public class MainActivity extends Activity {
             startActivityForResult(intent, 1340);
         }
 
-        if (!getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE).getBoolean("net.devemperor.wristassist.onboarding_complete", false)
+        if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)
             && !getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
