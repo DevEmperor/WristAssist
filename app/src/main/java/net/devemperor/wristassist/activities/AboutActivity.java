@@ -3,6 +3,7 @@ package net.devemperor.wristassist.activities;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +38,12 @@ public class AboutActivity extends Activity {
             sp.edit().putLong("net.devemperor.wristassist.total_tokens", 0).apply();
             Toast.makeText(v.getContext(), R.string.wristassist_reset_cost, Toast.LENGTH_SHORT).show();
             refreshTotalCostTv();
+            return true;
+        });
+
+        ImageView icon = findViewById(R.id.icon);
+        icon.setOnLongClickListener(v -> {
+            Toast.makeText(v.getContext(), sp.getString("net.devemperor.wristassist.userid", "null"), Toast.LENGTH_LONG).show();
             return true;
         });
     }

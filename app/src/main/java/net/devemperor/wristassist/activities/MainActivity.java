@@ -16,7 +16,7 @@ import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Random;
 
 public class MainActivity extends Activity {
 
@@ -26,10 +26,11 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
         SharedPreferences sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
-        if (sp.getString("net.devemperor.wristassist.uuid", null) == null) {
-            sp.edit().putString("net.devemperor.wristassist.uuid", UUID.randomUUID().toString()).apply();
+        if (sp.getString("net.devemperor.wristassist.userid", null) == null) {
+            Random random = new Random();
+            sp.edit().putString("net.devemperor.wristassist.userid", String.valueOf(random.nextInt(999999999 - 100000000) + 100000000)).apply();
         }
-        FirebaseCrashlytics.getInstance().setUserId(sp.getString("net.devemperor.wristassist.uuid", "null"));
+        FirebaseCrashlytics.getInstance().setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
 
         if (getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
             Intent intent = new Intent(this, InputActivity.class);
