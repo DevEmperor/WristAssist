@@ -100,8 +100,8 @@ public class ChatActivity extends Activity {
 
         String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
         String apiHost = sp.getString("net.devemperor.wristassist.api_host", "https://api.openai.com/");
-        ObjectMapper mapper = defaultObjectMapper();
-        OkHttpClient client = defaultClient(apiKey, Duration.ofSeconds(120)).newBuilder().build();
+        ObjectMapper mapper = defaultObjectMapper();  // replaces all control chars (#10 @ GH)
+        OkHttpClient client = defaultClient(apiKey.replaceAll("[^ -~]", ""), Duration.ofSeconds(120)).newBuilder().build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(apiHost)
                 .client(client)
