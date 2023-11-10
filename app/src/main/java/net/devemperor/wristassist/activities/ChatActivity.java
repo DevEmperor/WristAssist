@@ -259,9 +259,9 @@ public class ChatActivity extends Activity {
         thread.execute(() -> {
             try {
                 ChatCompletionResult result = service.createChatCompletion(ccr);
-                String answer = result.getChoices().get(0).getMessage().getContent().trim();
+                ChatMessage answer = result.getChoices().get(0).getMessage();
                 long cost = result.getUsage().getTotalTokens();
-                ChatItem assistantItem = new ChatItem(new ChatMessage("assistant", answer), cost);
+                ChatItem assistantItem = new ChatItem(answer, cost);
                 sp.edit().putLong("net.devemperor.wristassist.total_tokens", sp.getLong("net.devemperor.wristassist.total_tokens", 0) + cost).apply();
                 if (Thread.interrupted()) {
                     return;
@@ -290,7 +290,7 @@ public class ChatActivity extends Activity {
                     }
 
                     if (sp.getBoolean("net.devemperor.wristassist.auto_tts", false)) {
-                        chatAdapter.launchTTS(answer);
+                        chatAdapter.launchTTS(answer.getContent());
                     }
                 });
             } catch (RuntimeException e) {
