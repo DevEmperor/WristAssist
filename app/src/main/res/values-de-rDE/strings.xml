@@ -46,4 +46,5 @@
     <string name="wristassist_api_key">API Schlüssel</string>
     <string name="wristassist_set_chat_title">Chat Titel festlegen</string>
     <string name="wristassist_chat_title">Chat Titel</string>
+    <string name="wristassist_context_exceeded">Dein Chat ist zu lang für die KI. Bitte setze ihn zurück oder beginne einen neuen.</string>
 </resources>

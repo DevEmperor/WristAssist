@@ -306,6 +306,8 @@ public class ChatActivity extends Activity {
                         errorTv.setText(R.string.wristassist_timeout);
                     } else if (e.getMessage().contains("API key")) {
                         errorTv.setText(getString(R.string.wristassist_invalid_api_key_message));
+                    } else if (e.getMessage().contains("context")) {
+                        errorTv.setText(R.string.wristassist_context_exceeded);
                     } else {
                         errorTv.setText(R.string.wristassist_no_internet);
                     }
