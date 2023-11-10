@@ -56,7 +56,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 model.setValueIndex(0);
                 return true;
             });
-            apiHost.callChangeListener(apiHost.getValue());
+            if (apiHost.getValue().equals("https://api.openai.com/")) {
+                model.setEntries(R.array.models_openai);
+                model.setEntryValues(R.array.models_openai_values);
+            } else if (apiHost.getValue().equals("https://api.pawan.krd/")) {
+                model.setEntries(R.array.models_pawan);
+                model.setEntryValues(R.array.models_pawan_values);
+            }
 
             apiHost.setSummaryProvider(preference -> apiHost.getEntry());
 
