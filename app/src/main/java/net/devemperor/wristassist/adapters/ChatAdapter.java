@@ -7,10 +7,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
-import android.text.style.LeadingMarginSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +34,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import io.noties.markwon.Markwon;
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin;
+import io.noties.markwon.ext.tables.TablePlugin;
+import io.noties.markwon.ext.tasklist.TaskListPlugin;
+import io.noties.markwon.html.HtmlPlugin;
+import io.noties.markwon.image.AsyncDrawableSpan;
+
 public class ChatAdapter extends ArrayAdapter<ChatItem> {
     final Context context;
     final List<ChatItem> objects;
@@ -45,11 +51,18 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     boolean showSystemMessage = false;
     boolean ttsEnabled = false;
     String lastText = "";
+    Markwon markwon;
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
         this.context = context;
         this.objects = objects;
+        markwon = Markwon.builder(context)
+                .usePlugin(StrikethroughPlugin.create())
+                .usePlugin(HtmlPlugin.create())
+                .usePlugin(TablePlugin.create(context))
+                .usePlugin(TaskListPlugin.create(context))
+                .build();
 
         if (context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getBoolean("net.devemperor.wristassist.tts", true)) {
@@ -84,12 +97,11 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         Drawable icon;
         ChatMessage chatMessage = objects.get(position).getChatMessage();
+        chatItem.setText(chatMessage.getContent());
         if (chatMessage.getRole().equals(ChatMessageRole.USER.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
-            chatItem.setText(chatMessage.getContent());
         } else if (chatMessage.getRole().equals(ChatMessageRole.ASSISTANT.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_auto_awesome_24);
-            chatItem.setText(chatMessage.getContent());
         } else {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_lock_24);
             chatItem.setText(R.string.wristassist_click_to_reveal);
@@ -164,17 +176,18 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     }
 
     private void setLeadingMarginSpan(TextView textView, Drawable drawable) {
-        int drawableWidth = drawable.getIntrinsicWidth();
-        int drawableHeight = drawable.getIntrinsicHeight();
+        final Spanned spanned = markwon.toMarkdown(textView.getText().toString());
+
         BitmapDrawable bitmapDrawable = new BitmapDrawable(textView.getResources(), Util.drawableToBitmap(drawable));
-        bitmapDrawable.setBounds(0, 0, drawableWidth, drawableHeight);
+        bitmapDrawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 1.1), (int) (drawable.getIntrinsicHeight() * 1.1));
 
-        SpannableString spannableString = new SpannableString("   " + textView.getText());
-        LeadingMarginSpan leadingMarginSpan = new LeadingMarginSpan.Standard(0, 0);
-        spannableString.setSpan(leadingMarginSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ImageSpan imageSpan = new ImageSpan(bitmapDrawable, ImageSpan.ALIGN_BASELINE);
-        spannableString.setSpan(imageSpan, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ImageSpan imageSpan = new ImageSpan(bitmapDrawable, AsyncDrawableSpan.ALIGN_BOTTOM);
 
-        textView.setText(spannableString);
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append(" ");
+        builder.setSpan(imageSpan, 0, builder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.append(" ").append(spanned);
+
+        textView.setText(builder);
     }
 }
