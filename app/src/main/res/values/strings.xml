@@ -54,4 +54,6 @@
     <string name="wristassist_set_chat_title">Set chat title</string>
     <string name="wristassist_chat_title">Chat title</string>
     <string name="wristassist_context_exceeded">Your chat is too long for the AI. Please reset or start a new one.</string>
+    <string name="wristassist_quota_exceeded">You exceeded your current quota, please check your plan and billing details.</string>
+    <string name="wristassist_no_access">This model does not exist or you don\'t have access to it.</string>
 </resources>

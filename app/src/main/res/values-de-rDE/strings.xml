@@ -47,4 +47,6 @@
     <string name="wristassist_set_chat_title">Chat Titel festlegen</string>
     <string name="wristassist_chat_title">Chat Titel</string>
     <string name="wristassist_context_exceeded">Dein Chat ist zu lang für die KI. Bitte setze ihn zurück oder beginne einen neuen.</string>
+    <string name="wristassist_quota_exceeded">Du hast dein aktuelles Kontingent überschritten. Bitte überprüfe deinen Tarif und deine Abrechnungsdetails.</string>
+    <string name="wristassist_no_access">Dieses Modell gibt es nicht oder du hast keinen Zugang dazu.</string>
 </resources>
