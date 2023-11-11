@@ -251,7 +251,7 @@ public class ChatActivity extends Activity {
         }
 
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                .model(sp.getString("net.devemperor.wristassist.model", "gpt3.5-turbo"))
+                .model(sp.getString("net.devemperor.wristassist.model", "gpt-3.5-turbo"))
                 .messages(chatAdapter.getChatMessages())
                 .build();
 
@@ -308,6 +308,10 @@ public class ChatActivity extends Activity {
                         errorTv.setText(getString(R.string.wristassist_invalid_api_key_message));
                     } else if (e.getMessage().contains("context")) {
                         errorTv.setText(R.string.wristassist_context_exceeded);
+                    } else if (e.getMessage().contains("quota")) {
+                        errorTv.setText(R.string.wristassist_quota_exceeded);
+                    } else if (e.getMessage().contains("does not exist")) {
+                        errorTv.setText(R.string.wristassist_no_access);
                     } else {
                         errorTv.setText(R.string.wristassist_no_internet);
                     }
