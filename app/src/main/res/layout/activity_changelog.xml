@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:paddingHorizontal="10dp"
     android:fillViewport="false"
     android:id="@+id/changelog_sv">
 
@@ -18,14 +18,15 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="32dp" />
 
         <Button
             android:id="@+id/changelog_ok_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
-            android:layout_marginVertical="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
             android:onClick="okay"
             android:text="@string/wristassist_okay" />
 
