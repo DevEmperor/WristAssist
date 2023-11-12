@@ -11,6 +11,7 @@ import androidx.wear.widget.WearableRecyclerView;
 
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
+import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
@@ -37,12 +38,11 @@ public class MainActivity extends Activity {
             intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_api_key));
             intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_api_key));
             startActivityForResult(intent, 1340);
-        }
-
-        if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)
-            && !getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
+        } else if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
+        } else if (sp.getInt("net.devemperor.wristassist.last_version_code", 0) < BuildConfig.VERSION_CODE) {
+            startActivity(new Intent(this, ChangelogActivity.class));
         }
 
         super.onCreate(savedInstanceState);
