@@ -6,35 +6,6 @@
 
 
     <PreferenceCategory
-        app:title="@string/wristassist_gpt_settings">
-
-        <EditTextPreference
-            app:key="net.devemperor.wristassist.api_key"
-            app:title="@string/wristassist_change_api_key"
-            app:summary="@string/wristassist_no_api_key"
-            app:positiveButtonText="@string/wristassist_okay"
-            app:negativeButtonText="@string/wristassist_cancel"
-            app:dialogTitle=" "/>
-
-        <ListPreference
-            app:key="net.devemperor.wristassist.api_host"
-            app:title="@string/wristassist_select_api_host"
-            app:entries="@array/api_hosts"
-            app:entryValues="@array/api_hosts_values"
-            app:negativeButtonText="@string/wristassist_cancel"
-            app:dialogTitle=" "
-            android:defaultValue="https://api.openai.com/"/>
-
-        <ListPreference
-            app:key="net.devemperor.wristassist.model"
-            app:title="@string/wristassist_select_model"
-            android:defaultValue="gpt-3.5-turbo"
-            app:negativeButtonText="@string/wristassist_cancel"
-            app:dialogTitle=" "/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
         app:title="@string/wristassist_chat_settings">
 
         <SeekBarPreference
@@ -89,6 +60,35 @@
             app:min="0"
             app:defaultValue="5"
             android:max="10"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/wristassist_gpt_settings">
+
+        <ListPreference
+            app:key="net.devemperor.wristassist.api_host"
+            app:title="@string/wristassist_select_api_host"
+            app:entries="@array/api_hosts"
+            app:entryValues="@array/api_hosts_values"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "
+            android:defaultValue="https://api.openai.com/"/>
+
+        <ListPreference
+            app:key="net.devemperor.wristassist.model"
+            app:title="@string/wristassist_select_model"
+            android:defaultValue="gpt-3.5-turbo"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "/>
+
+        <EditTextPreference
+            app:key="net.devemperor.wristassist.api_key"
+            app:title="@string/wristassist_change_api_key"
+            app:summary="@string/wristassist_no_api_key"
+            app:positiveButtonText="@string/wristassist_okay"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:dialogTitle=" "/>
 
     </PreferenceCategory>
 
