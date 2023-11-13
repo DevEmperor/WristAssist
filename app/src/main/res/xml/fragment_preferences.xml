@@ -17,7 +17,7 @@
             android:max="18"/>
 
         <SwitchPreference
-            app:key="net.devemperor.wristassist.hands-free"
+            app:key="net.devemperor.wristassist.hands_free"
             app:title="@string/wristassist_hands_free"
             app:summary="@string/wristassist_hands_free_message"
             android:defaultValue="false"/>

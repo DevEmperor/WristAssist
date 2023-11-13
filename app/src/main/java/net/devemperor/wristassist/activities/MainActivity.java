@@ -1,12 +1,9 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.widget.Toast;
 
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
@@ -20,7 +17,6 @@ import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Random;
 
 public class MainActivity extends Activity {
@@ -67,20 +63,10 @@ public class MainActivity extends Activity {
         mainWrv.setAdapter(new MainAdapter(menuItems, (menuPosition, longClick) -> {
             Intent intent;
             if (menuPosition == 0 && !longClick) {
-                if (sp.getBoolean("net.devemperor.wristassist.hands-free", false)) {
-                    try {
-                        intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                        startActivityForResult(intent, 1341);
-                        return;
-                    } catch (ActivityNotFoundException e) {
-                        e.printStackTrace();
-                        Toast.makeText(this, R.string.wristassist_no_speech_recognition, Toast.LENGTH_SHORT).show();
-                    }
-                }
                 intent = new Intent(this, InputActivity.class);
                 intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
                 intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
+                intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
                 startActivityForResult(intent, 1337);
             } else if (menuPosition == 0) {
                 intent = new Intent(this, InputActivity.class);
@@ -110,12 +96,9 @@ public class MainActivity extends Activity {
         if (resultCode != RESULT_OK) return;
 
         Intent intent;
-        if (requestCode == 1337 || requestCode == 1341) {
-            String query;
-            if (requestCode == 1337) query = data.getStringExtra("net.devemperor.wristassist.input.content");
-            else query = Objects.requireNonNull(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)).get(0);
+        if (requestCode == 1337) {
             intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("net.devemperor.wristassist.query", query);
+            intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content"));
             startActivity(intent);
         }
         if (requestCode == 1338) {

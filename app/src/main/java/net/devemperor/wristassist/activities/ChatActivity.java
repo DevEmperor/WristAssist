@@ -227,6 +227,7 @@ public class ChatActivity extends Activity {
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
             intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
             startActivityForResult(intent, 1337);
         }
     }
