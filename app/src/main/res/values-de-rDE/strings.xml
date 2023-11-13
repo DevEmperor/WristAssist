@@ -29,7 +29,7 @@
     <string name="wristassist_chat_settings">Chat Einstellungen</string>
     <string name="wristassist_tts_settings">TTS Einstellungen</string>
     <string name="wristassist_tts">TTS</string>
-    <string name="wristassist_tts_message">Lies die Nachricht laut vor</string>
+    <string name="wristassist_tts_message">Lies die Nachricht laut vor beim Antippen</string>
     <string name="wristassist_tts_volume">TTS Lautstärke</string>
     <string name="wristassist_tts_lang_not_available">TTS-Sprache nicht verfügbar. Download in den Einstellungen.</string>
     <string name="wristassist_tts_not_available">Verbindung zur TTS-Engine konnte nicht hergestellt werden.</string>
@@ -51,5 +51,8 @@
     <string name="wristassist_no_access">Dieses Modell gibt es nicht oder du hast keinen Zugang dazu.</string>
     <string name="changelog_md">## Neuigkeiten  \n*Die folgenden Verbesserungen wurden seit der letzten Veröffentlichung von WristAssist hinzugefügt:*  \n</string>
     <string name="changelog_md_22">### Version 2.4.1  \nDiese Changelog-Aktivität wurde hinzugefügt, damit du über alle kommenden Neuigkeiten informiert wirst  \n</string>
-    <string name="changelog_md_21">### Version 2.4.0  \n#### Markdown-Darstellung in Chats hinzugefügt  \nDie KI-Modelle zeigen manchmal Text in **fett**, *Kursivschrift* oder &lt;u&gt;unterstrichen&lt;/u&gt; an. Diese und andere Formatierungen werden nun korrekt angezeigt.  \n#### GPT-4 Turbo Modell hinzugefügt**  \nGPT-4 Turbo ist leistungsfähiger und kennt das Weltgeschehen bis zum April 2023. Es ist 2 bis 3 Mal günstiger als GPT-4.  \n#### Ausführlichere Fehlermeldungen  \nFehler wie zu lange Chats, Kontingent Überschreitung und ungültige Modelle werden nun korrekt angezeigt.  \n#### mehrere Fehlerbehebungen  \n</string>
+    <string name="changelog_md_21">### Version 2.4.0  \n#### Markdown-Darstellung in Chats hinzugefügt  \nDie KI-Modelle zeigen manchmal Text in **fett**, *Kursivschrift* oder &lt;u&gt;unterstrichen&lt;/u&gt; an. Diese und andere Formatierungen werden nun korrekt angezeigt.  \n#### GPT-4 Turbo Modell hinzugefügt  \nGPT-4 Turbo ist leistungsfähiger und kennt das Weltgeschehen bis zum April 2023. Es ist 2 bis 3 Mal günstiger als GPT-4.  \n#### Ausführlichere Fehlermeldungen  \nFehler wie zu lange Chats, Kontingent Überschreitung und ungültige Modelle werden nun korrekt angezeigt.  \n#### mehrere Fehlerbehebungen  \n</string>
+    <string name="wristassist_no_speech_recognition">Keine Tastatur mit Spracherkennung installiert</string>
+    <string name="wristassist_hands_free">Freisprech-Eingabe</string>
+    <string name="wristassist_hands_free_message">Spracherkennung für die Eingabe</string>
 </resources>

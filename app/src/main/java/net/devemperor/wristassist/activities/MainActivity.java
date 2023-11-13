@@ -1,9 +1,12 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.widget.Toast;
 
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
@@ -17,16 +20,18 @@ import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class MainActivity extends Activity {
 
     WearableRecyclerView mainWrv;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.installSplashScreen(this);
-        SharedPreferences sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
+        sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
         if (sp.getString("net.devemperor.wristassist.userid", null) == null) {
             Random random = new Random();
             sp.edit().putString("net.devemperor.wristassist.userid", String.valueOf(random.nextInt(999999999 - 100000000) + 100000000)).apply();
@@ -62,6 +67,17 @@ public class MainActivity extends Activity {
         mainWrv.setAdapter(new MainAdapter(menuItems, (menuPosition, longClick) -> {
             Intent intent;
             if (menuPosition == 0 && !longClick) {
+                if (sp.getBoolean("net.devemperor.wristassist.hands-free", false)) {
+                    try {
+                        intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                        startActivityForResult(intent, 1341);
+                        return;
+                    } catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, R.string.wristassist_no_speech_recognition, Toast.LENGTH_SHORT).show();
+                    }
+                }
                 intent = new Intent(this, InputActivity.class);
                 intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
                 intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
@@ -94,9 +110,12 @@ public class MainActivity extends Activity {
         if (resultCode != RESULT_OK) return;
 
         Intent intent;
-        if (requestCode == 1337) {
+        if (requestCode == 1337 || requestCode == 1341) {
+            String query;
+            if (requestCode == 1337) query = data.getStringExtra("net.devemperor.wristassist.input.content");
+            else query = Objects.requireNonNull(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)).get(0);
             intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content"));
+            intent.putExtra("net.devemperor.wristassist.query", query);
             startActivity(intent);
         }
         if (requestCode == 1338) {
@@ -106,10 +125,8 @@ public class MainActivity extends Activity {
             startActivity(intent);
         }
         if (requestCode == 1340) {
-            getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE)
-                    .edit().putString("net.devemperor.wristassist.api_key", data.getStringExtra("net.devemperor.wristassist.input.content")).apply();
-            getSharedPreferences("net.devemperor.wristassist", Activity.MODE_PRIVATE)
-                    .edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
+            sp.edit().putString("net.devemperor.wristassist.api_key", data.getStringExtra("net.devemperor.wristassist.input.content")).apply();
+            sp.edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
         }
     }
 }

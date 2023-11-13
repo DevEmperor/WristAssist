@@ -46,6 +46,12 @@
             android:max="18"/>
 
         <SwitchPreference
+            app:key="net.devemperor.wristassist.hands-free"
+            app:title="@string/wristassist_hands_free"
+            app:summary="@string/wristassist_hands_free_message"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
             app:key="net.devemperor.wristassist.vibrate"
             app:title="@string/wristassist_vibrate"
             app:summary="@string/wristassist_vibrate_message"
