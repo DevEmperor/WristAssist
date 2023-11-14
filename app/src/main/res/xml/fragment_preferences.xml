@@ -67,19 +67,12 @@
         app:title="@string/wristassist_gpt_settings">
 
         <ListPreference
-            app:key="net.devemperor.wristassist.api_host"
-            app:title="@string/wristassist_select_api_host"
-            app:entries="@array/api_hosts"
-            app:entryValues="@array/api_hosts_values"
-            app:negativeButtonText="@string/wristassist_cancel"
-            app:dialogTitle=" "
-            android:defaultValue="https://api.openai.com/"/>
-
-        <ListPreference
             app:key="net.devemperor.wristassist.model"
             app:title="@string/wristassist_select_model"
             android:defaultValue="gpt-3.5-turbo"
             app:negativeButtonText="@string/wristassist_cancel"
+            app:entries="@array/models_openai"
+            app:entryValues="@array/models_openai_values"
             app:dialogTitle=" "/>
 
         <EditTextPreference
@@ -89,6 +82,11 @@
             app:positiveButtonText="@string/wristassist_okay"
             app:negativeButtonText="@string/wristassist_cancel"
             app:dialogTitle=" "/>
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.custom_server"
+            app:title="@string/wristassist_custom_server"
+            android:defaultValue="false"/>
 
     </PreferenceCategory>
 

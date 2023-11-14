@@ -99,7 +99,7 @@ public class ChatActivity extends Activity {
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
 
         String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
-        String apiHost = sp.getString("net.devemperor.wristassist.api_host", "https://api.openai.com/");
+        String apiHost = sp.getString("net.devemperor.wristassist.custom_server_host", "https://api.openai.com/");
         ObjectMapper mapper = defaultObjectMapper();  // replaces all control chars (#10 @ GH)
         OkHttpClient client = defaultClient(apiKey.replaceAll("[^ -~]", ""), Duration.ofSeconds(120)).newBuilder().build();
         Retrofit retrofit = new Retrofit.Builder()
@@ -251,8 +251,12 @@ public class ChatActivity extends Activity {
             saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24_off));
         }
 
+        String model = sp.getString("net.devemperor.wristassist.model", "gpt-3.5-turbo");
+        if (sp.getBoolean("net.devemperor.wristassist.custom_server", false)) {
+            model = sp.getString("net.devemperor.wristassist.custom_server_model", "gpt-3.5-turbo");
+        }
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
-                .model(sp.getString("net.devemperor.wristassist.model", "gpt-3.5-turbo"))
+                .model(model)
                 .messages(chatAdapter.getChatMessages())
                 .build();
 

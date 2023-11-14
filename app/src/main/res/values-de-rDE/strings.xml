@@ -10,13 +10,12 @@
     <string name="wristassist_no_saved_chats">Du hast noch keine Chats gespeichert.\nTippe in einem neuen Chat auf den Speichern-Button, um zu speichern.</string>
     <string name="wristassist_change_api_key">API-Schlüssel ändern</string>
     <string name="wristassist_no_api_key">Kein API-Schlüssel festgelegt</string>
-    <string name="wristassist_select_api_host">API Host wechseln</string>
     <string name="wristassist_vibrate">Vibrieren</string>
     <string name="wristassist_vibrate_message">Vibrieren, wenn eine Antwort erscheint</string>
     <string name="wristassist_font_size">Schriftgröße</string>
     <string name="wristassist_show_cost">Verbrauch anzeigen</string>
     <string name="wristassist_show_cost_message">Verbrauch für jede Antwort anzeigen</string>
-    <string name="wristassist_select_model">AI Model wechseln</string>
+    <string name="wristassist_select_model">KI Model wechseln</string>
     <string name="wristassist_total_cost">Gesamtverbrauch: %1$s k</string>
     <string name="wristassist_reset_cost">Verbrauch zurückgesetzt</string>
     <string name="wristassist_okay">OK</string>
@@ -25,7 +24,7 @@
     <string name="wristassist_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
     <string name="wristassist_welcome">Willkommen bei\nWristAssist</string>
     <string name="wristassist_welcome_info">Bitte scanne den QR-Code, um Anweisungen zur Einrichtung und Nutzung von WristAssist zu erhalten.</string>
-    <string name="wristassist_gpt_settings">GPT Einstellungen</string>
+    <string name="wristassist_gpt_settings">KI Einstellungen</string>
     <string name="wristassist_chat_settings">Chat Einstellungen</string>
     <string name="wristassist_tts_settings">TTS Einstellungen</string>
     <string name="wristassist_tts">TTS</string>
@@ -50,9 +49,13 @@
     <string name="wristassist_quota_exceeded">Du hast dein aktuelles Kontingent überschritten. Bitte überprüfe deinen Tarif und deine Abrechnungsdetails.</string>
     <string name="wristassist_no_access">Dieses Modell gibt es nicht oder du hast keinen Zugang dazu.</string>
     <string name="changelog_md">## Neuigkeiten  \n*Die folgenden Verbesserungen wurden seit der letzten Veröffentlichung von WristAssist hinzugefügt:*  \n</string>
-    <string name="changelog_md_22">### Version 2.4.1  \nDiese Changelog-Aktivität wurde hinzugefügt, damit du über alle kommenden Neuigkeiten informiert wirst  \n</string>
+    <string name="changelog_md_22">### Version 2.5.0  \nDiese Changelog-Aktivität wurde hinzugefügt, damit du über alle kommenden Neuigkeiten informiert wirst  \n</string>
     <string name="changelog_md_21">### Version 2.4.0  \n#### Markdown-Darstellung in Chats hinzugefügt  \nDie KI-Modelle zeigen manchmal Text in **fett**, *Kursivschrift* oder &lt;u&gt;unterstrichen&lt;/u&gt; an. Diese und andere Formatierungen werden nun korrekt angezeigt.  \n#### GPT-4 Turbo Modell hinzugefügt  \nGPT-4 Turbo ist leistungsfähiger und kennt das Weltgeschehen bis zum April 2023. Es ist 2 bis 3 Mal günstiger als GPT-4.  \n#### Ausführlichere Fehlermeldungen  \nFehler wie zu lange Chats, Kontingent Überschreitung und ungültige Modelle werden nun korrekt angezeigt.  \n#### mehrere Fehlerbehebungen  \n</string>
     <string name="wristassist_no_speech_recognition">Keine Tastatur mit Spracherkennung installiert</string>
-    <string name="wristassist_hands_free">Freisprech-Eingabe</string>
+    <string name="wristassist_hands_free">Freisprech Eingabe</string>
     <string name="wristassist_hands_free_message">Spracherkennung für die Eingabe</string>
+    <string name="wristassist_custom_host">Eigener Host</string>
+    <string name="wristassist_custom_model">Eigenes Model</string>
+    <string name="wristassist_custom_server">Eigener API Server</string>
+    <string name="wristassist_invalid_host">Ungültiges URL-Format</string>
 </resources>

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="api_hosts">
-        <item name="openai">openai.com</item>
-        <item name="pawan">pawan.krd</item>
-    </string-array>
-    <string-array name="api_hosts_values">
-        <item name="openai">https://api.openai.com/</item>
-        <item name="pawan">https://api.pawan.krd/</item>
-    </string-array>
-
     <string-array name="models_openai">
         <item name="gpt-3.5-turbo">GPT-3.5 Turbo</item>
         <item name="gpt-3.5-turbo-16k">GPT-3.5 Turbo 16K</item>
@@ -22,14 +13,5 @@
         <item name="gpt-4-turbo">gpt-4-1106-preview</item>
         <item name="gpt-4">gpt-4</item>
         <item name="gpt-4-32k">gpt-4-32k</item>
-    </string-array>
-
-    <string-array name="models_pawan">
-        <item name="pai-001-light-beta">PAI-001 Beta Light</item>
-        <item name="pai-001-beta">PAI-001 Beta</item>
-    </string-array>
-    <string-array name="models_pawan_values">
-        <item name="pai-001-light-beta">pai-001-light-beta</item>
-        <item name="pai-001-beta">pai-001-beta</item>
     </string-array>
 </resources>

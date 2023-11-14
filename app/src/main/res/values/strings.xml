@@ -17,14 +17,13 @@
 
     <string name="wristassist_change_api_key">Change API key</string>
     <string name="wristassist_no_api_key">No API key set</string>
-    <string name="wristassist_select_api_host">Select API host</string>
     <string name="wristassist_vibrate">Vibrate</string>
     <string name="wristassist_vibrate_message">Vibrate when an answer appears</string>
     <string name="wristassist_font_size">Font size</string>
     <string name="wristassist_show_cost">Show cost</string>
     <string name="wristassist_show_cost_message">Show the cost for each answer</string>
     <string name="wristassist_select_model">Select AI model</string>
-    <string name="wristassist_gpt_settings">GPT settings</string>
+    <string name="wristassist_gpt_settings">AI settings</string>
     <string name="wristassist_chat_settings">Chat settings</string>
     <string name="wristassist_tts_settings">TTS settings</string>
     <string name="wristassist_tts">TTS</string>
@@ -57,9 +56,15 @@
     <string name="wristassist_quota_exceeded">You exceeded your current quota, please check your plan and billing details.</string>
     <string name="wristassist_no_access">This model does not exist or you don\'t have access to it.</string>
     <string name="changelog_md">## See what\'s new  \n*The following improvements have been added since the last launch of WristAssist:*  \n</string>
-    <string name="changelog_md_22">### Version 2.4.1  \nAdded this changelog activity so that you get informed about all upcoming news  \n</string>
+    <string name="changelog_md_22">### Version 2.5.0  \nAdded this changelog activity so that you get informed about all upcoming news  \n</string>
     <string name="changelog_md_21">### Version 2.4.0  \n#### Added Markdown rendering in chats  \nThe AI models sometimes display text in **bold**, *italics* or &lt;u&gt;underlined&lt;/u&gt;. This and other formatting is now displayed correctly.  \n#### Added GPT-4 Turbo model  \nGPT-4 Turbo is more capable and has knowledge of world events up to April 2023. It is between 2 and 3 times cheaper than GPT-4.  \n#### More detailed error messages  \nErrors such as too long chats, exceeded quota and invalid models are now displayed correctly.  \n#### Several bugfixes  \n</string>
     <string name="wristassist_no_speech_recognition">No keyboard with speech recognition installed</string>
     <string name="wristassist_hands_free">Hands-free input</string>
     <string name="wristassist_hands_free_message">Speech recognition for input</string>
+    <string name="wristassist_custom_host">Custom host</string>
+    <string name="wristassist_custom_host_hint" translatable="false">https://api.example.com/</string>
+    <string name="wristassist_custom_model">Custom model</string>
+    <string name="wristassist_custom_model_hint" translatable="false">gpt-3.5-turbo</string>
+    <string name="wristassist_custom_server">Custom API server</string>
+    <string name="wristassist_invalid_host">Invalid URL format</string>
 </resources>
