@@ -22,17 +22,6 @@ You will find a detailed explaination on how to set up and use WristAssist on th
 
 
 
-## Planned features
-
-- [x] possibility to switch between GPT 3.5 and GPT 4 (as soon as access is possible)
-- [x] intro explaining how to generate an API key
-- [x] First time setup immediately opens the settings page
-- [x] PlayStore release
-- [ ] typewriter effect for the answer
-- [ ] Azure OpenAI API support
-
-
-
 ## License
 
 WristAssist is under the terms of the [Apapche 2.0 license](https://www.apache.org/licenses/LICENSE-2.0), following all clarifications stated in the [license file](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/LICENSE)
