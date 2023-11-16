@@ -144,6 +144,8 @@ public class ChatActivity extends Activity {
             saveThisChat = true;
             this.id = id;
 
+            titleTv.setOnClickListener(v -> chatLv.setSelection(chatAdapter.getCount() + 1));
+
             if (chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getRole().equals("user")) {
                 try {
                     query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
