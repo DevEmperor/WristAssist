@@ -276,7 +276,7 @@ public class ChatActivity extends Activity {
                 }
                 runOnUiThread(() -> {
                     if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {
-                        vibrator.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE));
+                        vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));
                     }
 
                     chatAdapter.add(assistantItem);
@@ -306,6 +306,10 @@ public class ChatActivity extends Activity {
                 fc.sendUnsentReports();
 
                 runOnUiThread(() -> {
+                    if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {
+                        vibrator.vibrate(VibrationEffect.createWaveform(new long[]{50, 50, 50, 50, 50}, new int[]{-1, 0, -1, 0, -1}, -1));
+                    }
+
                     e.printStackTrace();
                     if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
                         errorTv.setText(R.string.wristassist_timeout);
