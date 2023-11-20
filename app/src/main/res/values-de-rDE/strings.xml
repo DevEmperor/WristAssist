@@ -58,4 +58,6 @@
     <string name="wristassist_custom_model">Eigenes Model</string>
     <string name="wristassist_custom_server">Eigener API Server</string>
     <string name="wristassist_invalid_host">Ungültiges URL-Format</string>
+    <string name="wristassist_ai">KI</string>
+    <string name="wristassist_complication_description">Komplikation zum Öffnen von WristAssist</string>
 </resources>

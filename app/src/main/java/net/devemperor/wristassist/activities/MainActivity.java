@@ -44,6 +44,8 @@ public class MainActivity extends Activity {
             finish();
         } else if (sp.getInt("net.devemperor.wristassist.last_version_code", 0) < BuildConfig.VERSION_CODE) {
             startActivity(new Intent(this, ChangelogActivity.class));
+        } else if (getIntent().getBooleanExtra("net.devemperor.wristassist.complication", false)) {
+            input(false);
         }
 
         super.onCreate(savedInstanceState);
@@ -63,18 +65,9 @@ public class MainActivity extends Activity {
         mainWrv.setAdapter(new MainAdapter(menuItems, (menuPosition, longClick) -> {
             Intent intent;
             if (menuPosition == 0 && !longClick) {
-                intent = new Intent(this, InputActivity.class);
-                intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
-                startActivityForResult(intent, 1337);
+                input(false);
             } else if (menuPosition == 0) {
-                intent = new Intent(this, InputActivity.class);
-                intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_system_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_enter_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_prompt));
-                startActivityForResult(intent, 1338);
+                input(true);
             } else if (menuPosition == 1) {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
@@ -88,6 +81,22 @@ public class MainActivity extends Activity {
         }));
         mainWrv.requestFocus();
         mainWrv.postDelayed(() -> mainWrv.scrollBy(0, mainWrv.getChildAt(0).getHeight()), 100);
+    }
+
+    private void input(boolean withSystemMessage) {
+        Intent intent = new Intent(this, InputActivity.class);
+        if (withSystemMessage) {
+            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_system_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_enter_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_prompt));
+            startActivityForResult(intent, 1338);
+        } else {
+            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
+            intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
+            startActivityForResult(intent, 1337);
+        }
     }
 
     @Override

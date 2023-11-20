@@ -67,4 +67,6 @@
     <string name="wristassist_custom_model_hint" translatable="false">gpt-3.5-turbo</string>
     <string name="wristassist_custom_server">Custom API server</string>
     <string name="wristassist_invalid_host">Invalid URL format</string>
+    <string name="wristassist_ai">AI</string>
+    <string name="wristassist_complication_description">Complication to open WristAssist</string>
 </resources>
