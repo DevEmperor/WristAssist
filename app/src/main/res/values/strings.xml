@@ -69,4 +69,5 @@
     <string name="wristassist_invalid_host">Invalid URL format</string>
     <string name="wristassist_ai">AI</string>
     <string name="wristassist_complication_description">Complication to open WristAssist</string>
+    <string name="changelog_md_23">### Version 2.6.0  \n#### Added watchface complication  \nAdded a complication for your watchfaces to quickly open the WristAssist input screen.  \n#### Scroll to bottom shortcut  \nIf you click on a saved chat title, it will immediately scroll to bottom.  \n#### Vibration on error  \nIf an error occurs in the chat, you will now feel a different vibration.  \n</string>
 </resources>
