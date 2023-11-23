@@ -64,8 +64,8 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
                 .usePlugin(TaskListPlugin.create(context))
                 .build();
 
-        if (context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getBoolean("net.devemperor.wristassist.tts", true)) {
+        if (!context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
+                .getString("net.devemperor.wristassist.tts", "off").equals("off")) {
             tts = new TextToSpeech(context, status -> {
                 if (status == TextToSpeech.SUCCESS) {
                     ttsEnabled = true;

@@ -69,11 +69,15 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         if (modelPreference != null) modelPreference.setSummaryProvider(preference -> modelPreference.getEntry());
         if (customServerPreference.isChecked()) modelPreference.setEnabled(false);
 
-        new TextToSpeech(getContext(), status -> {
-            if (status != TextToSpeech.SUCCESS) {
-                findPreference("net.devemperor.wristassist.tts").setEnabled(false);
-            }
-        });
+        ListPreference ttsPreference = findPreference("net.devemperor.wristassist.tts");
+        if (ttsPreference != null) {
+            new TextToSpeech(getContext(), status -> {
+                if (status != TextToSpeech.SUCCESS) {
+                    ttsPreference.setEnabled(false);
+                }
+            });
+            ttsPreference.setSummaryProvider(preference -> ttsPreference.getEntry());
+        }
     }
 
     @Override

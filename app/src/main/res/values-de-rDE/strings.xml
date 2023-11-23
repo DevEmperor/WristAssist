@@ -61,4 +61,8 @@
     <string name="wristassist_ai">KI</string>
     <string name="wristassist_complication_description">Komplikation zum Öffnen von WristAssist</string>
     <string name="changelog_md_23">### Version 2.6.0  \n#### Komplikation für Watchfaces hinzugefügt  \nEine Komplikation für deine Watchfaces wurde hinzugefügt, mit der du schnell den WristAssist-Eingabebildschirm öffnen kannst.  \n#### Schnelles Scrollen  \nWenn du auf einen gespeicherten Chat-Titel klickst, wird er sofort nach unten gescrollt.  \n#### Vibration bei Fehler  \nWenn im Chat ein Fehler auftritt, spürst du jetzt eine andere Vibration.  \n</string>
+    <string name="wristassist_tts_on">An</string>
+    <string name="wristassist_tts_off">Aus</string>
+    <string name="wristassist_tts_on_auto">An + automatisch vorlesen</string>
+    <string name="wristassist_tts_adapt_to_input">An Eingabemethode angepasst</string>
 </resources>

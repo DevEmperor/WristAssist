@@ -39,18 +39,14 @@
     <PreferenceCategory
         app:title="@string/wristassist_tts_settings">
 
-        <SwitchPreference
+        <ListPreference
             app:key="net.devemperor.wristassist.tts"
             app:title="@string/wristassist_tts"
-            app:summary="@string/wristassist_tts_message"
-            android:defaultValue="true"/>
-
-        <SwitchPreference
-            app:key="net.devemperor.wristassist.auto_tts"
-            app:title="@string/wristassist_auto_tts"
-            app:summary="@string/wristassist_auto_tts_message"
-            app:dependency="net.devemperor.wristassist.tts"
-            android:defaultValue="false"/>
+            app:entries="@array/tts_settings"
+            app:entryValues="@array/tts_settings_values"
+            android:defaultValue="@string/wristassist_tts_off"
+            app:dialogTitle=" "
+            app:negativeButtonText="@string/wristassist_cancel"/>
 
         <SeekBarPreference
             app:key="net.devemperor.wristassist.tts_volume"

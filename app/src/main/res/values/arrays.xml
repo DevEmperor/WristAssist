@@ -14,4 +14,17 @@
         <item name="gpt-4">gpt-4</item>
         <item name="gpt-4-32k">gpt-4-32k</item>
     </string-array>
+
+    <string-array name="tts_settings">
+        <item name="off">@string/wristassist_tts_off</item>
+        <item name="on">@string/wristassist_tts_on</item>
+        <item name="on_auto">@string/wristassist_tts_on_auto</item>
+        <item name="adapt_to_input">@string/wristassist_tts_adapt_to_input</item>
+    </string-array>
+    <string-array name="tts_settings_values">
+        <item name="off">off</item>
+        <item name="on">on</item>
+        <item name="on_auto">on_auto</item>
+        <item name="adapt_to_input">adapt_to_input</item>
+    </string-array>
 </resources>

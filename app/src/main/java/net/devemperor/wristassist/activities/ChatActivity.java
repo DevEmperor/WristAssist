@@ -296,7 +296,9 @@ public class ChatActivity extends Activity {
                         firstAnswerComplete = true;
                     }
 
-                    if (sp.getBoolean("net.devemperor.wristassist.auto_tts", false)) {
+                    if (sp.getString("net.devemperor.wristassist.tts", "off").equals("on_auto") ||
+                            (sp.getString("net.devemperor.wristassist.tts", "off").equals("adapt_to_input") &&
+                                    sp.getBoolean("net.devemperor.wristassist.hands_free", false))) {
                         chatAdapter.launchTTS(answer.getContent());
                     }
                 });
