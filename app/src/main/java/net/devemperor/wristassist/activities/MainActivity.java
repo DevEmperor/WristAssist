@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
@@ -80,7 +81,11 @@ public class MainActivity extends Activity {
             }
         }));
         mainWrv.requestFocus();
-        mainWrv.postDelayed(() -> mainWrv.scrollBy(0, mainWrv.getChildAt(0).getHeight()), 100);
+        mainWrv.postDelayed(() -> {
+            View view = mainWrv.getChildAt(0);
+            if (view == null) return;
+            mainWrv.scrollBy(0, view.getHeight());
+        }, 100);
     }
 
     private void input(boolean withSystemMessage) {
