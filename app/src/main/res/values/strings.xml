@@ -27,10 +27,7 @@
     <string name="wristassist_chat_settings">Chat settings</string>
     <string name="wristassist_tts_settings">TTS settings</string>
     <string name="wristassist_tts">TTS</string>
-    <string name="wristassist_tts_message">Read the answer out loud on tap</string>
     <string name="wristassist_tts_volume">TTS volume</string>
-    <string name="wristassist_auto_tts">Auto TTS</string>
-    <string name="wristassist_auto_tts_message">Automatically read the answer out loud</string>
     <string name="wristassist_tts_lang_not_available">TTS language not available. Download in settings.</string>
     <string name="wristassist_tts_not_available">Couldn\'t connect to TTS engine.</string>
 
