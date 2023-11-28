@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "266061865163",
+    "project_id": "wristassist-777",
+    "storage_bucket": "wristassist-777.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:266061865163:android:2bf6cdc54a72f073da7b4e",
+        "android_client_info": {
+          "package_name": "net.devemperor.wristassist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATi98rXo1WS6xBea29dRjqcMNjMZMwvvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
