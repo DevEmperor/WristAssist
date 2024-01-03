@@ -31,7 +31,7 @@
     <string name="wristassist_tts_lang_not_available">TTS language not available. Download in settings.</string>
     <string name="wristassist_tts_not_available">Couldn\'t connect to TTS engine.</string>
 
-    <string name="wristassist_about" formatted="false" translatable="false">WristAssist %1$s\n© 2023 Jannis Zahn</string>
+    <string name="wristassist_about" formatted="false" translatable="false">WristAssist %1$s\n© 2024 Jannis Zahn</string>
     <string name="wristassist_total_cost" formatted="false">Total cost: %1$s k</string>
     <string name="wristassist_reset_cost">Reset total cost</string>
 
