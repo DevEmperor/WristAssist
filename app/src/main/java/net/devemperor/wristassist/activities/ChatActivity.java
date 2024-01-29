@@ -30,8 +30,8 @@ import com.theokanning.openai.service.OpenAiService;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.ChatAdapter;
+import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.database.ChatHistoryModel;
-import net.devemperor.wristassist.database.DatabaseHelper;
 import net.devemperor.wristassist.items.ChatItem;
 
 import org.json.JSONArray;
@@ -67,7 +67,7 @@ public class ChatActivity extends Activity {
 
     Vibrator vibrator;
 
-    DatabaseHelper databaseHelper;
+    ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
     SharedPreferences sp;
 
     boolean firstAnswerComplete = false;
@@ -95,7 +95,7 @@ public class ChatActivity extends Activity {
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        databaseHelper = new DatabaseHelper(this);
+        chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
 
         String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
@@ -116,7 +116,7 @@ public class ChatActivity extends Activity {
 
         if (getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1) != -1) {
             long id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
-            titleTv.setText(databaseHelper.getTitle(id));
+            titleTv.setText(chatHistoryDatabaseHelper.getTitle(id));
             titleTv.setVisibility(View.VISIBLE);
             saveResetBtn.setVisibility(View.VISIBLE);
             saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24));
@@ -194,7 +194,7 @@ public class ChatActivity extends Activity {
             titleTv.setVisibility(View.VISIBLE);
 
             try {
-                id = databaseHelper.add(this, new ChatHistoryModel(-1, content, chatAdapter.getChatItems()));
+                id = chatHistoryDatabaseHelper.add(this, new ChatHistoryModel(-1, content, chatAdapter.getChatItems()));
             } catch (JSONException | IOException e) {
                 throw new RuntimeException(e);
             }
@@ -214,7 +214,7 @@ public class ChatActivity extends Activity {
             for (int i = chatAdapter.getCount() - 1; i > ((chatAdapter.getItem(0).getChatMessage().getRole().equals(ChatMessageRole.SYSTEM.value())) ? 1 : 0); i--) {
                 chatAdapter.remove(chatAdapter.getItem(i));
             }
-            databaseHelper.reset(this, id, chatAdapter.getChatItems());
+            chatHistoryDatabaseHelper.reset(this, id, chatAdapter.getChatItems());
             firstAnswerComplete = false;
             saveResetBtn.setVisibility(View.GONE);
             Toast.makeText(this, R.string.wristassist_chat_reset, Toast.LENGTH_SHORT).show();
@@ -239,7 +239,7 @@ public class ChatActivity extends Activity {
             ChatItem userItem = new ChatItem(new ChatMessage("user", query), 0);
             chatAdapter.add(userItem);
             if (saveThisChat) {
-                databaseHelper.edit(this, id, userItem);
+                chatHistoryDatabaseHelper.edit(this, id, userItem);
             }
         }
 
@@ -274,7 +274,7 @@ public class ChatActivity extends Activity {
                     return;
                 }
                 if (saveThisChat) {
-                    databaseHelper.edit(this, id, assistantItem);
+                    chatHistoryDatabaseHelper.edit(this, id, assistantItem);
                 }
                 runOnUiThread(() -> {
                     if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {

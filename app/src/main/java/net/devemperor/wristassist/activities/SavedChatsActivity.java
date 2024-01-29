@@ -14,8 +14,8 @@ import androidx.wear.widget.WearableRecyclerView;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.SavedChatsAdapter;
+import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.database.ChatHistoryModel;
-import net.devemperor.wristassist.database.DatabaseHelper;
 import net.devemperor.wristassist.util.Util;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class SavedChatsActivity extends Activity {
 
     WearableRecyclerView savedChatsWrv;
 
-    DatabaseHelper databaseHelper;
+    ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
     SavedChatsAdapter savedChatsAdapter;
 
     @Override
@@ -37,8 +37,8 @@ public class SavedChatsActivity extends Activity {
         savedChatsWrv.setEdgeItemsCenteringEnabled(true);
         savedChatsWrv.setLayoutManager(new WearableLinearLayoutManager(this));
 
-        databaseHelper = new DatabaseHelper(this);
-        List<ChatHistoryModel> chats = databaseHelper.getAllChats();
+        chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
+        List<ChatHistoryModel> chats = chatHistoryDatabaseHelper.getAllChats();
 
         savedChatsAdapter = new SavedChatsAdapter(chats, (chatPosition, longClick) -> {
             Intent intent;
@@ -71,7 +71,7 @@ public class SavedChatsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         savedChatsAdapter.getData().clear();
-        savedChatsAdapter.getData().addAll(databaseHelper.getAllChats());
+        savedChatsAdapter.getData().addAll(chatHistoryDatabaseHelper.getAllChats());
         savedChatsAdapter.notifyDataSetChanged();
 
         findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);

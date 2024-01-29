@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.devemperor.wristassist.R;
-import net.devemperor.wristassist.database.DatabaseHelper;
+import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.util.Util;
 
 import org.json.JSONException;
@@ -27,7 +27,7 @@ public class EditChatActivity extends Activity {
     ImageButton editTitleBtn;
     ImageButton deleteChatBtn;
 
-    DatabaseHelper databaseHelper;
+    ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
     long id;
     DecimalFormat df = new DecimalFormat("#.##");
 
@@ -42,18 +42,18 @@ public class EditChatActivity extends Activity {
         editTitleBtn = findViewById(R.id.edit_btn);
         deleteChatBtn = findViewById(R.id.delete_btn);
 
-        databaseHelper = new DatabaseHelper(this);
+        chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
         id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
 
-        titleTv.setText(databaseHelper.getTitle(id));
+        titleTv.setText(chatHistoryDatabaseHelper.getTitle(id));
         titleTv.setTextSize(16 * Util.getFontMultiplier(this));
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault());
-        modifiedTv.setText(formatter.format(databaseHelper.getModified(id)));
+        modifiedTv.setText(formatter.format(chatHistoryDatabaseHelper.getModified(id)));
         modifiedTv.setTextSize(14 * Util.getFontMultiplier(this));
 
         try {
-            chatCostTv.setText(getString(R.string.wristassist_chat_cost, df.format(databaseHelper.getChatCost(this, id) / 1000.0)));
+            chatCostTv.setText(getString(R.string.wristassist_chat_cost, df.format(chatHistoryDatabaseHelper.getChatCost(this, id) / 1000.0)));
             chatCostTv.setTextSize(14 * Util.getFontMultiplier(this));
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
@@ -67,7 +67,7 @@ public class EditChatActivity extends Activity {
         if (resultCode != RESULT_OK) return;
         if (requestCode == 1337) {
             String content = data.getStringExtra("net.devemperor.wristassist.input.content");
-            databaseHelper.setTitle(id, content);
+            chatHistoryDatabaseHelper.setTitle(id, content);
             titleTv.setText(content);
         }
     }
@@ -80,7 +80,7 @@ public class EditChatActivity extends Activity {
     }
 
     public void deleteChat(View view) {
-        databaseHelper.delete(this, id);
+        chatHistoryDatabaseHelper.delete(this, id);
         Toast.makeText(this, R.string.wristassist_chat_deleted, Toast.LENGTH_SHORT).show();
         finish();
     }

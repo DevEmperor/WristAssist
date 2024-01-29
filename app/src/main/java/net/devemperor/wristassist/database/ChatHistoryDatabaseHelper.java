@@ -24,11 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class ChatHistoryDatabaseHelper extends SQLiteOpenHelper {
 
     private final Context context;
 
-    public DatabaseHelper(@Nullable Context context) {
+    public ChatHistoryDatabaseHelper(@Nullable Context context) {
         super(context, "chatHistory.db", null, 3);
         this.context = context;
     }
