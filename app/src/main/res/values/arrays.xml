@@ -10,7 +10,7 @@
     <string-array name="models_openai_values">
         <item name="gpt-3.5-turbo">gpt-3.5-turbo</item>
         <item name="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</item>
-        <item name="gpt-4-turbo">gpt-4-1106-preview</item>
+        <item name="gpt-4-turbo">gpt-4-turbo-preview</item>
         <item name="gpt-4">gpt-4</item>
         <item name="gpt-4-32k">gpt-4-32k</item>
     </string-array>
