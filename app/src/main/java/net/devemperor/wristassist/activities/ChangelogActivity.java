@@ -40,7 +40,7 @@ public class ChangelogActivity extends AppCompatActivity {
                 else newTts = "on";
             }
             sp.edit().putString("net.devemperor.wristassist.tts", newTts).apply();
-            md = md.concat("### TODO");  // TODO add changelog
+            md = md.concat(getString(R.string.changelog_md_24));
         }
         if (lastVersionCode < 23) md = md.concat(getString(R.string.changelog_md_23));
         if (lastVersionCode < 22) md = md.concat(getString(R.string.changelog_md_22));

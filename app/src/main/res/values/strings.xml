@@ -71,4 +71,5 @@
     <string name="wristassist_tts_off">Off</string>
     <string name="wristassist_tts_on_auto">On + Auto read</string>
     <string name="wristassist_tts_adapt_to_input">Adapt to input</string>
+    <string name="changelog_md_24">### Version 2.6.1  \n#### Added more TTS settings  \nTTS settings are now in a single list. You can choose between: On, Off, On and auto read and adapted to the input method.  \n</string>
 </resources>
