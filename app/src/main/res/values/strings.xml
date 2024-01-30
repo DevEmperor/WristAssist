@@ -18,10 +18,8 @@
     <string name="wristassist_change_api_key">Change API key</string>
     <string name="wristassist_no_api_key">No API key set</string>
     <string name="wristassist_vibrate">Vibrate</string>
-    <string name="wristassist_vibrate_message">Vibrate when an answer appears</string>
     <string name="wristassist_font_size">Font size</string>
     <string name="wristassist_show_cost">Show cost</string>
-    <string name="wristassist_show_cost_message">Show the cost for each answer</string>
     <string name="wristassist_select_model">Select AI model</string>
     <string name="wristassist_gpt_settings">AI settings</string>
     <string name="wristassist_chat_settings">Chat settings</string>
@@ -55,7 +53,6 @@
     <string name="changelog_md_21">### Version 2.4.0  \n#### Added Markdown rendering in chats  \nThe AI models sometimes display text in **bold**, *italics* or &lt;u&gt;underlined&lt;/u&gt;. This and other formatting is now displayed correctly.  \n#### Added GPT-4 Turbo model  \nGPT-4 Turbo is more capable and has knowledge of world events up to April 2023. It is between 2 and 3 times cheaper than GPT-4.  \n#### More detailed error messages  \nErrors such as too long chats, exceeded quota and invalid models are now displayed correctly.  \n#### Several bugfixes  \n</string>
     <string name="wristassist_no_speech_recognition">No keyboard with speech recognition installed</string>
     <string name="wristassist_hands_free">Hands-free input</string>
-    <string name="wristassist_hands_free_message">Speech recognition for input</string>
     <string name="wristassist_custom_host">Custom host</string>
     <string name="wristassist_custom_host_hint" translatable="false">https://api.example.com/</string>
     <string name="wristassist_custom_model">Custom model</string>
@@ -76,4 +73,5 @@
     <string name="wristassist_reset">Reset</string>
     <string name="wristassist_total_cost" formatted="false">Total cost: ~ %1$s $</string>
     <string name="wristassist_no_usage_yet">No usage yet</string>
+    <string name="wristassist_instant_input">Instant input</string>
 </resources>

@@ -45,7 +45,8 @@ public class MainActivity extends Activity {
             finish();
         } else if (sp.getInt("net.devemperor.wristassist.last_version_code", 0) < BuildConfig.VERSION_CODE) {
             startActivity(new Intent(this, ChangelogActivity.class));
-        } else if (getIntent().getBooleanExtra("net.devemperor.wristassist.complication", false)) {
+        } else if (getIntent().getBooleanExtra("net.devemperor.wristassist.complication", false)
+                || sp.getBoolean("net.devemperor.wristassist.instant_input", false)) {
             input(false);
         }
 
