@@ -93,10 +93,10 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getInt("net.devemperor.wristassist.font_size", 15) * Util.getFontMultiplier(context));
 
-        chatItem.setOnClickListener(v -> launchTTS(chatItem.getText().toString()));
+        ChatMessage chatMessage = objects.get(position).getChatMessage();
+        chatItem.setOnClickListener(v -> launchTTS(chatMessage.getContent()));
 
         Drawable icon;
-        ChatMessage chatMessage = objects.get(position).getChatMessage();
         chatItem.setText(chatMessage.getContent());
         if (chatMessage.getRole().equals(ChatMessageRole.USER.value())) {
             icon = ContextCompat.getDrawable(context, R.drawable.twotone_person_24);
