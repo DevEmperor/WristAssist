@@ -1,7 +1,6 @@
 package net.devemperor.wristassist.activities;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,14 +10,8 @@ import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.util.Util;
 
-import java.text.DecimalFormat;
-
 
 public class AboutActivity extends Activity {
-
-    DecimalFormat df = new DecimalFormat("#.#");
-    TextView totalCost;
-    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +22,11 @@ public class AboutActivity extends Activity {
         aboutText.setText(getString(R.string.wristassist_about, BuildConfig.VERSION_NAME));
         aboutText.setTextSize(16 * Util.getFontMultiplier(this));
 
-        totalCost = findViewById(R.id.total_cost_tv);
-        totalCost.setTextSize(16 * Util.getFontMultiplier(this));
-        sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
-        refreshTotalCostTv();
-
-        totalCost.setOnLongClickListener(v -> {
-            sp.edit().putLong("net.devemperor.wristassist.total_tokens", 0).apply();
-            Toast.makeText(v.getContext(), R.string.wristassist_reset_cost, Toast.LENGTH_SHORT).show();
-            refreshTotalCostTv();
-            return true;
-        });
-
         ImageView icon = findViewById(R.id.icon);
         icon.setOnLongClickListener(v -> {
-            Toast.makeText(v.getContext(), sp.getString("net.devemperor.wristassist.userid", "null"), Toast.LENGTH_LONG).show();
+            Toast.makeText(v.getContext(), getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE)
+                    .getString("net.devemperor.wristassist.userid", "null"), Toast.LENGTH_LONG).show();
             return true;
         });
-    }
-
-    private void refreshTotalCostTv() {
-        totalCost.setText(getString(R.string.wristassist_total_cost, df.format(sp.getLong("net.devemperor.wristassist.total_tokens", 0) / 1000.0)));
     }
 }

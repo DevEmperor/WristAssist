@@ -2,14 +2,12 @@
 <resources>
     <string-array name="models_openai">
         <item name="gpt-3.5-turbo">GPT-3.5 Turbo</item>
-        <item name="gpt-3.5-turbo-16k">GPT-3.5 Turbo 16K</item>
         <item name="gpt-4-turbo">GPT-4 Turbo</item>
         <item name="gpt-4">GPT-4</item>
         <item name="gpt-4-32k">GPT-4 32K</item>
     </string-array>
     <string-array name="models_openai_values">
         <item name="gpt-3.5-turbo">gpt-3.5-turbo</item>
-        <item name="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</item>
         <item name="gpt-4-turbo">gpt-4-turbo-preview</item>
         <item name="gpt-4">gpt-4</item>
         <item name="gpt-4-32k">gpt-4-32k</item>

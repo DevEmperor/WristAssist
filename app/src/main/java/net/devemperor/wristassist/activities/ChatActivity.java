@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+import com.theokanning.openai.Usage;
 import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionResult;
@@ -32,7 +33,9 @@ import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.ChatAdapter;
 import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.database.ChatHistoryModel;
+import net.devemperor.wristassist.database.UsageDatabaseHelper;
 import net.devemperor.wristassist.items.ChatItem;
+import net.devemperor.wristassist.util.Util;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,6 +71,7 @@ public class ChatActivity extends Activity {
     Vibrator vibrator;
 
     ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
+    UsageDatabaseHelper usageDatabaseHelper;
     SharedPreferences sp;
 
     boolean firstAnswerComplete = false;
@@ -96,6 +100,7 @@ public class ChatActivity extends Activity {
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
+        usageDatabaseHelper = new UsageDatabaseHelper(this);
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
 
         String apiKey = sp.getString("net.devemperor.wristassist.api_key", "noApiKey");
@@ -263,13 +268,16 @@ public class ChatActivity extends Activity {
                 .build();
 
         thread = Executors.newSingleThreadExecutor();
+        String finalModel = model;
         thread.execute(() -> {
             try {
                 ChatCompletionResult result = service.createChatCompletion(ccr);
                 ChatMessage answer = result.getChoices().get(0).getMessage();
-                long cost = result.getUsage().getTotalTokens();
-                ChatItem assistantItem = new ChatItem(answer, cost);
-                sp.edit().putLong("net.devemperor.wristassist.total_tokens", sp.getLong("net.devemperor.wristassist.total_tokens", 0) + cost).apply();
+                Usage usage = result.getUsage();
+                ChatItem assistantItem = new ChatItem(answer, usage.getTotalTokens());
+
+                usageDatabaseHelper.edit(finalModel, usage.getTotalTokens(), Util.calcCost(finalModel, usage.getPromptTokens(), usage.getCompletionTokens()));
+
                 if (Thread.interrupted()) {
                     return;
                 }

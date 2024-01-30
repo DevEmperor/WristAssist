@@ -12,7 +12,7 @@
     <string name="wristassist_chat_reset">Reset chat</string>
 
     <string name="wristassist_no_saved_chats">You haven\'t saved any chats yet.\nTouch the Save-Button in a new chat to save.</string>
-    <string name="wristassist_chat_cost" formatted="false">Chat cost:\n%1$s k</string>
+    <string name="wristassist_chat_cost" formatted="false" translatable="false">Tokens:\n%1$s k</string>
     <string name="wristassist_chat_deleted">Deleted chat</string>
 
     <string name="wristassist_change_api_key">Change API key</string>
@@ -32,8 +32,6 @@
     <string name="wristassist_tts_not_available">Couldn\'t connect to TTS engine.</string>
 
     <string name="wristassist_about" formatted="false" translatable="false">WristAssist %1$s\n© 2024 Jannis Zahn</string>
-    <string name="wristassist_total_cost" formatted="false">Total cost: %1$s k</string>
-    <string name="wristassist_reset_cost">Reset total cost</string>
 
     <string name="wristassist_okay">OK</string>
     <string name="wristassist_cancel">Cancel</string>
@@ -72,4 +70,10 @@
     <string name="wristassist_tts_on_auto">On + Auto read</string>
     <string name="wristassist_tts_adapt_to_input">Adapt to input</string>
     <string name="changelog_md_24">### Version 2.6.1  \n#### Added more TTS settings  \nTTS settings are now in a single list. You can choose between: On, Off, On and auto read and adapted to the input method.  \n</string>
+    <string name="wristassist_menu_usage">Usage</string>
+    <string name="wristassist_token_usage" formatted="false">Token usage: %1$s</string>
+    <string name="wristassist_estimated_cost" formatted="false">Cost: ~ %1$s $</string>
+    <string name="wristassist_reset">Reset</string>
+    <string name="wristassist_total_cost" formatted="false">Total cost: ~ %1$s $</string>
+    <string name="wristassist_no_usage_yet">No usage yet</string>
 </resources>

@@ -16,12 +16,9 @@
     <string name="wristassist_show_cost">Verbrauch anzeigen</string>
     <string name="wristassist_show_cost_message">Verbrauch für jede Antwort anzeigen</string>
     <string name="wristassist_select_model">KI Model wechseln</string>
-    <string name="wristassist_total_cost">Gesamtverbrauch: %1$s k</string>
-    <string name="wristassist_reset_cost">Verbrauch zurückgesetzt</string>
     <string name="wristassist_okay">OK</string>
     <string name="wristassist_cancel">Abbrechen</string>
     <string name="wristassist_click_to_reveal">Klicke zum Anzeigen</string>
-    <string name="wristassist_chat_cost" formatted="false">Chat Verbrauch:\n%1$s k</string>
     <string name="wristassist_welcome">Willkommen bei\nWristAssist</string>
     <string name="wristassist_welcome_info">Bitte scanne den QR-Code, um Anweisungen zur Einrichtung und Nutzung von WristAssist zu erhalten.</string>
     <string name="wristassist_gpt_settings">KI Einstellungen</string>
@@ -63,4 +60,10 @@
     <string name="wristassist_tts_on_auto">An + automatisch vorlesen</string>
     <string name="wristassist_tts_adapt_to_input">An Eingabemethode angepasst</string>
     <string name="changelog_md_24">### Version 2.6.1  \n#### Weitere TTS-Einstellungen hinzugefügt  \nDie TTS-Einstellungen sind jetzt in einer einzigen Liste zusammengefasst. Du kannst wählen zwischen: Ein, Aus, Ein und Automatisch lesen und angepasst an die Eingabemethode.  \n</string>
+    <string name="wristassist_menu_usage">Verbrauch</string>
+    <string name="wristassist_token_usage" formatted="false">Token Verbauch: %1$s</string>
+    <string name="wristassist_estimated_cost" formatted="false">Kosten: ~ %1$s $</string>
+    <string name="wristassist_reset">Zurücksetzen</string>
+    <string name="wristassist_total_cost" formatted="false">Gesamtkosten: ~ %1$s $</string>
+    <string name="wristassist_no_usage_yet">Kein Verbrauch bisher</string>
 </resources>

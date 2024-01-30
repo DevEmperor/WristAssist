@@ -60,6 +60,7 @@ public class MainActivity extends Activity {
         ArrayList<MainItem> menuItems = new ArrayList<>();
         menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.wristassist_menu_new_chat)));
         menuItems.add(new MainItem(R.drawable.twotone_chat_24, getString(R.string.wristassist_menu_saved_chats)));
+        menuItems.add(new MainItem(R.drawable.twotone_insert_chart_outlined_24, getString(R.string.wristassist_menu_usage)));
         menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.wristassist_menu_settings)));
         menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.wristassist_menu_about)));
 
@@ -73,9 +74,12 @@ public class MainActivity extends Activity {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
             } else if (menuPosition == 2) {
-                intent = new Intent(this, SettingsActivity.class);
+                intent = new Intent(this, UsageActivity.class);
                 startActivity(intent);
             } else if (menuPosition == 3) {
+                intent = new Intent(this, SettingsActivity.class);
+                startActivity(intent);
+            } else if (menuPosition == 4) {
                 intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
             }
