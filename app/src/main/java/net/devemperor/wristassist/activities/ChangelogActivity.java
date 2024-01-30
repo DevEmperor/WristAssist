@@ -33,6 +33,7 @@ public class ChangelogActivity extends AppCompatActivity {
         int versionCode = BuildConfig.VERSION_CODE;
         int lastVersionCode = sp.getInt("net.devemperor.wristassist.last_version_code", 0);
 
+        if (lastVersionCode < 25) md = md.concat(getString(R.string.changelog_md_25));
         if (lastVersionCode < 24) {
             String newTts = "off";
             try {  // on first app launch, in newer versions the tts setting is a string, not a boolean

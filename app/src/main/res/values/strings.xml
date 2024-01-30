@@ -74,4 +74,5 @@
     <string name="wristassist_total_cost" formatted="false">Total cost: ~ %1$s $</string>
     <string name="wristassist_no_usage_yet">No usage yet</string>
     <string name="wristassist_instant_input">Instant input</string>
+    <string name="changelog_md_25">### Version 2.7.0  \n#### Added usage activity  \nAdded activity to check the usage of the individual models.  \n#### Instant input  \nAdded setting to start a new chat immediately.  \n#### Several bugfixes  \n</string>
 </resources>

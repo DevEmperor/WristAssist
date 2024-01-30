@@ -64,4 +64,5 @@
     <string name="wristassist_total_cost" formatted="false">Gesamtkosten: ~ %1$s $</string>
     <string name="wristassist_no_usage_yet">Kein Verbrauch bisher</string>
     <string name="wristassist_instant_input">Direkte Eingabe</string>
+    <string name="changelog_md_25">### Version 2.7.0  \n#### Aktivität zum Überprüfen des Verbrauchs  \nAktivität hinzugefügt, um die Nutzung der einzelnen Modelle zu überprüfen.  \n#### Direkte Eingabe  \nEinstellung zum sofortigen Starten eines neuen Chats hinzugefügt.  \n#### Mehrere Fehlerbehebungen  \n</string>
 </resources>
