@@ -35,10 +35,13 @@ public class ChangelogActivity extends AppCompatActivity {
 
         if (lastVersionCode < 24) {
             String newTts = "off";
-            if (sp.getBoolean("net.devemperor.wristassist.tts", false)) {
-                if (sp.getBoolean("net.devemperor.wristassist.auto_tts", false)) newTts = "on_auto";
-                else newTts = "on";
-            }
+            try {  // on first app launch, in newer versions the tts setting is a string, not a boolean
+                if (sp.getBoolean("net.devemperor.wristassist.tts", false)) {
+                    if (sp.getBoolean("net.devemperor.wristassist.auto_tts", false))
+                        newTts = "on_auto";
+                    else newTts = "on";
+                }
+            } catch (ClassCastException ignored) { }
             sp.edit().putString("net.devemperor.wristassist.tts", newTts).apply();
             md = md.concat(getString(R.string.changelog_md_24));
         }
