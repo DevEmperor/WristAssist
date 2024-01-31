@@ -46,7 +46,7 @@
             app:title="@string/wristassist_tts"
             app:entries="@array/tts_settings"
             app:entryValues="@array/tts_settings_values"
-            android:defaultValue="@string/wristassist_tts_off"
+            android:defaultValue="off"
             app:dialogTitle=" "
             app:negativeButtonText="@string/wristassist_cancel"/>
 
