@@ -1,85 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:fillViewport="false">
 
-    <TextView
-        android:id="@+id/edit_title_tv"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:paddingHorizontal="32dp"
-        android:textAlignment="center"
-        android:textColor="#7B1FA2"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/modified_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/modified_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:paddingStart="24dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/edit_btn"
-        app:layout_constraintEnd_toStartOf="@+id/chat_cost_tv"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_title_tv" />
+        <TextView
+            android:id="@+id/edit_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="16dp"
+            android:maxLines="3"
+            android:textAlignment="center"
+            android:textColor="#7B1FA2"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
-    <ImageButton
-        android:id="@+id/edit_btn"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:onClick="editTitle"
-        android:scaleType="fitCenter"
-        android:src="@drawable/twotone_edit_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/delete_btn"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modified_tv" />
+        <TextView
+            android:id="@+id/modified_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textAlignment="center" />
 
-    <ImageButton
-        android:id="@+id/delete_btn"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:onClick="deleteChat"
-        android:scaleType="fitCenter"
-        android:src="@drawable/twotone_delete_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/edit_btn"
-        app:layout_constraintTop_toBottomOf="@id/chat_cost_tv" />
+        <TextView
+            android:id="@+id/chat_cost_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textAlignment="center"/>
 
-    <TextView
-        android:id="@+id/chat_cost_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:paddingEnd="24dp"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/delete_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/modified_tv"
-        app:layout_constraintTop_toBottomOf="@+id/edit_title_tv" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/edit_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:onClick="editTitle"
+                android:src="@drawable/twotone_edit_24"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toStartOf="@+id/delete_btn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageButton
+                android:id="@+id/delete_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@null"
+                android:onClick="deleteChat"
+                android:src="@drawable/twotone_delete_24"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/edit_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
