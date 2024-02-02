@@ -64,7 +64,7 @@ public class UsageDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<UsageModel> getAll() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM USAGE", null);
 
         List<UsageModel> models = new ArrayList<>();
@@ -79,7 +79,7 @@ public class UsageDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public double getTotalCost() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT SUM(COST) FROM USAGE", null);
 
         double totalCost = 0;

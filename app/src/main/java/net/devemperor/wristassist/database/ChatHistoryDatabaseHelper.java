@@ -125,9 +125,7 @@ public class ChatHistoryDatabaseHelper extends SQLiteOpenHelper {
 
     public void delete(Context context, long id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("DELETE FROM CHAT_HISTORY_TABLE WHERE ID=" + id, null);
-        cursor.moveToFirst();
-        cursor.close();
+        db.delete("CHAT_HISTORY_TABLE", "ID=" + id, null);
         db.close();
 
         String filePath = context.getFilesDir().getAbsolutePath() + "/chat_" + id + ".json";
