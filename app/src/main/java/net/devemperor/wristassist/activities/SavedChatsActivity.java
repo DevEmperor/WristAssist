@@ -1,6 +1,5 @@
 package net.devemperor.wristassist.activities;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +26,8 @@ public class SavedChatsActivity extends Activity {
     ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
     SavedChatsAdapter savedChatsAdapter;
 
+    int currentEditPosition = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class SavedChatsActivity extends Activity {
         List<ChatHistoryModel> chats = chatHistoryDatabaseHelper.getAllChats();
 
         savedChatsAdapter = new SavedChatsAdapter(chats, (chatPosition, longClick) -> {
+            currentEditPosition = chatPosition;
             Intent intent;
             if (!longClick) {
                 intent = new Intent(this, ChatActivity.class);
@@ -66,14 +68,13 @@ public class SavedChatsActivity extends Activity {
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
-        savedChatsAdapter.getData().clear();
-        savedChatsAdapter.getData().addAll(chatHistoryDatabaseHelper.getAllChats());
-        savedChatsAdapter.notifyDataSetChanged();
-
-        findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+        if (savedChatsAdapter.getItemCount() != chatHistoryDatabaseHelper.getCount()) {
+            savedChatsAdapter.getData().remove(currentEditPosition);
+            savedChatsAdapter.notifyItemRemoved(currentEditPosition);
+            findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+        }
     }
 }

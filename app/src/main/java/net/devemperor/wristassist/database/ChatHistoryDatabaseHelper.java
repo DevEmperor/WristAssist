@@ -210,4 +210,14 @@ public class ChatHistoryDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return chatHistoryModels;
     }
+
+    public long getCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM CHAT_HISTORY_TABLE", null);
+        cursor.moveToFirst();
+        long count = cursor.getLong(0);
+        cursor.close();
+        db.close();
+        return count;
+    }
 }
