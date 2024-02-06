@@ -56,12 +56,12 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
 
         holder.savedChatContainer.setOnClickListener(v -> {
             if (callback != null) {
-                callback.onItemClicked(position, false);
+                callback.onItemClicked(holder.getAdapterPosition(), false);
             }
         });
         holder.savedChatContainer.setOnLongClickListener(v -> {
             if (callback != null) {
-                callback.onItemClicked(position, true);
+                callback.onItemClicked(holder.getAdapterPosition(), true);
             }
             return true;
         });
