@@ -81,6 +81,9 @@ public class EditChatActivity extends Activity {
     public void deleteChat(View view) {
         chatHistoryDatabaseHelper.delete(this, id);
         Toast.makeText(this, R.string.wristassist_chat_deleted, Toast.LENGTH_SHORT).show();
+        Intent data = new Intent();
+        data.putExtra("net.devemperor.wristassist.chat_deleted", true);
+        setResult(RESULT_OK, data);
         finish();
     }
 }

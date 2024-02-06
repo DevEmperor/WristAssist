@@ -50,7 +50,7 @@ public class SavedChatsActivity extends Activity {
                 intent = new Intent(this, EditChatActivity.class);
             }
             intent.putExtra("net.devemperor.wristassist.chatId", chats.get(chatPosition).getId());
-            startActivity(intent);
+            startActivityForResult(intent, 1337);
         });
         savedChatsWrv.setAdapter(savedChatsAdapter);
 
@@ -68,10 +68,11 @@ public class SavedChatsActivity extends Activity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (savedChatsAdapter.getItemCount() != chatHistoryDatabaseHelper.getCount()) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) return;
+
+        if (requestCode == 1337 && data.getBooleanExtra("net.devemperor.wristassist.chat_deleted", false)) {
             savedChatsAdapter.getData().remove(currentEditPosition);
             savedChatsAdapter.notifyItemRemoved(currentEditPosition);
             findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
