@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateTint="#7B1FA2"
+        android:indeterminateTint="@color/wristassist_purple"
         android:visibility="gone" />
 
     <ImageButton
