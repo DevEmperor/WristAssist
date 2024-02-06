@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import java.util.Locale;
 
 public class EditChatActivity extends Activity {
 
+    ScrollView editChatSv;
     TextView titleTv;
     TextView modifiedTv;
     TextView chatCostTv;
@@ -33,6 +35,7 @@ public class EditChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chat);
 
+        editChatSv = findViewById(R.id.edit_chat_sv);
         titleTv = findViewById(R.id.edit_title_tv);
         modifiedTv = findViewById(R.id.modified_tv);
         chatCostTv = findViewById(R.id.chat_cost_tv);
@@ -45,13 +48,15 @@ public class EditChatActivity extends Activity {
         titleTv.setText(chatHistoryDatabaseHelper.getTitle(id));
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault());
-        modifiedTv.setText(getString(R.string.wristassist_formatted_date, formatter.format(chatHistoryDatabaseHelper.getModified(id))));
+        modifiedTv.setText(formatter.format(chatHistoryDatabaseHelper.getModified(id)));
 
         try {
-            chatCostTv.setText(getString(R.string.wristassist_chat_cost, String.format(Locale.getDefault(), "%,d", chatHistoryDatabaseHelper.getChatCost(this, id))));
+            chatCostTv.setText(String.format(Locale.getDefault(), "%,d", chatHistoryDatabaseHelper.getChatCost(this, id)));
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+
+        editChatSv.requestFocus();
     }
 
     @Override

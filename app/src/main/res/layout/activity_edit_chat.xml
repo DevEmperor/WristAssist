@@ -4,8 +4,9 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="10dp"
-    android:fillViewport="false">
+    android:paddingHorizontal="24dp"
+    android:fillViewport="false"
+    android:id="@+id/edit_chat_sv">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +19,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="16dp"
             android:maxLines="3"
             android:textAlignment="center"
@@ -27,21 +27,39 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/wristassist_purple"
+            android:textStyle="bold|italic"
+            android:text="@string/wristassist_last_modified"/>
+
+        <TextView
             android:id="@+id/modified_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="16dp"
             android:textSize="16sp"
             android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textColor="@color/wristassist_purple"
+            android:textStyle="bold|italic"
+            android:text="@string/wristassist_chat_cost"/>
 
         <TextView
             android:id="@+id/chat_cost_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="16dp"
             android:textSize="16sp"
             android:textAlignment="center"/>
@@ -56,7 +74,7 @@
                 android:id="@+id/edit_btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="16dp"
                 android:background="@null"
                 android:onClick="editTitle"
@@ -74,7 +92,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="32dp"
+                android:layout_marginEnd="8dp"
                 android:background="@null"
                 android:onClick="deleteChat"
                 android:src="@drawable/twotone_delete_24"
