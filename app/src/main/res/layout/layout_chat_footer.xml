@@ -11,9 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/wristassist_no_internet"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:textAlignment="center"
-        android:textColor="#cc0000"
+        android:textColor="@color/wristassist_red"
         android:visibility="gone" />
 
     <ProgressBar

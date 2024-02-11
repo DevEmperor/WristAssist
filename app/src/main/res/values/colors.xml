@@ -4,4 +4,5 @@
     <color name="wristassist_white">#ffffff</color>
     <color name="wristassist_black">#000000</color>
     <color name="wristassist_grey">#A8A8A8</color>
+    <color name="wristassist_red">#CC0000</color>
 </resources>
