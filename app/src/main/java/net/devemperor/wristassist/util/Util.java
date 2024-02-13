@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import net.devemperor.wristassist.R;
+
 public class Util {
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
@@ -33,7 +35,7 @@ public class Util {
         }
     }
 
-    public static double calcCost(String model, long promptTokens, long completionTokens) {
+    public static double calcCostChat(String model, long promptTokens, long completionTokens) {
         double inputPrice = 0;
         double outputPrice = 0;
         switch (model) {
@@ -57,7 +59,29 @@ public class Util {
         return (inputPrice * promptTokens / 1000) + (outputPrice * completionTokens / 1000);
     }
 
-    public static String translateModelNames(String origin) {
+    public static double calcCostImage(String model, String quality, String size) {
+        switch (model) {
+            case "dall-e-3":
+                switch (quality) {
+                    case "hd":
+                        return 0.08;
+                    case "standard":
+                        return 0.04;
+                }
+            case "dall-e-2":
+                switch (size) {
+                    case "1024x1024":
+                        return 0.02;
+                    case "512x512":
+                        return 0.018;
+                    case "256x256":
+                        return 0.016;
+                }
+        }
+        return 0;
+    }
+
+    public static String translate(Context context, String origin) {
         switch (origin) {
             case "gpt-3.5-turbo":
                 return "GPT-3.5 Turbo";
@@ -67,6 +91,18 @@ public class Util {
                 return "GPT-4";
             case "gpt-4-32k":
                 return "GPT-4 32K";
+            case "dall-e-3":
+                return "Dall-E 3";
+            case "dall-e-2":
+                return "Dall-E 2";
+            case "hd":
+                return "HD";
+            case "standard":
+                return "Standard";
+            case "natural":
+                return context.getString(R.string.wristassist_image_quality_natural);
+            case "vivid":
+                return context.getString(R.string.wristassist_image_quality_vivid);
             default:
                 return origin;
         }

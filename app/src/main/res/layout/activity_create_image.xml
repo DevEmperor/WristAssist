@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_image_sv">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/image_pb"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="64dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/wristassist_purple" />
+
+        <TextView
+            android:id="@+id/error_image_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/wristassist_no_internet"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/wristassist_red"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@null"
+            android:onClick="retry"
+            android:src="@drawable/twotone_replay_24"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:id="@+id/retry_image_btn"
+            android:visibility="gone" />
+
+        <com.jsibbold.zoomage.ZoomageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginHorizontal="24dp"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:id="@+id/create_image_iv"
+            android:transitionName="image"
+            android:visibility="gone"
+            app:zoomage_restrictBounds="false"
+            app:zoomage_animateOnReset="true"
+            app:zoomage_autoResetMode="UNDER"
+            app:zoomage_autoCenter="true"
+            app:zoomage_zoomable="true"
+            app:zoomage_translatable="true"
+            app:zoomage_minScale="0.6"
+            app:zoomage_maxScale="8"
+            app:zoomage_doubleTapToZoom="true"/>
+
+        <ImageButton
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:onClick="shareImage"
+            android:src="@drawable/twotone_share_24"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:id="@+id/share_image_btn"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="24dp"
+            android:textSize="16sp"
+            android:textColor="@color/wristassist_purple"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:text="@string/wristassist_image_expires_in"
+            android:id="@+id/expires_image_tv"
+            android:visibility="gone"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginHorizontal="24dp"
+            android:visibility="gone"
+            android:id="@+id/save_discard_image_btns">
+
+            <ImageButton
+                android:id="@+id/save_image_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@null"
+                android:onClick="saveImage"
+                android:src="@drawable/twotone_save_24"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toStartOf="@+id/discard_image_btn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageButton
+                android:id="@+id/discard_image_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@null"
+                android:onClick="discardImage"
+                android:src="@drawable/twotone_delete_24"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/save_image_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</ScrollView>

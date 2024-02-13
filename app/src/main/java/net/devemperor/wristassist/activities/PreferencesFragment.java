@@ -23,7 +23,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
 
     SharedPreferences sp;
     SwitchPreference customServerPreference;
-    ListPreference modelPreference;
+    ListPreference chatModelPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -52,7 +52,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 if (!((Boolean) newValue)) {
                     sp.edit().remove("net.devemperor.wristassist.custom_server_host").apply();
                     sp.edit().remove("net.devemperor.wristassist.custom_server_model").apply();
-                    modelPreference.setEnabled(true);
+                    chatModelPreference.setEnabled(true);
                 } else {
                     Intent intent = new Intent(getContext(), InputActivity.class);
                     intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_custom_host));
@@ -65,9 +65,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             });
         }
 
-        modelPreference = findPreference("net.devemperor.wristassist.model");
-        if (modelPreference != null) modelPreference.setSummaryProvider(preference -> modelPreference.getEntry());
-        if (customServerPreference.isChecked()) modelPreference.setEnabled(false);
+        chatModelPreference = findPreference("net.devemperor.wristassist.model");
+        if (chatModelPreference != null) chatModelPreference.setSummaryProvider(preference -> chatModelPreference.getEntry());
+        if (customServerPreference.isChecked()) chatModelPreference.setEnabled(false);
 
         ListPreference ttsPreference = findPreference("net.devemperor.wristassist.tts");
         if (ttsPreference != null) {
@@ -77,6 +77,50 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 }
             });
             ttsPreference.setSummaryProvider(preference -> ttsPreference.getEntry());
+        }
+
+        SwitchPreference imageModelPreference = findPreference("net.devemperor.wristassist.image_model");
+        SwitchPreference imageQualityPreference = findPreference("net.devemperor.wristassist.image_quality");
+        SwitchPreference imageStylePreference = findPreference("net.devemperor.wristassist.image_style");
+        ListPreference imageSizePreference = findPreference("net.devemperor.wristassist.image_size");
+        if (imageModelPreference != null && imageQualityPreference != null && imageStylePreference != null && imageSizePreference != null) {
+            imageModelPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                if ((Boolean) newValue) {
+                    imageModelPreference.setSummaryProvider(preference1 -> "Dall-E 3");
+                    imageQualityPreference.setEnabled(true);
+                    imageStylePreference.setEnabled(true);
+                    imageSizePreference.setEnabled(false);
+
+                } else {
+                    imageModelPreference.setSummaryProvider(preference1 -> "Dall-E 2");
+                    imageQualityPreference.setEnabled(false);
+                    imageStylePreference.setEnabled(false);
+                    imageSizePreference.setEnabled(true);
+                }
+                return true;
+            });
+
+            imageQualityPreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                if ((Boolean) newValue) imageQualityPreference.setSummaryProvider(preference1 -> "HD");
+                else imageQualityPreference.setSummaryProvider(preference1 -> "Standard");
+                return true;
+            });
+
+            imageStylePreference.setOnPreferenceChangeListener((preference, newValue) -> {
+                if ((Boolean) newValue) imageStylePreference.setSummaryProvider(preference1 -> getString(R.string.wristassist_image_quality_natural));
+                else imageStylePreference.setSummaryProvider(preference1 -> getString(R.string.wristassist_image_quality_vivid));
+                return true;
+            });
+
+            if (imageModelPreference.isChecked()) {
+                imageModelPreference.setSummaryProvider(preference -> "Dall-E 3");
+                imageQualityPreference.setEnabled(true);
+                imageStylePreference.setEnabled(true);
+                imageSizePreference.setEnabled(false);
+            }
+            if (imageQualityPreference.isChecked()) imageQualityPreference.setSummaryProvider(preference -> "HD");
+            if (imageStylePreference.isChecked()) imageStylePreference.setSummaryProvider(preference -> getString(R.string.wristassist_image_quality_natural));
+            imageSizePreference.setSummaryProvider(preference -> imageSizePreference.getEntry());
         }
     }
 
@@ -90,16 +134,16 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 if (new UrlValidator().isValid(host)) {
                     sp.edit().putString("net.devemperor.wristassist.custom_server_host", host).apply();
                     sp.edit().putString("net.devemperor.wristassist.custom_server_model", model).apply();
-                    modelPreference.setEnabled(false);
+                    chatModelPreference.setEnabled(false);
                 } else {
                     customServerPreference.setChecked(false);
-                    modelPreference.setEnabled(true);
+                    chatModelPreference.setEnabled(true);
                     Toast.makeText(getContext(), R.string.wristassist_invalid_host, Toast.LENGTH_SHORT).show();
                 }
             }
         } else if (resultCode == Activity.RESULT_CANCELED && requestCode == 1337) {
             customServerPreference.setChecked(false);
-            modelPreference.setEnabled(true);
+            chatModelPreference.setEnabled(true);
         }
     }
 }

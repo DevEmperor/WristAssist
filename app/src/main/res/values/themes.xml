@@ -17,6 +17,8 @@
         <item name="dialogTheme">@style/Theme.AlertDialog</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
         <item name="alertDialogStyle">@style/Theme.AlertDialog</item>
+
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
     <style name="Theme.Starting" parent="Theme.SplashScreen.IconBackground">

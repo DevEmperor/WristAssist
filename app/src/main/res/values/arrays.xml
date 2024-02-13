@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="models_openai">
+    <string-array name="models_chat">
         <item name="gpt-3.5-turbo">GPT-3.5 Turbo</item>
         <item name="gpt-4-turbo">GPT-4 Turbo</item>
         <item name="gpt-4">GPT-4</item>
         <item name="gpt-4-32k">GPT-4 32K</item>
     </string-array>
-    <string-array name="models_openai_values">
+    <string-array name="models_chat_values">
         <item name="gpt-3.5-turbo">gpt-3.5-turbo</item>
         <item name="gpt-4-turbo">gpt-4-turbo-preview</item>
         <item name="gpt-4">gpt-4</item>
         <item name="gpt-4-32k">gpt-4-32k</item>
+    </string-array>
+
+    <string-array name="image_sizes">
+        <item name="256x256">256x256</item>
+        <item name="512x512">512x512</item>
+        <item name="1024x1024">1024x1024</item>
+    </string-array>
+    <string-array name="image_sizes_values">
+        <item name="256x256">256x256</item>
+        <item name="512x512">512x512</item>
+        <item name="1024x1024">1024x1024</item>
     </string-array>
 
     <string-array name="tts_settings">

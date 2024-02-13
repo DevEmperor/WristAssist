@@ -8,6 +8,15 @@
     <PreferenceCategory
         app:title="@string/wristassist_chat_settings">
 
+        <ListPreference
+            app:key="net.devemperor.wristassist.model"
+            app:title="@string/wristassist_select_model"
+            android:defaultValue="gpt-3.5-turbo"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:entries="@array/models_chat"
+            app:entryValues="@array/models_chat_values"
+            app:dialogTitle=" "/>
+
         <SeekBarPreference
             app:key="net.devemperor.wristassist.font_size"
             app:title="@string/wristassist_font_size"
@@ -39,6 +48,40 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:title="@string/wristassist_images_settings">
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.image_model"
+            app:title="@string/wristassist_select_image_model"
+            android:summary="Dall-E 2"
+            android:defaultValue="false"/>
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.image_quality"
+            app:title="@string/wristassist_select_image_quality"
+            android:summary="Standard"
+            android:defaultValue="false"
+            android:enabled="false"/>
+
+        <SwitchPreference
+            app:key="net.devemperor.wristassist.image_style"
+            app:title="@string/wristassist_select_image_style"
+            android:summary="@string/wristassist_image_quality_vivid"
+            android:defaultValue="false"
+            android:enabled="false"/>
+
+        <ListPreference
+            app:key="net.devemperor.wristassist.image_size"
+            app:title="@string/wristassist_select_image_size"
+            android:defaultValue="1024x1024"
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:entries="@array/image_sizes"
+            app:entryValues="@array/image_sizes_values"
+            app:dialogTitle=" "/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:title="@string/wristassist_tts_settings">
 
         <ListPreference
@@ -62,16 +105,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/wristassist_gpt_settings">
-
-        <ListPreference
-            app:key="net.devemperor.wristassist.model"
-            app:title="@string/wristassist_select_model"
-            android:defaultValue="gpt-3.5-turbo"
-            app:negativeButtonText="@string/wristassist_cancel"
-            app:entries="@array/models_openai"
-            app:entryValues="@array/models_openai_values"
-            app:dialogTitle=" "/>
+        app:title="@string/wristassist_api_settings">
 
         <EditTextPreference
             app:key="net.devemperor.wristassist.api_key"

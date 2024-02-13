@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
@@ -23,6 +24,7 @@ import java.util.Random;
 public class MainActivity extends Activity {
 
     WearableRecyclerView mainWrv;
+    ProgressBar mainPb;
     SharedPreferences sp;
 
     @Override
@@ -54,6 +56,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         mainWrv = findViewById(R.id.main_wrv);
+        mainPb = findViewById(R.id.main_pb);
+
         mainWrv.setHasFixedSize(true);
         mainWrv.setEdgeItemsCenteringEnabled(true);
         mainWrv.setLayoutManager(new WearableLinearLayoutManager(this));
@@ -61,6 +65,7 @@ public class MainActivity extends Activity {
         ArrayList<MainItem> menuItems = new ArrayList<>();
         menuItems.add(new MainItem(R.drawable.twotone_add_24, getString(R.string.wristassist_menu_new_chat)));
         menuItems.add(new MainItem(R.drawable.twotone_chat_24, getString(R.string.wristassist_menu_saved_chats)));
+        menuItems.add(new MainItem(R.drawable.twotone_add_photo_alternate_24, getString(R.string.wristassist_menu_images)));
         menuItems.add(new MainItem(R.drawable.twotone_insert_chart_outlined_24, getString(R.string.wristassist_menu_usage)));
         menuItems.add(new MainItem(R.drawable.twotone_settings_24, getString(R.string.wristassist_menu_settings)));
         menuItems.add(new MainItem(R.drawable.twotone_info_24, getString(R.string.wristassist_menu_about)));
@@ -75,12 +80,16 @@ public class MainActivity extends Activity {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
             } else if (menuPosition == 2) {
+                intent = new Intent(this, ImageActivity.class);
+                startActivity(intent);
+                mainPb.setVisibility(View.VISIBLE);
+            } else if (menuPosition == 3) {
                 intent = new Intent(this, UsageActivity.class);
                 startActivity(intent);
-            } else if (menuPosition == 3) {
+            } else if (menuPosition == 4) {
                 intent = new Intent(this, SettingsActivity.class);
                 startActivity(intent);
-            } else if (menuPosition == 4) {
+            } else if (menuPosition == 5) {
                 intent = new Intent(this, AboutActivity.class);
                 startActivity(intent);
             }
@@ -130,5 +139,11 @@ public class MainActivity extends Activity {
             sp.edit().putString("net.devemperor.wristassist.api_key", data.getStringExtra("net.devemperor.wristassist.input.content")).apply();
             sp.edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainPb.setVisibility(View.GONE);
     }
 }
