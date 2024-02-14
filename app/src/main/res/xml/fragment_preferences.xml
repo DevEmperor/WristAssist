@@ -53,7 +53,7 @@
         <SwitchPreference
             app:key="net.devemperor.wristassist.image_model"
             app:title="@string/wristassist_select_image_model"
-            android:summary="Dall-E 2"
+            android:summary="DALL-E 2"
             android:defaultValue="false"/>
 
         <SwitchPreference

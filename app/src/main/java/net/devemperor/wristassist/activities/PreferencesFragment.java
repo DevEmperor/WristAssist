@@ -86,13 +86,13 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         if (imageModelPreference != null && imageQualityPreference != null && imageStylePreference != null && imageSizePreference != null) {
             imageModelPreference.setOnPreferenceChangeListener((preference, newValue) -> {
                 if ((Boolean) newValue) {
-                    imageModelPreference.setSummaryProvider(preference1 -> "Dall-E 3");
+                    imageModelPreference.setSummaryProvider(preference1 -> "DALL-E 3");
                     imageQualityPreference.setEnabled(true);
                     imageStylePreference.setEnabled(true);
                     imageSizePreference.setEnabled(false);
 
                 } else {
-                    imageModelPreference.setSummaryProvider(preference1 -> "Dall-E 2");
+                    imageModelPreference.setSummaryProvider(preference1 -> "DALL-E 2");
                     imageQualityPreference.setEnabled(false);
                     imageStylePreference.setEnabled(false);
                     imageSizePreference.setEnabled(true);
@@ -113,7 +113,7 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             });
 
             if (imageModelPreference.isChecked()) {
-                imageModelPreference.setSummaryProvider(preference -> "Dall-E 3");
+                imageModelPreference.setSummaryProvider(preference -> "DALL-E 3");
                 imageQualityPreference.setEnabled(true);
                 imageStylePreference.setEnabled(true);
                 imageSizePreference.setEnabled(false);

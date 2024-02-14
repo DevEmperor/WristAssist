@@ -2,7 +2,7 @@
 <a href='https://play.google.com/store/apps/details?id=net.devemperor.wristassist'><img alt='Get it on Google Play' width="258px" height="100px" src='https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/google-play-badge.png'/></a>
 
 
-#### WristAssist is the first app for all WearOS watches that fully brings the classic [ChatGPT](https://chat.openai.com/) and [Dall-E](https://openai.com/dall-e-3) features to your wrist. Since a picture is worth a thousand words, here is a showcase video and some screenshots:
+#### WristAssist is the first app for all WearOS watches that fully brings the classic [ChatGPT](https://chat.openai.com/) and [DALL-E](https://openai.com/dall-e-3) features to your wrist. Since a picture is worth a thousand words, here is a showcase video and some screenshots:
 
 | <a href='https://youtube.com/watch?v=YM0kUdrCiPI'><img src='https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/menu.png'/></a> | ![chat_input.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/chat_input.png) | ![chat.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/chat.png) | ![chat_system.png](https://raw.githubusercontent.com/DevEmperor/WristAssist/master/img/readme/chat_system.png) |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |

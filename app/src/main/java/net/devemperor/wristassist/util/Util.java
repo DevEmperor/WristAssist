@@ -92,9 +92,9 @@ public class Util {
             case "gpt-4-32k":
                 return "GPT-4 32K";
             case "dall-e-3":
-                return "Dall-E 3";
+                return "DALL-E 3";
             case "dall-e-2":
-                return "Dall-E 2";
+                return "DALL-E 2";
             case "hd":
                 return "HD";
             case "standard":
