@@ -88,4 +88,5 @@
     <string name="wristassist_image_expires_in" formatted="false">Geteilter Link läuft in %1$d Minuten ab</string>
     <string name="wristassist_image_request_rejected">Die Anfrage wurde abgelehnt. Deine Anfrage enthält möglicherweise Text, der nicht erlaubt ist.</string>
     <string name="changelog_md_26">### Version 3.0.0  \n#### Bilder KI (DALL-E) hinzugefügt  \nDu kannst nun mit OpenAI\'s Dall-E Bilder generieren, speichern und über einen QR-Code teilen. In den Einstellungen kannst du zwischen verschiedenen Modellen, Qualitäten und Größen wechseln.  \n#### Mehrere Fehlerbehebungen und Design Änderungen  \n</string>
+    <string name="wristassist_saving">Speichert …</string>
 </resources>

@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -243,6 +244,8 @@ public class CreateImageActivity extends AppCompatActivity {
     }
 
     public void saveImage(View view) {
+        Toast.makeText(this, R.string.wristassist_saving, Toast.LENGTH_SHORT).show();
+
         ImageModel imageModel;
         if (model.equals("dall-e-3")) {
             imageModel = new ImageModel(-1, prompt, image.getRevisedPrompt(), model, quality, size, style, imageResult.getCreated() * 1000, image.getUrl());
