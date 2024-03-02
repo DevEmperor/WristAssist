@@ -89,4 +89,5 @@
     <string name="wristassist_image_request_rejected">Die Anfrage wurde abgelehnt. Deine Anfrage enthält möglicherweise Text, der nicht erlaubt ist.</string>
     <string name="changelog_md_26">### Version 3.0.0  \n#### Bilder KI (DALL-E) hinzugefügt  \nDu kannst nun mit OpenAI\'s Dall-E Bilder generieren, speichern und über einen QR-Code teilen. In den Einstellungen kannst du zwischen verschiedenen Modellen, Qualitäten und Größen wechseln.  \n#### Mehrere Fehlerbehebungen und Design Änderungen  \n</string>
     <string name="wristassist_saving">Speichert …</string>
+    <string name="changelog_md_27">### Version 3.0.1  \n#### Wichtiger Hinweis: Änderungen an der OpenAI-API-Abrechnung  \nOpenAI aktualisiert die Art und Weise, wie dein OpenAI-API-Konto ab **8. März 2024** abgerechnet wird. Anstatt eine Rechnung am Ende des Monats zu erhalten, musst du **Guthaben im Voraus erwerben**, um die API zu nutzen. <u>Klicke einfach auf die Schaltfläche "OK", um Guthaben zu deinem Konto hinzuzufügen.</u> Andernfalls werden API-Anfragen für WristAssist vorübergehend fehlschlagen, bis Guthaben erworben wird.  \n</string>
 </resources>

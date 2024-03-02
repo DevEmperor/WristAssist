@@ -1,5 +1,6 @@
 package net.devemperor.wristassist.activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ public class ChangelogActivity extends AppCompatActivity {
 
     ScrollView changelogSv;
     TextView changelogTv;
+    int lastVersionCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +33,9 @@ public class ChangelogActivity extends AppCompatActivity {
         Markwon markwon = Markwon.builder(this).usePlugin(HtmlPlugin.create()).build();
         String md = getString(R.string.changelog_md);
         int versionCode = BuildConfig.VERSION_CODE;
-        int lastVersionCode = sp.getInt("net.devemperor.wristassist.last_version_code", 0);
+        lastVersionCode = sp.getInt("net.devemperor.wristassist.last_version_code", 0);
 
+        if (lastVersionCode < 27) md = md.concat(getString(R.string.changelog_md_27));
         if (lastVersionCode < 26) md = md.concat(getString(R.string.changelog_md_26));
         if (lastVersionCode < 25) md = md.concat(getString(R.string.changelog_md_25));
         if (lastVersionCode < 24) {
@@ -57,6 +60,11 @@ public class ChangelogActivity extends AppCompatActivity {
     }
 
     public void okay(View view) {
+        if (lastVersionCode < 27) {
+            Intent intent = new Intent(this, QRCodeActivity.class);
+            intent.putExtra("net.devemperor.wristassist.image_url", "https://platform.openai.com/account/billing/overview");
+            startActivity(intent);
+        }
         finish();
     }
 }

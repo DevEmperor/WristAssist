@@ -98,4 +98,5 @@
     <string name="wristassist_image_request_rejected">The request was rejected. Your prompt may contain text that is not allowed.</string>
     <string name="changelog_md_26">### Version 3.0.0  \n#### Added image AI (DALL-E)  \nYou can now use OpenAI\'s Dall-E to generate, save and share images via a QR code. You can switch between different models, qualities and sizes in the settings.  \n#### Several bugfixes and design changes  \n</string>
     <string name="wristassist_saving">Saving …</string>
+    <string name="changelog_md_27">### Version 3.0.1  \n#### Important notice: Changes to your OpenAI API billing  \nOpenAI is updating how they bill for your OpenAI API account starting **March 8, 2024**. Instead of receiving a bill at the end of the month, you will need to **pre-purchase credits** to use the API. <u>Just click the okay button to add credits to your account.</u> Otherwise, API requests will temporarily fail for WristAssist until credits are purchased.  \n</string>
 </resources>
