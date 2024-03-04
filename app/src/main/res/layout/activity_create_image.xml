@@ -47,26 +47,31 @@
             android:id="@+id/retry_image_btn"
             android:visibility="gone" />
 
-        <com.jsibbold.zoomage.ZoomageView
+        <androidx.wear.widget.BoxInsetLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginHorizontal="24dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:id="@+id/create_image_iv"
-            android:transitionName="image"
-            android:visibility="gone"
-            app:zoomage_restrictBounds="false"
-            app:zoomage_animateOnReset="true"
-            app:zoomage_autoResetMode="UNDER"
-            app:zoomage_autoCenter="true"
-            app:zoomage_zoomable="true"
-            app:zoomage_translatable="true"
-            app:zoomage_minScale="0.6"
-            app:zoomage_maxScale="8"
-            app:zoomage_doubleTapToZoom="true"/>
+            android:layout_height="wrap_content">
+
+            <com.jsibbold.zoomage.ZoomageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:id="@+id/create_image_iv"
+                android:transitionName="image"
+                android:visibility="gone"
+                app:zoomage_restrictBounds="false"
+                app:zoomage_animateOnReset="true"
+                app:zoomage_autoResetMode="UNDER"
+                app:zoomage_autoCenter="true"
+                app:zoomage_zoomable="true"
+                app:zoomage_translatable="true"
+                app:zoomage_minScale="0.6"
+                app:zoomage_maxScale="8"
+                app:zoomage_doubleTapToZoom="true"
+                app:layout_boxedEdges="all"/>
+
+        </androidx.wear.widget.BoxInsetLayout>
 
         <ImageButton
             android:layout_width="64dp"
