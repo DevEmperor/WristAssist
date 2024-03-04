@@ -78,7 +78,7 @@ public class CreateImageActivity extends AppCompatActivity {
     Image image;
     Bitmap bitmap;
     ExecutorService thread;
-    Timer timer = new Timer();
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +139,7 @@ public class CreateImageActivity extends AppCompatActivity {
 
         thread = Executors.newSingleThreadExecutor();
         thread.execute(() -> {
+            timer = new Timer();
             try {
                 CreateImageRequest cir = CreateImageRequest.builder()
                         .responseFormat("url")
