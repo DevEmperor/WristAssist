@@ -55,6 +55,10 @@ public class Util {
                 inputPrice = 0.06;
                 outputPrice = 0.12;
                 break;
+            case "gpt-4o":
+                inputPrice = 0.005;
+                outputPrice = 0.015;
+                break;
         }
         return (inputPrice * promptTokens / 1000) + (outputPrice * completionTokens / 1000);
     }
@@ -91,6 +95,8 @@ public class Util {
                 return "GPT-4";
             case "gpt-4-32k":
                 return "GPT-4 32K";
+            case "gpt-4o":
+                return "GPT-4 Omni";
             case "dall-e-3":
                 return "DALL-E 3";
             case "dall-e-2":
