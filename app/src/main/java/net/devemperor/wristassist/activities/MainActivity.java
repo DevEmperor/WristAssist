@@ -124,15 +124,19 @@ public class MainActivity extends Activity {
         if (resultCode != RESULT_OK) return;
 
         Intent intent;
+        String systemQuery = sp.getString("net.devemperor.wristassist.global_system_query", "");
+        if (systemQuery.isEmpty()) systemQuery = null;
         if (requestCode == 1337) {
             intent = new Intent(this, ChatActivity.class);
             intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content"));
+            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
             startActivity(intent);
         }
         if (requestCode == 1338) {
             intent = new Intent(this, ChatActivity.class);
             intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content2"));
-            intent.putExtra("net.devemperor.wristassist.system_query", data.getStringExtra("net.devemperor.wristassist.input.content"));
+            systemQuery = (systemQuery == null ? "" : systemQuery + "\n") + data.getStringExtra("net.devemperor.wristassist.input.content");
+            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
             startActivity(intent);
         }
         if (requestCode == 1340) {

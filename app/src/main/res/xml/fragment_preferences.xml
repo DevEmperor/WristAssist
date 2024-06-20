@@ -17,6 +17,10 @@
             app:entryValues="@array/models_chat_values"
             app:dialogTitle=" "/>
 
+        <Preference
+            app:key="net.devemperor.wristassist.global_system_query"
+            app:title="@string/wristassist_global_system_query"/>
+
         <SeekBarPreference
             app:key="net.devemperor.wristassist.font_size"
             app:title="@string/wristassist_font_size"

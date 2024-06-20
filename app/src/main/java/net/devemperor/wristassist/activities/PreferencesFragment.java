@@ -69,6 +69,20 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         if (chatModelPreference != null) chatModelPreference.setSummaryProvider(preference -> chatModelPreference.getEntry());
         if (customServerPreference.isChecked()) chatModelPreference.setEnabled(false);
 
+        Preference globalSystemQueryPreference = findPreference("net.devemperor.wristassist.global_system_query");
+        if (globalSystemQueryPreference != null) {
+            globalSystemQueryPreference.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(getContext(), InputActivity.class);
+                intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_define_global_system_prompt));
+                intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
+                if (!sp.getString("net.devemperor.wristassist.global_system_query", "").isEmpty()) {
+                    intent.putExtra("net.devemperor.wristassist.input.content", sp.getString("net.devemperor.wristassist.global_system_query", ""));
+                }
+                startActivityForResult(intent, 1338);
+                return true;
+            });
+        }
+
         ListPreference ttsPreference = findPreference("net.devemperor.wristassist.tts");
         if (ttsPreference != null) {
             new TextToSpeech(getContext(), status -> {
@@ -144,6 +158,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         } else if (resultCode == Activity.RESULT_CANCELED && requestCode == 1337) {
             customServerPreference.setChecked(false);
             chatModelPreference.setEnabled(true);
+        } else if (resultCode == Activity.RESULT_OK && requestCode == 1338) {
+            String systemQuery = data.getStringExtra("net.devemperor.wristassist.input.content");
+            sp.edit().putString("net.devemperor.wristassist.global_system_query", systemQuery).apply();
         }
     }
 }

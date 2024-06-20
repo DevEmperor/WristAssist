@@ -92,4 +92,6 @@
     <string name="changelog_md_27">### Version 3.0.1  \n#### Wichtiger Hinweis: Änderungen an der OpenAI-API-Abrechnung  \nOpenAI aktualisiert die Art und Weise, wie dein OpenAI-API-Konto ab **8. März 2024** abgerechnet wird. Anstatt eine Rechnung am Ende des Monats zu erhalten, musst du **Guthaben im Voraus erwerben**, um die API zu nutzen. <u>Klicke einfach auf die Schaltfläche "OK", um Guthaben zu deinem Konto hinzuzufügen.</u> Andernfalls werden API-Anfragen für WristAssist vorübergehend fehlschlagen, bis Guthaben erworben wird.  \n</string>
     <string name="changelog_md_28">### Version 3.0.2  \n#### Mehrere Fehlerbehebungen und Design Änderungen  \n</string>
     <string name="changelog_md_29">### Version 3.0.3  \n#### Neues GPT-4 Omni-Modell  \nOpenAI hat ein neues Flaggschiff-Modell eingeführt, das Audio, Vision und Text in Echtzeit verarbeiten kann. Unterstützung für andere Eingabemethoden als Text wird in Zukunft verfügbar sein. Dieses Modell ist nur halb so teuer wie "GPT-4 Turbo" und kann in den Einstellungen ausgewählt werden.  \n</string>
+    <string name="wristassist_global_system_query">Globale System Anweisung</string>
+    <string name="wristassist_define_global_system_prompt">Lege eine globale System Anweisung fest</string>
 </resources>

@@ -101,4 +101,6 @@
     <string name="changelog_md_27">### Version 3.0.1  \n#### Important notice: Changes to your OpenAI API billing  \nOpenAI is updating how they bill for your OpenAI API account starting **March 8, 2024**. Instead of receiving a bill at the end of the month, you will need to **pre-purchase credits** to use the API. <u>Just click the okay button to add credits to your account.</u> Otherwise, API requests will temporarily fail for WristAssist until credits are purchased.  \n</string>
     <string name="changelog_md_28">### Version 3.0.2  \n#### Several bugfixes and design changes  \n</string>
     <string name="changelog_md_29">### Version 3.0.3  \n#### New GPT-4 Omni model  \nOpenAI introduced a new flagship model, that can reason across audio, vision, and text in real time. Support for input method other than text will be available in the future. You can switch to this model, which is only half the price as "GPT-4 Turbo", in the settings.  \n</string>
+    <string name="wristassist_global_system_query">Global system query</string>
+    <string name="wristassist_define_global_system_prompt">Define global system prompt</string>
 </resources>
