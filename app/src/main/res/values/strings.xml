@@ -103,4 +103,5 @@
     <string name="changelog_md_29">### Version 3.0.3  \n#### New GPT-4 Omni model  \nOpenAI introduced a new flagship model, that can reason across audio, vision, and text in real time. Support for input method other than text will be available in the future. You can switch to this model, which is only half the price as "GPT-4 Turbo", in the settings.  \n</string>
     <string name="wristassist_global_system_query">Global system query</string>
     <string name="wristassist_define_global_system_prompt">Define global system prompt</string>
+    <string name="changelog_md_30">### Version 3.1.0  \n#### Global system prompts  \nYou can now set a global system role in the settings, that the AI will use in every chat.  \n</string>
 </resources>

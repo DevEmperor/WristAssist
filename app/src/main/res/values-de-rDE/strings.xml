@@ -94,4 +94,5 @@
     <string name="changelog_md_29">### Version 3.0.3  \n#### Neues GPT-4 Omni-Modell  \nOpenAI hat ein neues Flaggschiff-Modell eingeführt, das Audio, Vision und Text in Echtzeit verarbeiten kann. Unterstützung für andere Eingabemethoden als Text wird in Zukunft verfügbar sein. Dieses Modell ist nur halb so teuer wie "GPT-4 Turbo" und kann in den Einstellungen ausgewählt werden.  \n</string>
     <string name="wristassist_global_system_query">Globale System Anweisung</string>
     <string name="wristassist_define_global_system_prompt">Lege eine globale System Anweisung fest</string>
+    <string name="changelog_md_30">### Version 3.1.0  \n#### Globale System Anweisungen  \nDu kannst jetzt in den Einstellungen eine globale Systemrolle festlegen, die die KI in jedem Chat verwenden wird.  \n</string>
 </resources>
