@@ -258,9 +258,9 @@ public class ChatActivity extends Activity {
             saveResetBtn.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.twotone_change_circle_24_off));
         }
 
-        String model = sp.getString("net.devemperor.wristassist.model", "gpt-3.5-turbo");
+        String model = sp.getString("net.devemperor.wristassist.model", "gpt-4o-mini");
         if (sp.getBoolean("net.devemperor.wristassist.custom_server", false)) {
-            model = sp.getString("net.devemperor.wristassist.custom_server_model", "gpt-3.5-turbo");
+            model = sp.getString("net.devemperor.wristassist.custom_server_model", "gpt-4o-mini");
         }
         ChatCompletionRequest ccr = ChatCompletionRequest.builder()
                 .model(model)

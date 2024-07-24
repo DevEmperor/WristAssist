@@ -43,6 +43,10 @@ public class Util {
                 inputPrice = 0.0005;
                 outputPrice = 0.0015;
                 break;
+            case "gpt-4o-mini":
+                inputPrice = 0.00015;
+                outputPrice = 0.0006;
+                break;
             case "gpt-4-turbo-preview":
                 inputPrice = 0.01;
                 outputPrice = 0.03;
@@ -89,6 +93,8 @@ public class Util {
         switch (origin) {
             case "gpt-3.5-turbo":
                 return "GPT-3.5 Turbo";
+            case "gpt-4o-mini":
+                return "GPT-4 Omni Mini";
             case "gpt-4-turbo-preview":
                 return "GPT-4 Turbo";
             case "gpt-4":

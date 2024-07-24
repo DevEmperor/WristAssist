@@ -11,7 +11,7 @@
         <ListPreference
             app:key="net.devemperor.wristassist.model"
             app:title="@string/wristassist_select_model"
-            android:defaultValue="gpt-3.5-turbo"
+            android:defaultValue="gpt-4o-mini"
             app:negativeButtonText="@string/wristassist_cancel"
             app:entries="@array/models_chat"
             app:entryValues="@array/models_chat_values"
