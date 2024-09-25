@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.activities.MainActivity;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.ViewHolder> {
 
@@ -37,10 +37,10 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (position == 0) {
             TextView welcomeTv = holder.itemView.findViewById(R.id.welcome_tv);
-            welcomeTv.setTextSize(20 * Util.getFontMultiplier(welcomeTv.getContext()));
+            welcomeTv.setTextSize(20 * WristAssistUtil.getFontMultiplier(welcomeTv.getContext()));
         } else if (position == 1) {
             TextView infoTv = holder.itemView.findViewById(R.id.info_tv);
-            infoTv.setTextSize(16 * Util.getFontMultiplier(infoTv.getContext()));
+            infoTv.setTextSize(16 * WristAssistUtil.getFontMultiplier(infoTv.getContext()));
         } else if (position == 2) {
             ImageView qrCodeIv = holder.itemView.findViewById(R.id.qrcode_iv);
             qrCodeIv.setOnClickListener(v -> {

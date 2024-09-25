@@ -35,7 +35,7 @@ import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.database.ChatHistoryModel;
 import net.devemperor.wristassist.database.UsageDatabaseHelper;
 import net.devemperor.wristassist.items.ChatItem;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -276,7 +276,7 @@ public class ChatActivity extends Activity {
                 Usage usage = result.getUsage();
                 ChatItem assistantItem = new ChatItem(answer, usage.getTotalTokens());
 
-                usageDatabaseHelper.edit(finalModel, usage.getTotalTokens(), Util.calcCostChat(finalModel, usage.getPromptTokens(), usage.getCompletionTokens()));
+                usageDatabaseHelper.edit(finalModel, usage.getTotalTokens(), WristAssistUtil.calcCostChat(finalModel, usage.getPromptTokens(), usage.getCompletionTokens()));
 
                 if (Thread.interrupted()) {
                     return;

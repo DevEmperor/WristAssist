@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 
 import net.devemperor.wristassist.R;
 
-public class Util {
+public class WristAssistUtil {
 
     public static Bitmap drawableToBitmap(Drawable drawable) {
         if (drawable instanceof BitmapDrawable) {
@@ -39,15 +39,15 @@ public class Util {
         double inputPrice = 0;
         double outputPrice = 0;
         switch (model) {
-            case "gpt-3.5-turbo":
-                inputPrice = 0.0005;
-                outputPrice = 0.0015;
-                break;
             case "gpt-4o-mini":
                 inputPrice = 0.00015;
                 outputPrice = 0.0006;
                 break;
-            case "gpt-4-turbo-preview":
+            case "gpt-4o":
+                inputPrice = 0.0025;
+                outputPrice = 0.01;
+                break;
+            case "gpt-4-turbo":
                 inputPrice = 0.01;
                 outputPrice = 0.03;
                 break;
@@ -55,13 +55,9 @@ public class Util {
                 inputPrice = 0.03;
                 outputPrice = 0.06;
                 break;
-            case "gpt-4-32k":
-                inputPrice = 0.06;
-                outputPrice = 0.12;
-                break;
-            case "gpt-4o":
-                inputPrice = 0.005;
-                outputPrice = 0.015;
+            case "gpt-3.5-turbo":
+                inputPrice = 0.0005;
+                outputPrice = 0.0015;
                 break;
         }
         return (inputPrice * promptTokens / 1000) + (outputPrice * completionTokens / 1000);

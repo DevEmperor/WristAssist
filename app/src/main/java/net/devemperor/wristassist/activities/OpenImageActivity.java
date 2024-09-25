@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso;
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.ImageModel;
 import net.devemperor.wristassist.database.ImagesDatabaseHelper;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -67,14 +67,14 @@ public class OpenImageActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd\nHH:mm:ss", Locale.getDefault());
         promptTv.setText(imageModel.getPrompt());
-        modelTv.setText(Util.translate(this, imageModel.getModel()));
+        modelTv.setText(WristAssistUtil.translate(this, imageModel.getModel()));
         createdTv.setText(formatter.format(imageModel.getCreated()));
         sizeTv.setText(imageModel.getSize());
 
         if (imageModel.getRevisedPrompt() != null && imageModel.getQuality() != null && imageModel.getStyle() != null) {
             revisedPromptTv.setText(imageModel.getRevisedPrompt());
-            qualityTv.setText(Util.translate(this, imageModel.getQuality()));
-            styleTv.setText(Util.translate(this, imageModel.getStyle()));
+            qualityTv.setText(WristAssistUtil.translate(this, imageModel.getQuality()));
+            styleTv.setText(WristAssistUtil.translate(this, imageModel.getStyle()));
         } else {
             findViewById(R.id.open_image_revised_prompt_descriptor_tv).setVisibility(TextView.GONE);
             revisedPromptTv.setVisibility(TextView.GONE);

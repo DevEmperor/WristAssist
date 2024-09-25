@@ -27,7 +27,7 @@ import com.theokanning.openai.completion.chat.ChatMessageRole;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.items.ChatItem;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -91,7 +91,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getInt("net.devemperor.wristassist.font_size", 15) * Util.getFontMultiplier(context));
+                .getInt("net.devemperor.wristassist.font_size", 15) * WristAssistUtil.getFontMultiplier(context));
 
         ChatMessage chatMessage = objects.get(position).getChatMessage();
         chatItem.setOnClickListener(v -> launchTTS(chatMessage.getContent()));
@@ -178,7 +178,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     private void setLeadingMarginSpan(TextView textView, Drawable drawable) {
         final Spanned spanned = markwon.toMarkdown(textView.getText().toString());
 
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(textView.getResources(), Util.drawableToBitmap(drawable));
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(textView.getResources(), WristAssistUtil.drawableToBitmap(drawable));
         bitmapDrawable.setBounds(0, 0, (int) (drawable.getIntrinsicWidth() * 1.1), (int) (drawable.getIntrinsicHeight() * 1.1));
 
         ImageSpan imageSpan = new ImageSpan(bitmapDrawable, AsyncDrawableSpan.ALIGN_BOTTOM);

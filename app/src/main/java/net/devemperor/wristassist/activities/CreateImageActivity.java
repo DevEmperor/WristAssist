@@ -33,7 +33,7 @@ import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.ImageModel;
 import net.devemperor.wristassist.database.ImagesDatabaseHelper;
 import net.devemperor.wristassist.database.UsageDatabaseHelper;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -169,7 +169,7 @@ public class CreateImageActivity extends AppCompatActivity {
                     }
                 }, 0, 60*1000);
 
-                usageDatabaseHelper.edit(model, 1, Util.calcCostImage(model, quality, size));
+                usageDatabaseHelper.edit(model, 1, WristAssistUtil.calcCostImage(model, quality, size));
 
                 OkHttpClient downloadClient = new OkHttpClient();
                 Request request = new Request.Builder().url(image.getUrl()).build();

@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 
 public class AboutActivity extends Activity {
@@ -20,7 +20,7 @@ public class AboutActivity extends Activity {
 
         TextView aboutText = findViewById(R.id.version_tv);
         aboutText.setText(getString(R.string.wristassist_about, BuildConfig.VERSION_NAME));
-        aboutText.setTextSize(16 * Util.getFontMultiplier(this));
+        aboutText.setTextSize(16 * WristAssistUtil.getFontMultiplier(this));
 
         ImageView icon = findViewById(R.id.icon);
         icon.setOnLongClickListener(v -> {

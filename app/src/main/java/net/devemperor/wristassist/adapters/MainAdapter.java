@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.items.MainItem;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -56,7 +56,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RecyclerViewHo
         MainItem dataProvider = data.get(position);
 
         holder.menuItem.setText(dataProvider.getText());
-        holder.menuItem.setTextSize(24 * Util.getFontMultiplier(holder.menuItem.getContext()));
+        holder.menuItem.setTextSize(24 * WristAssistUtil.getFontMultiplier(holder.menuItem.getContext()));
         holder.menuIcon.setImageResource(dataProvider.getIcon());
         holder.menuContainer.setOnClickListener(v -> {
             if (callback != null) {

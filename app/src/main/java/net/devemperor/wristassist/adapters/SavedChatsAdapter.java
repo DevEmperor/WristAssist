@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.ChatHistoryModel;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
         ChatHistoryModel dataProvider = data.get(position);
 
         holder.savedChatTitle.setText(dataProvider.getTitle());
-        holder.savedChatTitle.setTextSize(18 * Util.getFontMultiplier(holder.savedChatTitle.getContext()));
+        holder.savedChatTitle.setTextSize(18 * WristAssistUtil.getFontMultiplier(holder.savedChatTitle.getContext()));
 
         holder.savedChatContainer.setOnClickListener(v -> {
             if (callback != null) {

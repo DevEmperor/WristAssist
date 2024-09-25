@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.UsageModel;
-import net.devemperor.wristassist.util.Util;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.util.List;
 import java.util.Locale;
@@ -36,8 +36,8 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
         UsageModel dataProvider = objects.get(position);
 
         TextView modelNameTv = listItem.findViewById(R.id.usage_model_tv);
-        modelNameTv.setText(Util.translate(context, dataProvider.getModelName()));
-        modelNameTv.setTextSize(18 * Util.getFontMultiplier(context));
+        modelNameTv.setText(WristAssistUtil.translate(context, dataProvider.getModelName()));
+        modelNameTv.setTextSize(18 * WristAssistUtil.getFontMultiplier(context));
 
         TextView tokensTv = listItem.findViewById(R.id.usage_tokens_tv);
         if (dataProvider.getModelName().startsWith("gpt")) {
@@ -47,12 +47,12 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
             tokensTv.setText(context.getString(R.string.wristassist_images_count,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
         }
-        tokensTv.setTextSize(16 * Util.getFontMultiplier(context));
+        tokensTv.setTextSize(16 * WristAssistUtil.getFontMultiplier(context));
 
         TextView costTv = listItem.findViewById(R.id.usage_cost_tv);
         costTv.setText(context.getString(R.string.wristassist_estimated_cost,
                 String.format(Locale.getDefault(), "%,.2f", dataProvider.getCost())));
-        costTv.setTextSize(16 * Util.getFontMultiplier(context));
+        costTv.setTextSize(16 * WristAssistUtil.getFontMultiplier(context));
 
         return listItem;
     }
