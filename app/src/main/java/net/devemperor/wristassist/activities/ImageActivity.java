@@ -35,7 +35,7 @@ public class ImageActivity extends AppCompatActivity {
 
         imagesDatabaseHelper = new ImagesDatabaseHelper(this);
 
-        galleryWrv = findViewById(R.id.gallery_wrv);
+        galleryWrv = findViewById(R.id.activity_image_gallery_wrv);
         galleryWrv.setEdgeItemsCenteringEnabled(true);
         galleryWrv.setHasFixedSize(true);
         galleryWrv.setLayoutManager(new GridLayoutManager(this, 3));

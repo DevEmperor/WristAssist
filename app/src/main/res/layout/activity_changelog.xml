@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="12dp"
     android:fillViewport="false"
-    android:id="@+id/changelog_sv">
+    android:id="@+id/activity_changelog_sv">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/changelog_tv"
+            android:id="@+id/activity_changelog_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -22,7 +22,7 @@
             android:layout_marginTop="48dp" />
 
         <Button
-            android:id="@+id/changelog_ok_btn"
+            android:id="@+id/activity_changelog_ok_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"

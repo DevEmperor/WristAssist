@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu_container"
+    android:id="@+id/item_main_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingHorizontal="6dp"
     android:paddingVertical="10dp">
 
     <ImageView
-        android:id="@+id/menu_icon"
+        android:id="@+id/item_main_icon_iv"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -17,10 +17,10 @@
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/menu_text"
+        android:id="@+id/item_main_content_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/menu_icon"
+        android:layout_toEndOf="@+id/item_main_icon_iv"
         android:textSize="24sp" />
 </RelativeLayout>

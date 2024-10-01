@@ -30,7 +30,7 @@ public class InputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input);
 
-        inputSv = findViewById(R.id.input_sv);
+        inputSv = findViewById(R.id.activity_input_sv);
 
         String title = getIntent().getStringExtra("net.devemperor.wristassist.input.title");
         String content = getIntent().getStringExtra("net.devemperor.wristassist.input.content");
@@ -39,10 +39,10 @@ public class InputActivity extends AppCompatActivity {
         String content2 = getIntent().getStringExtra("net.devemperor.wristassist.input.content2");
         String hint2 = getIntent().getStringExtra("net.devemperor.wristassist.input.hint2");
         boolean handsFree = getIntent().getBooleanExtra("net.devemperor.wristassist.input.hands_free", false);
-        inputTitleTv = findViewById(R.id.input_title_tv);
-        inputContentEt = findViewById(R.id.input_content_et);
-        inputTitle2Tv = findViewById(R.id.input_title2_tv);
-        inputContent2Et = findViewById(R.id.input_content2_et);
+        inputTitleTv = findViewById(R.id.activity_input_title_tv);
+        inputContentEt = findViewById(R.id.activity_input_content_et);
+        inputTitle2Tv = findViewById(R.id.activity_input_title2_tv);
+        inputContent2Et = findViewById(R.id.activity_input_content2_et);
         inputTitleTv.setText(title);
         inputContentEt.setText(content);
         inputContentEt.setHint(hint);

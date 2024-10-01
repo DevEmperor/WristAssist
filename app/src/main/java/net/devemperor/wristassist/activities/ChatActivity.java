@@ -84,18 +84,18 @@ public class ChatActivity extends Activity {
         setContentView(R.layout.activity_chat);
 
         chatAdapter = new ChatAdapter(this, new ArrayList<>());
-        chatLv = findViewById(R.id.chat_lv);
+        chatLv = findViewById(R.id.activity_chat_lv);
 
         chatLv.setAdapter(chatAdapter);
         View footerView = LayoutInflater.from(this).inflate(R.layout.layout_chat_footer, chatLv, false);
         chatLv.addFooterView(footerView);
         View headerView = LayoutInflater.from(this).inflate(R.layout.layout_chat_header, chatLv, false);
         chatLv.addHeaderView(headerView);
-        progressBar = footerView.findViewById(R.id.progress_bar);
-        askBtn = footerView.findViewById(R.id.ask_btn);
-        saveResetBtn = footerView.findViewById(R.id.save_btn);
-        errorTv = footerView.findViewById(R.id.error_tv);
-        titleTv = headerView.findViewById(R.id.title_tv);
+        progressBar = footerView.findViewById(R.id.layout_chat_footer_pb);
+        askBtn = footerView.findViewById(R.id.layout_chat_footer_ask_btn);
+        saveResetBtn = footerView.findViewById(R.id.layout_chat_footer_save_btn);
+        errorTv = footerView.findViewById(R.id.layout_chat_footer_error_tv);
+        titleTv = headerView.findViewById(R.id.layout_chat_header_title_tv);
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 

@@ -34,10 +34,10 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
 
         UsageModel dataProvider = objects.get(position);
 
-        TextView modelNameTv = listItem.findViewById(R.id.usage_model_tv);
+        TextView modelNameTv = listItem.findViewById(R.id.item_usage_model_tv);
         modelNameTv.setText(WristAssistUtil.translate(context, dataProvider.getModelName()));
 
-        TextView tokensTv = listItem.findViewById(R.id.usage_tokens_tv);
+        TextView tokensTv = listItem.findViewById(R.id.item_usage_tokens_tv);
         if (dataProvider.getModelName().startsWith("gpt")) {
             tokensTv.setText(context.getString(R.string.wristassist_token_usage,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
@@ -46,7 +46,7 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
         }
 
-        TextView costTv = listItem.findViewById(R.id.usage_cost_tv);
+        TextView costTv = listItem.findViewById(R.id.item_usage_cost_tv);
         costTv.setText(context.getString(R.string.wristassist_estimated_cost,
                 String.format(Locale.getDefault(), "%,.2f", dataProvider.getCost())));
 

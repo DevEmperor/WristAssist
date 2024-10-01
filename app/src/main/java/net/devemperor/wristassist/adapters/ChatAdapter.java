@@ -89,7 +89,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     public View getView (int position, View convertView, @NonNull ViewGroup parent) {
         View listItem = LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false);
 
-        TextView chatItem = listItem.findViewById(R.id.chat_item_text);
+        TextView chatItem = listItem.findViewById(R.id.item_chat_content_tv);
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getInt("net.devemperor.wristassist.font_size", 15));
 
@@ -124,7 +124,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         long totalCost = objects.get(position).getTotalCost();
         if (totalCost > 0 && context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
                 .getBoolean("net.devemperor.wristassist.show_cost", false)) {
-            TextView chatItemCost = listItem.findViewById(R.id.chat_item_cost);
+            TextView chatItemCost = listItem.findViewById(R.id.item_chat_cost_tv);
             chatItemCost.setText(df.format(totalCost / 1000.0) + " k");
             chatItemCost.setVisibility(View.VISIBLE);
         }

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
 
             <com.jsibbold.zoomage.ZoomageView
-                android:id="@+id/open_image_iv"
+                android:id="@+id/item_gallery_image_zv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -38,7 +38,7 @@
         </androidx.wear.widget.BoxInsetLayout>
 
         <ImageButton
-            android:id="@+id/share_image_btn"
+            android:id="@+id/activity_create_image_share_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -50,7 +50,7 @@
             android:adjustViewBounds="true" />
 
         <TextView
-            android:id="@+id/expires_image_tv"
+            android:id="@+id/activity_create_image_expires_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -213,7 +213,7 @@
             android:textAlignment="center"/>
 
         <ImageButton
-            android:id="@+id/delete_btn"
+            android:id="@+id/activity_edit_chat_delete_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"

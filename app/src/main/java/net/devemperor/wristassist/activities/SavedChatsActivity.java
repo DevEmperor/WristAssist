@@ -32,7 +32,7 @@ public class SavedChatsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_chats);
 
-        savedChatsWrv = findViewById(R.id.saved_chats_wrv);
+        savedChatsWrv = findViewById(R.id.activity_saved_chats_wrv);
         savedChatsWrv.setHasFixedSize(true);
         savedChatsWrv.setEdgeItemsCenteringEnabled(true);
         savedChatsWrv.setLayoutManager(new WearableLinearLayoutManager(this));
@@ -53,7 +53,7 @@ public class SavedChatsActivity extends Activity {
         });
         savedChatsWrv.setAdapter(savedChatsAdapter);
 
-        TextView noSavedChats = findViewById(R.id.no_saved_chats);
+        TextView noSavedChats = findViewById(R.id.activity_saved_chats_no_saved_chats_tv);
         noSavedChats.setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
 
         savedChatsWrv.requestFocus();
@@ -73,7 +73,7 @@ public class SavedChatsActivity extends Activity {
         if (requestCode == 1337 && data.getBooleanExtra("net.devemperor.wristassist.chat_deleted", false)) {
             savedChatsAdapter.getData().remove(currentEditPosition);
             savedChatsAdapter.notifyItemRemoved(currentEditPosition);
-            findViewById(R.id.no_saved_chats).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+            findViewById(R.id.activity_saved_chats_no_saved_chats_tv).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
         }
     }
 }

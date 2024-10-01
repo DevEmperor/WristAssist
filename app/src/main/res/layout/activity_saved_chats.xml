@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <androidx.wear.widget.WearableRecyclerView
-        android:id="@+id/saved_chats_wrv"
+        android:id="@+id/activity_saved_chats_wrv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
 
     <TextView
-        android:id="@+id/no_saved_chats"
+        android:id="@+id/activity_saved_chats_no_saved_chats_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"

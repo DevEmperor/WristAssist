@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/onboarding_viewpager"
+        android:id="@+id/activity_onboarding_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/onboarding_tablayout"
+        android:id="@+id/activity_onboarding_tl"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:layout_gravity="bottom"

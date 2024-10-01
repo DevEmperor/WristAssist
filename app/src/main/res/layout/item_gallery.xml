@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.jsibbold.zoomage.ZoomageView
-            android:id="@+id/open_image_iv"
+            android:id="@+id/item_gallery_image_zv"
             android:layout_width="wrap_content"
             android:layout_height="64dp"
             android:layout_gravity="center"

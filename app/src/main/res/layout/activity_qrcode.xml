@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/qrcode_iv"
+        android:id="@+id/viewpager_onboarding_qrcode_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:keepScreenOn="true"

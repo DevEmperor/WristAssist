@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/usage_total_cost_tv"
+        android:id="@+id/layout_usage_footer_total_cost_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -15,7 +15,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/usage_reset_btn"
+        android:id="@+id/layout_usage_footer_reset_btn"
         android:layout_width="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"

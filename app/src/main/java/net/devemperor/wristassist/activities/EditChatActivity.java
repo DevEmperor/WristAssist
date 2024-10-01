@@ -35,12 +35,12 @@ public class EditChatActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_chat);
 
-        editChatSv = findViewById(R.id.edit_chat_sv);
-        titleTv = findViewById(R.id.edit_title_tv);
-        modifiedTv = findViewById(R.id.modified_tv);
-        chatCostTv = findViewById(R.id.chat_cost_tv);
-        editTitleBtn = findViewById(R.id.edit_btn);
-        deleteChatBtn = findViewById(R.id.delete_btn);
+        editChatSv = findViewById(R.id.activity_edit_chat_sv);
+        titleTv = findViewById(R.id.activity_edit_chat_title_tv);
+        modifiedTv = findViewById(R.id.activity_edit_chat_modified_tv);
+        chatCostTv = findViewById(R.id.activity_edit_chat_cost_tv);
+        editTitleBtn = findViewById(R.id.activity_edit_chat_edit_btn);
+        deleteChatBtn = findViewById(R.id.activity_edit_chat_delete_btn);
 
         chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
         id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);

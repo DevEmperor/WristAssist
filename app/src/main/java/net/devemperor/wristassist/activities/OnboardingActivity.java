@@ -21,8 +21,8 @@ public class OnboardingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
-        onboardingVp = findViewById(R.id.onboarding_viewpager);
-        onboardingTl = findViewById(R.id.onboarding_tablayout);
+        onboardingVp = findViewById(R.id.activity_onboarding_vp);
+        onboardingTl = findViewById(R.id.activity_onboarding_tl);
         onboardingVp.setAdapter(new OnboardingAdapter(this, new int[]{
                 R.layout.viewpager_welcome,
                 R.layout.viewpager_info,

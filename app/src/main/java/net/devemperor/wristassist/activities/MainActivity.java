@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainWrv = findViewById(R.id.main_wrv);
-        mainPb = findViewById(R.id.main_pb);
+        mainWrv = findViewById(R.id.activity_main_wrv);
+        mainPb = findViewById(R.id.activity_main_pb);
 
         mainWrv.setHasFixedSize(true);
         mainWrv.setEdgeItemsCenteringEnabled(true);

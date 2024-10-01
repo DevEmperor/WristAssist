@@ -41,8 +41,8 @@ public class SavedChatsAdapter extends RecyclerView.Adapter<SavedChatsAdapter.Re
 
         public RecyclerViewHolder(View view) {
             super(view);
-            savedChatContainer = view.findViewById(R.id.saved_chat_container);
-            savedChatTitle = view.findViewById(R.id.saved_chat_title);
+            savedChatContainer = view.findViewById(R.id.item_saved_chat_ll);
+            savedChatTitle = view.findViewById(R.id.item_saved_chat_title_tv);
         }
     }
 

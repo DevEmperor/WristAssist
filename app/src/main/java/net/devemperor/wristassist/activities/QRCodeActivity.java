@@ -18,7 +18,7 @@ public class QRCodeActivity extends AppCompatActivity {
 
         String imageUrl = getIntent().getStringExtra("net.devemperor.wristassist.image_url");
 
-        ImageView qrCodeIv = findViewById(R.id.qrcode_iv);
+        ImageView qrCodeIv = findViewById(R.id.viewpager_onboarding_qrcode_iv);
 
         Bitmap code = QRCode.from(imageUrl)
                 .withSize(256, 256)

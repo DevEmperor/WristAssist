@@ -104,14 +104,14 @@ public class CreateImageActivity extends AppCompatActivity {
         service = new OpenAiService(api);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        createImageSv = findViewById(R.id.create_image_sv);
-        imagePb = findViewById(R.id.image_pb);
-        errorTv = findViewById(R.id.error_image_tv);
-        retryBtn = findViewById(R.id.retry_image_btn);
-        imageView = findViewById(R.id.create_image_iv);
-        shareBtn = findViewById(R.id.share_image_btn);
-        expiresInTv = findViewById(R.id.expires_image_tv);
-        saveDiscardBtns = findViewById(R.id.save_discard_image_btns);
+        createImageSv = findViewById(R.id.activity_create_image_sv);
+        imagePb = findViewById(R.id.activity_create_image_pb);
+        errorTv = findViewById(R.id.activity_create_image_error_tv);
+        retryBtn = findViewById(R.id.activity_create_image_retry_btn);
+        imageView = findViewById(R.id.activity_create_image_image_zv);
+        shareBtn = findViewById(R.id.activity_create_image_share_btn);
+        expiresInTv = findViewById(R.id.activity_create_image_expires_tv);
+        saveDiscardBtns = findViewById(R.id.activity_create_image_save_discard_btns);
 
         prompt = getIntent().getStringExtra("net.devemperor.wristassist.prompt");
         model = sp.getBoolean("net.devemperor.wristassist.image_model", false) ? "dall-e-3" : "dall-e-2";

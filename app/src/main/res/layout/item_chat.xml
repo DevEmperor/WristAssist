@@ -2,14 +2,14 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/chat_item_layout"
+    android:id="@+id/item_chat_rl"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingVertical="10dp"
     android:paddingHorizontal="16dp">
 
     <TextView
-        android:id="@+id/chat_item_text"
+        android:id="@+id/item_chat_content_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -17,10 +17,10 @@
         android:textSize="15sp"/>
 
     <TextView
-        android:id="@+id/chat_item_cost"
+        android:id="@+id/item_chat_cost_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/chat_item_text"
+        android:layout_below="@id/item_chat_content_tv"
         android:layout_alignParentEnd="true"
         android:textStyle="italic"
         android:visibility="gone"

@@ -44,9 +44,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.RecyclerViewHo
 
         public RecyclerViewHolder(View view) {
             super(view);
-            menuContainer = view.findViewById(R.id.menu_container);
-            menuItem = view.findViewById(R.id.menu_text);
-            menuIcon = view.findViewById(R.id.menu_icon);
+            menuContainer = view.findViewById(R.id.item_main_rl);
+            menuItem = view.findViewById(R.id.item_main_content_tv);
+            menuIcon = view.findViewById(R.id.item_main_icon_iv);
         }
     }
 

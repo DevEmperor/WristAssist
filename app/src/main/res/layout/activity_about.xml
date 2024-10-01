@@ -11,18 +11,18 @@
         app:layout_boxedEdges="all">
 
         <ImageView
-            android:id="@+id/icon"
+            android:id="@+id/activity_about_icon_iv"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:background="@drawable/wristassist_logo"
-            app:layout_constraintBottom_toTopOf="@+id/version_tv"
+            app:layout_constraintBottom_toTopOf="@+id/activity_about_version_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/version_tv"
+            android:id="@+id/activity_about_version_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/wristassist_about"
@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/icon" />
+            app:layout_constraintTop_toBottomOf="@+id/activity_about_icon_iv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.wear.widget.BoxInsetLayout>

@@ -52,9 +52,9 @@ public class OpenImageActivity extends AppCompatActivity {
         imageModel = imagesDatabaseHelper.get(imageId);
 
         openImageSv = findViewById(R.id.open_image_sv);
-        imageView = findViewById(R.id.open_image_iv);
-        shareBtn = findViewById(R.id.share_image_btn);
-        expiresInTv = findViewById(R.id.expires_image_tv);
+        imageView = findViewById(R.id.item_gallery_image_zv);
+        shareBtn = findViewById(R.id.activity_create_image_share_btn);
+        expiresInTv = findViewById(R.id.activity_create_image_expires_tv);
         promptTv = findViewById(R.id.open_image_prompt_tv);
         revisedPromptTv = findViewById(R.id.open_image_revised_prompt_tv);
         modelTv = findViewById(R.id.open_image_model_tv);

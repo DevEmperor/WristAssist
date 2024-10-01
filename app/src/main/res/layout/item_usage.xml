@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/usage_container"
+    android:id="@+id/item_usage_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -9,7 +9,7 @@
     android:paddingHorizontal="24dp">
 
     <TextView
-        android:id="@+id/usage_model_tv"
+        android:id="@+id/item_usage_model_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
@@ -17,13 +17,13 @@
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/usage_tokens_tv"
+        android:id="@+id/item_usage_tokens_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/usage_cost_tv"
+        android:id="@+id/item_usage_cost_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp" />

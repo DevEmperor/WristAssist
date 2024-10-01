@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/create_image_sv">
+    android:id="@+id/activity_create_image_sv">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:orientation="vertical">
 
         <ProgressBar
-            android:id="@+id/image_pb"
+            android:id="@+id/activity_create_image_pb"
             style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +25,7 @@
             android:indeterminateTint="@color/wristassist_purple" />
 
         <TextView
-            android:id="@+id/error_image_tv"
+            android:id="@+id/activity_create_image_error_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -38,7 +39,7 @@
             tools:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/retry_image_btn"
+            android:id="@+id/activity_create_image_retry_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content">
 
             <com.jsibbold.zoomage.ZoomageView
-                android:id="@+id/create_image_iv"
+                android:id="@+id/activity_create_image_image_zv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -80,7 +81,7 @@
         </androidx.wear.widget.BoxInsetLayout>
 
         <ImageButton
-            android:id="@+id/share_image_btn"
+            android:id="@+id/activity_create_image_share_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -94,7 +95,7 @@
             tools:visibility="visible" />
 
         <TextView
-            android:id="@+id/expires_image_tv"
+            android:id="@+id/activity_create_image_expires_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -109,7 +110,7 @@
             tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/save_discard_image_btns"
+            android:id="@+id/activity_create_image_save_discard_btns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -120,7 +121,7 @@
             tools:visibility="visible">
 
             <ImageButton
-                android:id="@+id/save_image_btn"
+                android:id="@+id/activity_create_image_save_btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -130,14 +131,14 @@
                 android:src="@drawable/twotone_save_24"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                app:layout_constraintEnd_toStartOf="@+id/discard_image_btn"
+                app:layout_constraintEnd_toStartOf="@+id/activity_create_image_discard_btn"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <ImageButton
-                android:id="@+id/discard_image_btn"
+                android:id="@+id/activity_create_image_discard_btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -149,11 +150,9 @@
                 android:adjustViewBounds="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/save_image_btn"
+                app:layout_constraintStart_toEndOf="@+id/activity_create_image_save_btn"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </LinearLayout>
-
 </ScrollView>

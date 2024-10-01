@@ -9,7 +9,7 @@
     android:paddingHorizontal="32dp">
 
     <TextView
-        android:id="@+id/error_tv"
+        android:id="@+id/layout_chat_footer_error_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/wristassist_no_internet"
@@ -20,7 +20,7 @@
         tools:visibility="visible"/>
 
     <ProgressBar
-        android:id="@+id/progress_bar"
+        android:id="@+id/layout_chat_footer_pb"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         tools:visibility="visible"/>
 
     <ImageButton
-        android:id="@+id/ask_btn"
+        android:id="@+id/layout_chat_footer_ask_btn"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_marginTop="8dp"
@@ -41,7 +41,7 @@
         android:onClick="ask"/>
 
     <ImageButton
-        android:id="@+id/save_btn"
+        android:id="@+id/layout_chat_footer_save_btn"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"

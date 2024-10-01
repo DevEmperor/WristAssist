@@ -26,8 +26,8 @@ public class ChangelogActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changelog);
 
-        changelogSv = findViewById(R.id.changelog_sv);
-        changelogTv = findViewById(R.id.changelog_tv);
+        changelogSv = findViewById(R.id.activity_changelog_sv);
+        changelogTv = findViewById(R.id.activity_changelog_content_tv);
 
         SharedPreferences sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
         Markwon markwon = Markwon.builder(this).usePlugin(HtmlPlugin.create()).build();

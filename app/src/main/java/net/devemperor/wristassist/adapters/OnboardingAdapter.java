@@ -34,7 +34,7 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (position == 2) {
-            ImageView qrCodeIv = holder.itemView.findViewById(R.id.qrcode_iv);
+            ImageView qrCodeIv = holder.itemView.findViewById(R.id.viewpager_onboarding_qrcode_iv);
             qrCodeIv.setOnClickListener(v -> {
                 Intent intent = new Intent(v.getContext(), MainActivity.class);
                 intent.putExtra("net.devemperor.wristassist.enter_api_key", true);
