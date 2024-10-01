@@ -42,46 +42,60 @@
 
         <activity
             android:name=".activities.ChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.SavedChatsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.EditChatActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.ImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.CreateImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.OpenImageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.QRCodeActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.UsageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.SettingsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.AboutActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.OnboardingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.InputActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.ChangelogActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:taskAffinity="" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true"
+            android:taskAffinity=""
             android:theme="@style/Theme.Starting">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

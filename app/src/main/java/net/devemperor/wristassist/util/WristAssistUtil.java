@@ -25,16 +25,6 @@ public class WristAssistUtil {
         return bitmap;
     }
 
-    public static float getFontMultiplier(Context context) {
-        float fs = context.getResources().getConfiguration().fontScale;
-        float diff = Math.abs(fs - 1.0f) * 0.3f;
-        if (fs > 1) {
-            return 1.0f + diff;
-        } else {
-            return 1.0f - diff;
-        }
-    }
-
     public static double calcCostChat(String model, long promptTokens, long completionTokens) {
         double inputPrice = 0;
         double outputPrice = 0;

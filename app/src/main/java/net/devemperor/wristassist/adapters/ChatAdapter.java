@@ -91,7 +91,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         TextView chatItem = listItem.findViewById(R.id.chat_item_text);
         chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getInt("net.devemperor.wristassist.font_size", 15) * WristAssistUtil.getFontMultiplier(context));
+                .getInt("net.devemperor.wristassist.font_size", 15));
 
         ChatMessage chatMessage = objects.get(position).getChatMessage();
         chatItem.setOnClickListener(v -> launchTTS(chatMessage.getContent()));

@@ -21,7 +21,6 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
     final Context context;
     final List<UsageModel> objects;
 
-
     public UsageAdapter(@NonNull Context context, @NonNull List<UsageModel> objects) {
         super(context, -1, objects);
         this.context = context;
@@ -37,7 +36,6 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
 
         TextView modelNameTv = listItem.findViewById(R.id.usage_model_tv);
         modelNameTv.setText(WristAssistUtil.translate(context, dataProvider.getModelName()));
-        modelNameTv.setTextSize(18 * WristAssistUtil.getFontMultiplier(context));
 
         TextView tokensTv = listItem.findViewById(R.id.usage_tokens_tv);
         if (dataProvider.getModelName().startsWith("gpt")) {
@@ -47,12 +45,10 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
             tokensTv.setText(context.getString(R.string.wristassist_images_count,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
         }
-        tokensTv.setTextSize(16 * WristAssistUtil.getFontMultiplier(context));
 
         TextView costTv = listItem.findViewById(R.id.usage_cost_tv);
         costTv.setText(context.getString(R.string.wristassist_estimated_cost,
                 String.format(Locale.getDefault(), "%,.2f", dataProvider.getCost())));
-        costTv.setTextSize(16 * WristAssistUtil.getFontMultiplier(context));
 
         return listItem;
     }
