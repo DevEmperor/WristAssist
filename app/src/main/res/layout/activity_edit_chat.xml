@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
+    android:id="@+id/edit_chat_sv"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingHorizontal="24dp"
-    android:fillViewport="false"
-    android:id="@+id/edit_chat_sv">
+    android:fillViewport="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,12 +19,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:layout_marginBottom="16dp"
             android:maxLines="3"
             android:textAlignment="center"
-            android:textColor="#7B1FA2"
-            android:textSize="18sp"
+            android:textColor="@color/wristassist_purple"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -68,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="48dp">
 
             <ImageButton
                 android:id="@+id/edit_btn"

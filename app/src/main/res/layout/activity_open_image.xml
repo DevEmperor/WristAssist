@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/open_image_sv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:fillViewport="false"
-    android:id="@+id/open_image_sv">
+    android:fillViewport="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,12 +18,12 @@
             android:layout_height="wrap_content">
 
             <com.jsibbold.zoomage.ZoomageView
+                android:id="@+id/open_image_iv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:id="@+id/open_image_iv"
                 android:transitionName="image"
                 app:zoomage_restrictBounds="false"
                 app:zoomage_animateOnReset="true"
@@ -37,6 +38,7 @@
         </androidx.wear.widget.BoxInsetLayout>
 
         <ImageButton
+            android:id="@+id/share_image_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -45,10 +47,10 @@
             android:onClick="shareImage"
             android:src="@drawable/twotone_share_24"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:id="@+id/share_image_btn" />
+            android:adjustViewBounds="true" />
 
         <TextView
+            android:id="@+id/expires_image_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -58,8 +60,7 @@
             android:textColor="@color/wristassist_purple"
             android:textAlignment="center"
             android:textStyle="italic"
-            android:text="@string/wristassist_image_expires_in"
-            android:id="@+id/expires_image_tv"/>
+            android:text="@string/wristassist_image_expires_in"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,15 +75,16 @@
             android:text="@string/wristassist_open_image_prompt"/>
 
         <TextView
+            android:id="@+id/open_image_prompt_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_prompt_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
+            android:id="@+id/open_image_revised_prompt_descriptor_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -92,17 +94,16 @@
             android:textColor="@color/wristassist_purple"
             android:textStyle="bold|italic"
             android:textAlignment="center"
-            android:text="@string/wristassist_open_image_revised_prompt"
-            android:id="@+id/open_image_revised_prompt_descriptor_tv"/>
+            android:text="@string/wristassist_open_image_revised_prompt"/>
 
         <TextView
+            android:id="@+id/open_image_revised_prompt_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_revised_prompt_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -117,15 +118,16 @@
             android:text="@string/wristassist_open_image_model"/>
 
         <TextView
+            android:id="@+id/open_image_model_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_model_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
+            android:id="@+id/open_image_quality_descriptor_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -135,17 +137,16 @@
             android:textColor="@color/wristassist_purple"
             android:textStyle="bold|italic"
             android:textAlignment="center"
-            android:text="@string/wristassist_open_image_quality"
-            android:id="@+id/open_image_quality_descriptor_tv"/>
+            android:text="@string/wristassist_open_image_quality"/>
 
         <TextView
+            android:id="@+id/open_image_quality_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_quality_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -160,15 +161,16 @@
             android:text="@string/wristassist_open_image_size"/>
 
         <TextView
+            android:id="@+id/open_image_size_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_size_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
+            android:id="@+id/open_image_style_descriptor_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -178,17 +180,16 @@
             android:textColor="@color/wristassist_purple"
             android:textStyle="bold|italic"
             android:textAlignment="center"
-            android:text="@string/wristassist_open_image_style"
-            android:id="@+id/open_image_style_descriptor_tv"/>
+            android:text="@string/wristassist_open_image_style"/>
 
         <TextView
+            android:id="@+id/open_image_style_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_style_tv"/>
+            android:textAlignment="center"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -203,27 +204,26 @@
             android:text="@string/wristassist_open_image_created"/>
 
         <TextView
+            android:id="@+id/open_image_created_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginHorizontal="24dp"
             android:textSize="16sp"
-            android:textAlignment="center"
-            android:id="@+id/open_image_created_tv"/>
+            android:textAlignment="center"/>
 
         <ImageButton
+            android:id="@+id/delete_btn"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="48dp"
             android:background="@null"
             android:onClick="deleteImage"
             android:src="@drawable/twotone_delete_24"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:id="@+id/delete_btn" />
+            android:adjustViewBounds="true" />
 
     </LinearLayout>
-
 </ScrollView>

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="16dp"
-    android:paddingHorizontal="32dp" >
+    android:paddingHorizontal="32dp">
 
     <TextView
         android:id="@+id/error_tv"
@@ -14,7 +16,8 @@
         android:textSize="14sp"
         android:textAlignment="center"
         android:textColor="@color/wristassist_red"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -23,18 +26,19 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:indeterminateTint="@color/wristassist_purple"
-        android:visibility="gone" />
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <ImageButton
         android:id="@+id/ask_btn"
         android:layout_width="match_parent"
         android:layout_height="72dp"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/twotone_keyboard_24"
         android:background="@null"
         android:scaleType="fitCenter"
-        android:onClick="ask"
-        android:layout_marginTop="8dp"/>
+        android:onClick="ask"/>
 
     <ImageButton
         android:id="@+id/save_btn"
@@ -46,5 +50,6 @@
         android:scaleType="fitCenter"
         android:layout_marginHorizontal="24dp"
         android:onClick="saveReset"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:visibility="visible"/>
 </LinearLayout>

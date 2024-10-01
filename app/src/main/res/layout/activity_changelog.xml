@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="10dp"
+    android:paddingHorizontal="12dp"
     android:fillViewport="false"
     android:id="@+id/changelog_sv">
 
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="48dp" />
 
         <Button
             android:id="@+id/changelog_ok_btn"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="48dp"
             android:onClick="okay"
             android:text="@string/wristassist_okay" />
 
