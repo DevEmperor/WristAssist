@@ -56,7 +56,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.RecyclerView
         }
         holder.image.setOnClickListener(v -> {
             if (callback != null) {
-                callback.onItemClicked(holder.getAdapterPosition(), holder.image);
+                callback.onItemClicked(holder.getBindingAdapterPosition(), holder.image);
             }
         });
     }

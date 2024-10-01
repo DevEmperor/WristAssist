@@ -77,18 +77,16 @@ public class WristAssistUtil {
 
     public static String translate(Context context, String origin) {
         switch (origin) {
-            case "gpt-3.5-turbo":
-                return "GPT-3.5 Turbo";
             case "gpt-4o-mini":
                 return "GPT-4 Omni Mini";
-            case "gpt-4-turbo-preview":
+            case "gpt-4o":
+                return "GPT-4 Omni";
+            case "gpt-4-turbo":
                 return "GPT-4 Turbo";
             case "gpt-4":
                 return "GPT-4";
-            case "gpt-4-32k":
-                return "GPT-4 32K";
-            case "gpt-4o":
-                return "GPT-4 Omni";
+            case "gpt-3.5-turbo":
+                return "GPT-3.5 Turbo";
             case "dall-e-3":
                 return "DALL-E 3";
             case "dall-e-2":

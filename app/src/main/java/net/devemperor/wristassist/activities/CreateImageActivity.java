@@ -153,7 +153,7 @@ public class CreateImageActivity extends AppCompatActivity {
                 imageResult = service.createImage(cir);
                 image = imageResult.getData().get(0);
 
-                timer.scheduleAtFixedRate(new TimerTask() {
+                timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         long minutes = (imageResult.getCreated()*1000 + 60*60*1000 - System.currentTimeMillis()) / 60 / 1000;

@@ -84,7 +84,7 @@ public class OpenImageActivity extends AppCompatActivity {
             styleTv.setVisibility(TextView.GONE);
         }
 
-        timer.scheduleAtFixedRate(new TimerTask() {
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 long minutes = (imageModel.getCreated() + 60*60*1000 - System.currentTimeMillis()) / 60 / 1000;
