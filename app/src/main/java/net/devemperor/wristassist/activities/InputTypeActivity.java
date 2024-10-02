@@ -1,23 +1,18 @@
 package net.devemperor.wristassist.activities;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import net.devemperor.wristassist.R;
 
-import java.util.Objects;
-
-public class InputActivity extends AppCompatActivity {
+public class InputTypeActivity extends AppCompatActivity {
 
     ScrollView inputSv;
     TextView inputTitleTv;
@@ -28,9 +23,9 @@ public class InputActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input);
+        setContentView(R.layout.activity_input_type);
 
-        inputSv = findViewById(R.id.activity_input_sv);
+        inputSv = findViewById(R.id.activity_input_type_sv);
 
         String title = getIntent().getStringExtra("net.devemperor.wristassist.input.title");
         String content = getIntent().getStringExtra("net.devemperor.wristassist.input.content");
@@ -38,11 +33,10 @@ public class InputActivity extends AppCompatActivity {
         String title2 = getIntent().getStringExtra("net.devemperor.wristassist.input.title2");
         String content2 = getIntent().getStringExtra("net.devemperor.wristassist.input.content2");
         String hint2 = getIntent().getStringExtra("net.devemperor.wristassist.input.hint2");
-        boolean handsFree = getIntent().getBooleanExtra("net.devemperor.wristassist.input.hands_free", false);
-        inputTitleTv = findViewById(R.id.activity_input_title_tv);
-        inputContentEt = findViewById(R.id.activity_input_content_et);
-        inputTitle2Tv = findViewById(R.id.activity_input_title2_tv);
-        inputContent2Et = findViewById(R.id.activity_input_content2_et);
+        inputTitleTv = findViewById(R.id.activity_input_type_title_tv);
+        inputContentEt = findViewById(R.id.activity_input_type_content_et);
+        inputTitle2Tv = findViewById(R.id.activity_input_type_title2_tv);
+        inputContent2Et = findViewById(R.id.activity_input_type_content2_et);
         inputTitleTv.setText(title);
         inputContentEt.setText(content);
         inputContentEt.setHint(hint);
@@ -71,29 +65,6 @@ public class InputActivity extends AppCompatActivity {
         }
 
         inputSv.requestFocus();
-
-        if (handsFree) {
-            try {
-                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                startActivityForResult(intent, 1337);
-            } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(this, R.string.wristassist_no_speech_recognition, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1337 && resultCode == RESULT_OK) {
-            String result = Objects.requireNonNull(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)).get(0);
-            Intent intent = new Intent();
-            intent.putExtra("net.devemperor.wristassist.input.content", result);
-            setResult(RESULT_OK, intent);
-            finish();
-        }
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void cancel(View view) {
