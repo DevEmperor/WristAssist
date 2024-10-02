@@ -44,21 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }
         FirebaseCrashlytics.getInstance().setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
 
-        if (getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
-            Intent intent = new Intent(this, InputActivity.class);
-            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_api_key));
-            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_api_key));
-            editApiKeyLauncher.launch(intent);
-        } else if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)) {
-            startActivity(new Intent(this, OnboardingActivity.class));
-            finish();
-        } else if (sp.getInt("net.devemperor.wristassist.last_version_code", 0) < BuildConfig.VERSION_CODE) {
-            startActivity(new Intent(this, ChangelogActivity.class));
-        } else if (getIntent().getBooleanExtra("net.devemperor.wristassist.complication", false)
-                || sp.getBoolean("net.devemperor.wristassist.instant_input", false)) {
-            input(false);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -128,6 +113,22 @@ public class MainActivity extends AppCompatActivity {
                sp.edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
            }
         });
+
+        if (getIntent().getBooleanExtra("net.devemperor.wristassist.enter_api_key", false)) {
+            Intent intent = new InputIntentBuilder(this)
+                    .setTitle(getString(R.string.wristassist_set_api_key))
+                    .setHint(getString(R.string.wristassist_api_key))
+                    .build();
+            editApiKeyLauncher.launch(intent);
+        } else if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)) {
+            startActivity(new Intent(this, OnboardingActivity.class));
+            finish();
+        } else if (sp.getInt("net.devemperor.wristassist.last_version_code", 0) < BuildConfig.VERSION_CODE) {
+            startActivity(new Intent(this, ChangelogActivity.class));
+        } else if (getIntent().getBooleanExtra("net.devemperor.wristassist.complication", false)
+                || sp.getBoolean("net.devemperor.wristassist.instant_input", false)) {
+            input(false);
+        }
 
         mainWrv.requestFocus();
         mainWrv.postDelayed(() -> {
