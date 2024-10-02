@@ -24,7 +24,7 @@
             android:maxLines="3"
             android:textAlignment="center"
             android:textColor="@color/wristassist_purple"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView
