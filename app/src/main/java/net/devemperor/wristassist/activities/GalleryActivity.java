@@ -17,6 +17,7 @@ import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.ImageAdapter;
 import net.devemperor.wristassist.database.ImageModel;
 import net.devemperor.wristassist.database.ImagesDatabaseHelper;
+import net.devemperor.wristassist.util.InputIntentBuilder;
 
 import java.util.List;
 
@@ -75,20 +76,19 @@ public class GalleryActivity extends AppCompatActivity {
 
         imageAdapter = new ImageAdapter(imageData, (menuPosition, image) -> {
             if (menuPosition == 0) {
-                Intent inputIntent = new Intent(this, InputActivity.class);
-                inputIntent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_describe_image));
-                inputIntent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_image_hint));
-                inputIntent.putExtra("net.devemperor.wristassist.input.hands_free", getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE)
-                        .getBoolean("net.devemperor.wristassist.hands_free", false));
-
-                inputLauncher.launch(inputIntent);
+                Intent intent = new InputIntentBuilder(this)
+                    .setTitle(getString(R.string.wristassist_describe_image))
+                    .setHint(getString(R.string.wristassist_image_hint))
+                    .setHandsFree(getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE).getBoolean("net.devemperor.wristassist.hands_free", false))
+                    .build();
+                inputLauncher.launch(intent);
             } else {
                 currentOpenPosition = menuPosition;
-                Intent openImageIntent = new Intent(this, OpenImageActivity.class);
-                openImageIntent.putExtra("net.devemperor.wristassist.imageId", imageData.get(menuPosition).getId());
+                Intent intent = new Intent(this, OpenImageActivity.class);
+                intent.putExtra("net.devemperor.wristassist.imageId", imageData.get(menuPosition).getId());
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, image, "image");
 
-                openImageLauncher.launch(openImageIntent, options);
+                openImageLauncher.launch(intent, options);
             }
         });
         galleryWrv.setAdapter(imageAdapter);

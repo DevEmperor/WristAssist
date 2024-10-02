@@ -35,6 +35,7 @@ import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
 import net.devemperor.wristassist.database.ChatHistoryModel;
 import net.devemperor.wristassist.database.UsageDatabaseHelper;
 import net.devemperor.wristassist.items.ChatItem;
+import net.devemperor.wristassist.util.InputIntentBuilder;
 import net.devemperor.wristassist.util.WristAssistUtil;
 
 import org.json.JSONArray;
@@ -210,9 +211,10 @@ public class ChatActivity extends Activity {
 
     public void saveReset(View view) throws JSONException, IOException {
         if (!saveThisChat) {
-            Intent intent = new Intent(this, InputActivity.class);
-            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_chat_title));
-            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_chat_title));
+            Intent intent = new InputIntentBuilder(this)
+                    .setTitle(getString(R.string.wristassist_set_chat_title))
+                    .setHint(getString(R.string.wristassist_chat_title))
+                    .build();
             startActivityForResult(intent, 1338);
         } else {
             for (int i = chatAdapter.getCount() - 1; i > ((chatAdapter.getItem(0).getChatMessage().getRole().equals(ChatMessageRole.SYSTEM.value())) ? 1 : 0); i--) {
@@ -230,10 +232,11 @@ public class ChatActivity extends Activity {
         if (errorTv.getVisibility() == View.VISIBLE) {
             query(chatAdapter.getChatItems().get(chatAdapter.getCount() - 1).getChatMessage().getContent());
         } else {
-            Intent intent = new Intent(this, InputActivity.class);
-            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
+            Intent intent = new InputIntentBuilder(this)
+                    .setTitle(getString(R.string.wristassist_enter_prompt))
+                    .setHint(getString(R.string.wristassist_prompt))
+                    .setHandsFree(sp.getBoolean("net.devemperor.wristassist.hands_free", false))
+                    .build();
             startActivityForResult(intent, 1337);
         }
     }

@@ -19,6 +19,7 @@ import net.devemperor.wristassist.BuildConfig;
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.adapters.MainAdapter;
 import net.devemperor.wristassist.items.MainItem;
+import net.devemperor.wristassist.util.InputIntentBuilder;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -137,17 +138,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void input(boolean withSystemMessage) {
-        Intent intent = new Intent(this, InputActivity.class);
         if (withSystemMessage) {
-            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_system_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_enter_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_prompt));
+            Intent intent = new InputIntentBuilder(this)
+                .setTitle(getString(R.string.wristassist_enter_system_prompt))
+                .setHint(getString(R.string.wristassist_system_prompt))
+                .setTitle2(getString(R.string.wristassist_enter_prompt))
+                .setHint2(getString(R.string.wristassist_prompt))
+                .build();
             inputWithSystemMessageLauncher.launch(intent);
         } else {
-            intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
-            intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
+            Intent intent = new InputIntentBuilder(this)
+                .setTitle(getString(R.string.wristassist_enter_prompt))
+                .setHint(getString(R.string.wristassist_prompt))
+                .setHandsFree(sp.getBoolean("net.devemperor.wristassist.hands_free", false))
+                .build();
             inputLauncher.launch(intent);
         }
     }

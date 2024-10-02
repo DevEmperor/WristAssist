@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
+import net.devemperor.wristassist.util.InputIntentBuilder;
 
 import org.json.JSONException;
 
@@ -72,9 +73,10 @@ public class EditChatActivity extends AppCompatActivity {
     }
 
     public void editTitle(View view) {
-        Intent intent = new Intent(this, InputActivity.class);
-        intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_edit_chat_title));
-        intent.putExtra("net.devemperor.wristassist.input.content", titleTv.getText().toString());
+        Intent intent = new InputIntentBuilder(this)
+            .setTitle(getString(R.string.wristassist_edit_chat_title))
+            .setContent(titleTv.getText().toString())
+            .build();
         editTitleLauncher.launch(intent);
     }
 

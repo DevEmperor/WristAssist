@@ -18,6 +18,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
 import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.util.InputIntentBuilder;
 
 import org.apache.commons.validator.routines.UrlValidator;
 
@@ -87,12 +88,12 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     sp.edit().remove("net.devemperor.wristassist.custom_server_model").apply();
                     chatModelPreference.setEnabled(true);
                 } else {
-                    Intent intent = new Intent(getContext(), InputActivity.class);
-                    intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_custom_host));
-                    intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_custom_host_hint));
-                    intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_custom_model));
-                    intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_custom_model_hint));
-
+                    Intent intent = new InputIntentBuilder(getContext())
+                        .setTitle(getString(R.string.wristassist_custom_host))
+                        .setHint(getString(R.string.wristassist_custom_host_hint))
+                        .setTitle2(getString(R.string.wristassist_custom_model))
+                        .setHint2(getString(R.string.wristassist_custom_model_hint))
+                        .build();
                     customServerInputLauncher.launch(intent);
                 }
                 return true;
@@ -105,11 +106,11 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         Preference globalSystemQueryPreference = findPreference("net.devemperor.wristassist.global_system_query");
         if (globalSystemQueryPreference != null) {
             globalSystemQueryPreference.setOnPreferenceClickListener(preference -> {
-                Intent intent = new Intent(getContext(), InputActivity.class);
-                intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_define_global_system_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
-                intent.putExtra("net.devemperor.wristassist.input.content", sp.getString("net.devemperor.wristassist.global_system_query", ""));
-
+                Intent intent = new InputIntentBuilder(getContext())
+                    .setTitle(getString(R.string.wristassist_define_global_system_prompt))
+                    .setHint(getString(R.string.wristassist_system_prompt))
+                    .setContent(sp.getString("net.devemperor.wristassist.global_system_query", ""))
+                    .build();
                 globalSystemPromptLauncher.launch(intent);
                 return true;
             });
