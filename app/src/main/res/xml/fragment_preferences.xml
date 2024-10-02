@@ -15,7 +15,8 @@
             app:negativeButtonText="@string/wristassist_cancel"
             app:entries="@array/models_chat"
             app:entryValues="@array/models_chat_values"
-            app:dialogTitle=" "/>
+            app:dialogTitle=" "
+            app:summary="%s"/>
 
         <Preference
             app:key="net.devemperor.wristassist.global_system_query"
@@ -95,7 +96,8 @@
             app:entryValues="@array/tts_settings_values"
             android:defaultValue="off"
             app:dialogTitle=" "
-            app:negativeButtonText="@string/wristassist_cancel"/>
+            app:negativeButtonText="@string/wristassist_cancel"
+            app:summary="%s"/>
 
         <SeekBarPreference
             app:key="net.devemperor.wristassist.tts_volume"

@@ -53,7 +53,7 @@
             android:exported="false"
             android:taskAffinity="" />
         <activity
-            android:name=".activities.ImageActivity"
+            android:name=".activities.GalleryActivity"
             android:exported="false"
             android:taskAffinity="" />
         <activity

@@ -1,6 +1,5 @@
 package net.devemperor.wristassist.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +7,10 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.database.ChatHistoryDatabaseHelper;
@@ -18,7 +21,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-public class EditChatActivity extends Activity {
+public class EditChatActivity extends AppCompatActivity {
 
     ScrollView editChatSv;
     TextView titleTv;
@@ -29,6 +32,7 @@ public class EditChatActivity extends Activity {
 
     ChatHistoryDatabaseHelper chatHistoryDatabaseHelper;
     long id;
+    ActivityResultLauncher<Intent> editTitleLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,26 +60,22 @@ public class EditChatActivity extends Activity {
             throw new RuntimeException(e);
         }
 
+        editTitleLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                String content = result.getData().getStringExtra("net.devemperor.wristassist.input.content");
+                chatHistoryDatabaseHelper.setTitle(id, content);
+                titleTv.setText(content);
+            }
+        });
+
         editChatSv.requestFocus();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != RESULT_OK) return;
-        if (requestCode == 1337) {
-            String content = data.getStringExtra("net.devemperor.wristassist.input.content");
-            chatHistoryDatabaseHelper.setTitle(id, content);
-            titleTv.setText(content);
-        }
     }
 
     public void editTitle(View view) {
         Intent intent = new Intent(this, InputActivity.class);
         intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_edit_chat_title));
         intent.putExtra("net.devemperor.wristassist.input.content", titleTv.getText().toString());
-        startActivityForResult(intent, 1337);
+        editTitleLauncher.launch(intent);
     }
 
     public void deleteChat(View view) {

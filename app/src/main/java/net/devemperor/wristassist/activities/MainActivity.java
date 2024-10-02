@@ -1,12 +1,14 @@
 package net.devemperor.wristassist.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.wear.widget.WearableLinearLayoutManager;
 import androidx.wear.widget.WearableRecyclerView;
@@ -21,11 +23,15 @@ import net.devemperor.wristassist.items.MainItem;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     WearableRecyclerView mainWrv;
     ProgressBar mainPb;
     SharedPreferences sp;
+
+    ActivityResultLauncher<Intent> inputLauncher;
+    ActivityResultLauncher<Intent> inputWithSystemMessageLauncher;
+    ActivityResultLauncher<Intent> editApiKeyLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +47,7 @@ public class MainActivity extends Activity {
             Intent intent = new Intent(this, InputActivity.class);
             intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_set_api_key));
             intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_api_key));
-            startActivityForResult(intent, 1340);
+            editApiKeyLauncher.launch(intent);
         } else if (!sp.getBoolean("net.devemperor.wristassist.onboarding_complete", false)) {
             startActivity(new Intent(this, OnboardingActivity.class));
             finish();
@@ -80,7 +86,7 @@ public class MainActivity extends Activity {
                 intent = new Intent(this, SavedChatsActivity.class);
                 startActivity(intent);
             } else if (menuPosition == 2) {
-                intent = new Intent(this, ImageActivity.class);
+                intent = new Intent(this, GalleryActivity.class);
                 startActivity(intent);
                 mainPb.setVisibility(View.VISIBLE);
             } else if (menuPosition == 3) {
@@ -94,6 +100,34 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         }));
+
+        inputLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                Intent intent = new Intent(this, ChatActivity.class);
+                intent.putExtra("net.devemperor.wristassist.query", result.getData().getStringExtra("net.devemperor.wristassist.input.content"));
+                startActivity(intent);
+            }
+        });
+
+        inputWithSystemMessageLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                String systemQuery = sp.getString("net.devemperor.wristassist.global_system_query", "");
+                systemQuery = (systemQuery.isEmpty() ? "" : systemQuery + "\n") + result.getData().getStringExtra("net.devemperor.wristassist.input.content");
+
+                Intent intent = new Intent(this, ChatActivity.class);
+                intent.putExtra("net.devemperor.wristassist.query", result.getData().getStringExtra("net.devemperor.wristassist.input.content2"));
+                intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
+                startActivity(intent);
+            }
+        });
+
+        editApiKeyLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+           if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+               sp.edit().putString("net.devemperor.wristassist.api_key", result.getData().getStringExtra("net.devemperor.wristassist.input.content")).apply();
+               sp.edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
+           }
+        });
+
         mainWrv.requestFocus();
         mainWrv.postDelayed(() -> {
             View view = mainWrv.getChildAt(0);
@@ -109,39 +143,12 @@ public class MainActivity extends Activity {
             intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
             intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_enter_prompt));
             intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_prompt));
-            startActivityForResult(intent, 1338);
+            inputWithSystemMessageLauncher.launch(intent);
         } else {
             intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_enter_prompt));
             intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_prompt));
             intent.putExtra("net.devemperor.wristassist.input.hands_free", sp.getBoolean("net.devemperor.wristassist.hands_free", false));
-            startActivityForResult(intent, 1337);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) return;
-
-        Intent intent;
-        String systemQuery = sp.getString("net.devemperor.wristassist.global_system_query", "");
-        if (systemQuery.isEmpty()) systemQuery = null;
-        if (requestCode == 1337) {
-            intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content"));
-            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
-            startActivity(intent);
-        }
-        if (requestCode == 1338) {
-            intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("net.devemperor.wristassist.query", data.getStringExtra("net.devemperor.wristassist.input.content2"));
-            systemQuery = (systemQuery == null ? "" : systemQuery + "\n") + data.getStringExtra("net.devemperor.wristassist.input.content");
-            intent.putExtra("net.devemperor.wristassist.system_query", systemQuery);
-            startActivity(intent);
-        }
-        if (requestCode == 1340) {
-            sp.edit().putString("net.devemperor.wristassist.api_key", data.getStringExtra("net.devemperor.wristassist.input.content")).apply();
-            sp.edit().putBoolean("net.devemperor.wristassist.onboarding_complete", true).apply();
+            inputLauncher.launch(intent);
         }
     }
 

@@ -9,6 +9,8 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -25,11 +27,42 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
     SwitchPreference customServerPreference;
     ListPreference chatModelPreference;
 
+    ActivityResultLauncher<Intent> customServerInputLauncher;
+    ActivityResultLauncher<Intent> globalSystemPromptLauncher;
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         getPreferenceManager().setSharedPreferencesName("net.devemperor.wristassist");
         setPreferencesFromResource(R.xml.fragment_preferences, null);
         sp = getPreferenceManager().getSharedPreferences();
+
+        customServerInputLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                String host = result.getData().getStringExtra("net.devemperor.wristassist.input.content");
+                String model = result.getData().getStringExtra("net.devemperor.wristassist.input.content2");
+                if (host != null && model != null) {
+                    if (new UrlValidator().isValid(host)) {
+                        sp.edit().putString("net.devemperor.wristassist.custom_server_host", host).apply();
+                        sp.edit().putString("net.devemperor.wristassist.custom_server_model", model).apply();
+                        chatModelPreference.setEnabled(false);
+                    } else {
+                        customServerPreference.setChecked(false);
+                        chatModelPreference.setEnabled(true);
+                        Toast.makeText(getContext(), R.string.wristassist_invalid_host, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            } else if (result.getResultCode() == Activity.RESULT_CANCELED) {
+                customServerPreference.setChecked(false);
+                chatModelPreference.setEnabled(true);
+            }
+        });
+
+        globalSystemPromptLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                String systemQuery = result.getData().getStringExtra("net.devemperor.wristassist.input.content");
+                sp.edit().putString("net.devemperor.wristassist.global_system_query", systemQuery).apply();
+            }
+        });
 
         EditTextPreference apiKeyPreference = findPreference("net.devemperor.wristassist.api_key");
         if (apiKeyPreference != null) {
@@ -59,14 +92,14 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_custom_host_hint));
                     intent.putExtra("net.devemperor.wristassist.input.title2", getString(R.string.wristassist_custom_model));
                     intent.putExtra("net.devemperor.wristassist.input.hint2", getString(R.string.wristassist_custom_model_hint));
-                    startActivityForResult(intent, 1337);
+
+                    customServerInputLauncher.launch(intent);
                 }
                 return true;
             });
         }
 
         chatModelPreference = findPreference("net.devemperor.wristassist.model");
-        if (chatModelPreference != null) chatModelPreference.setSummaryProvider(preference -> chatModelPreference.getEntry());
         if (customServerPreference.isChecked()) chatModelPreference.setEnabled(false);
 
         Preference globalSystemQueryPreference = findPreference("net.devemperor.wristassist.global_system_query");
@@ -75,10 +108,9 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                 Intent intent = new Intent(getContext(), InputActivity.class);
                 intent.putExtra("net.devemperor.wristassist.input.title", getString(R.string.wristassist_define_global_system_prompt));
                 intent.putExtra("net.devemperor.wristassist.input.hint", getString(R.string.wristassist_system_prompt));
-                if (!sp.getString("net.devemperor.wristassist.global_system_query", "").isEmpty()) {
-                    intent.putExtra("net.devemperor.wristassist.input.content", sp.getString("net.devemperor.wristassist.global_system_query", ""));
-                }
-                startActivityForResult(intent, 1338);
+                intent.putExtra("net.devemperor.wristassist.input.content", sp.getString("net.devemperor.wristassist.global_system_query", ""));
+
+                globalSystemPromptLauncher.launch(intent);
                 return true;
             });
         }
@@ -90,7 +122,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     ttsPreference.setEnabled(false);
                 }
             });
-            ttsPreference.setSummaryProvider(preference -> ttsPreference.getEntry());
         }
 
         SwitchPreference imageModelPreference = findPreference("net.devemperor.wristassist.image_model");
@@ -104,7 +135,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
                     imageQualityPreference.setEnabled(true);
                     imageStylePreference.setEnabled(true);
                     imageSizePreference.setEnabled(false);
-
                 } else {
                     imageModelPreference.setSummaryProvider(preference1 -> "DALL-E 2");
                     imageQualityPreference.setEnabled(false);
@@ -135,32 +165,6 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             if (imageQualityPreference.isChecked()) imageQualityPreference.setSummaryProvider(preference -> "HD");
             if (imageStylePreference.isChecked()) imageStylePreference.setSummaryProvider(preference -> getString(R.string.wristassist_image_quality_natural));
             imageSizePreference.setSummaryProvider(preference -> imageSizePreference.getEntry());
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK && requestCode == 1337) {
-            String host = data.getStringExtra("net.devemperor.wristassist.input.content");
-            String model = data.getStringExtra("net.devemperor.wristassist.input.content2");
-            if (host != null && model != null) {
-                if (new UrlValidator().isValid(host)) {
-                    sp.edit().putString("net.devemperor.wristassist.custom_server_host", host).apply();
-                    sp.edit().putString("net.devemperor.wristassist.custom_server_model", model).apply();
-                    chatModelPreference.setEnabled(false);
-                } else {
-                    customServerPreference.setChecked(false);
-                    chatModelPreference.setEnabled(true);
-                    Toast.makeText(getContext(), R.string.wristassist_invalid_host, Toast.LENGTH_SHORT).show();
-                }
-            }
-        } else if (resultCode == Activity.RESULT_CANCELED && requestCode == 1337) {
-            customServerPreference.setChecked(false);
-            chatModelPreference.setEnabled(true);
-        } else if (resultCode == Activity.RESULT_OK && requestCode == 1338) {
-            String systemQuery = data.getStringExtra("net.devemperor.wristassist.input.content");
-            sp.edit().putString("net.devemperor.wristassist.global_system_query", systemQuery).apply();
         }
     }
 }

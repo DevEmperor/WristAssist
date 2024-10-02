@@ -57,9 +57,10 @@ public class ChangelogActivity extends AppCompatActivity {
         if (lastVersionCode < 23) md = md.concat(getString(R.string.changelog_md_23));
         if (lastVersionCode < 22) md = md.concat(getString(R.string.changelog_md_22));
         if (lastVersionCode < 21) md = md.concat(getString(R.string.changelog_md_21));
+
         markwon.setMarkdown(changelogTv, md);
-        System.out.println(md);
         sp.edit().putInt("net.devemperor.wristassist.last_version_code", versionCode).apply();
+
         changelogSv.requestFocus();
     }
 

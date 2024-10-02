@@ -2,6 +2,7 @@ package net.devemperor.wristassist.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -52,11 +53,14 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
     boolean ttsEnabled = false;
     String lastText = "";
     Markwon markwon;
+    SharedPreferences sp;
 
     public ChatAdapter(@NonNull Context context, @NonNull List<ChatItem> objects) {
         super(context, -1, objects);
         this.context = context;
         this.objects = objects;
+
+        sp = context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE);
         markwon = Markwon.builder(context)
                 .usePlugin(StrikethroughPlugin.create())
                 .usePlugin(HtmlPlugin.create())
@@ -64,8 +68,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
                 .usePlugin(TaskListPlugin.create(context))
                 .build();
 
-        if (!context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getString("net.devemperor.wristassist.tts", "off").equals("off")) {
+        if (!sp.getString("net.devemperor.wristassist.tts", "off").equals("off")) {
             tts = new TextToSpeech(context, status -> {
                 if (status == TextToSpeech.SUCCESS) {
                     ttsEnabled = true;
@@ -90,8 +93,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         View listItem = LayoutInflater.from(context).inflate(R.layout.item_chat, parent, false);
 
         TextView chatItem = listItem.findViewById(R.id.item_chat_content_tv);
-        chatItem.setTextSize(context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getInt("net.devemperor.wristassist.font_size", 15));
+        chatItem.setTextSize(sp.getInt("net.devemperor.wristassist.font_size", 15));
 
         ChatMessage chatMessage = objects.get(position).getChatMessage();
         chatItem.setOnClickListener(v -> launchTTS(chatMessage.getContent()));
@@ -122,8 +124,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         setLeadingMarginSpan(chatItem, icon);
 
         long totalCost = objects.get(position).getTotalCost();
-        if (totalCost > 0 && context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getBoolean("net.devemperor.wristassist.show_cost", false)) {
+        if (totalCost > 0 && sp.getBoolean("net.devemperor.wristassist.show_cost", false)) {
             TextView chatItemCost = listItem.findViewById(R.id.item_chat_cost_tv);
             chatItemCost.setText(df.format(totalCost / 1000.0) + " k");
             chatItemCost.setVisibility(View.VISIBLE);
@@ -143,8 +144,7 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
         lastText = text;
         Bundle params = new Bundle();
-        params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, context.getSharedPreferences("net.devemperor.wristassist", Context.MODE_PRIVATE)
-                .getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
+        params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, sp.getInt("net.devemperor.wristassist.tts_volume", 5) / 10f);
         langId.identifyLanguage(text).addOnSuccessListener(languageCode -> {
             if (tts.isLanguageAvailable(Locale.forLanguageTag(languageCode)) < TextToSpeech.LANG_AVAILABLE) {
                 Toast.makeText(context, R.string.wristassist_tts_lang_not_available, Toast.LENGTH_SHORT).show();

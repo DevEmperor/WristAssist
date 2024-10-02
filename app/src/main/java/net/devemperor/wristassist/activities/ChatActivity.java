@@ -120,7 +120,7 @@ public class ChatActivity extends Activity {
         chatLv.requestFocus();
 
         if (getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1) != -1) {
-            long id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
+            id = getIntent().getLongExtra("net.devemperor.wristassist.chatId", -1);
             titleTv.setText(chatHistoryDatabaseHelper.getTitle(id));
             titleTv.setVisibility(View.VISIBLE);
             saveResetBtn.setVisibility(View.VISIBLE);
@@ -147,7 +147,6 @@ public class ChatActivity extends Activity {
                 saveResetBtn.setVisibility(View.VISIBLE);
             }
             saveThisChat = true;
-            this.id = id;
 
             titleTv.setOnClickListener(v -> chatLv.setSelection(chatAdapter.getCount() + 1));
 

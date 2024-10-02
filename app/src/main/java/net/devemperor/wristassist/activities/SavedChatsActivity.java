@@ -1,11 +1,13 @@
 package net.devemperor.wristassist.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.InputDeviceCompat;
 import androidx.core.view.MotionEventCompat;
 import androidx.wear.widget.WearableLinearLayoutManager;
@@ -18,7 +20,7 @@ import net.devemperor.wristassist.database.ChatHistoryModel;
 
 import java.util.List;
 
-public class SavedChatsActivity extends Activity {
+public class SavedChatsActivity extends AppCompatActivity {
 
     WearableRecyclerView savedChatsWrv;
 
@@ -26,6 +28,7 @@ public class SavedChatsActivity extends Activity {
     SavedChatsAdapter savedChatsAdapter;
 
     int currentEditPosition = -1;
+    ActivityResultLauncher<Intent> editChatLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,18 @@ public class SavedChatsActivity extends Activity {
         chatHistoryDatabaseHelper = new ChatHistoryDatabaseHelper(this);
         List<ChatHistoryModel> chats = chatHistoryDatabaseHelper.getAllChats();
 
+        TextView noSavedChats = findViewById(R.id.activity_saved_chats_no_saved_chats_tv);
+        noSavedChats.setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+
+        editChatLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null
+                    && result.getData().getBooleanExtra("net.devemperor.wristassist.chat_deleted", false)) {
+                savedChatsAdapter.getData().remove(currentEditPosition);
+                savedChatsAdapter.notifyItemRemoved(currentEditPosition);
+                noSavedChats.setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
+            }
+        });
+
         savedChatsAdapter = new SavedChatsAdapter(chats, (chatPosition, longClick) -> {
             currentEditPosition = chatPosition;
             Intent intent;
@@ -49,12 +64,9 @@ public class SavedChatsActivity extends Activity {
                 intent = new Intent(this, EditChatActivity.class);
             }
             intent.putExtra("net.devemperor.wristassist.chatId", chats.get(chatPosition).getId());
-            startActivityForResult(intent, 1337);
+            editChatLauncher.launch(intent);
         });
         savedChatsWrv.setAdapter(savedChatsAdapter);
-
-        TextView noSavedChats = findViewById(R.id.activity_saved_chats_no_saved_chats_tv);
-        noSavedChats.setVisibility(chats.isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
 
         savedChatsWrv.requestFocus();
         savedChatsWrv.setOnGenericMotionListener((v, ev) -> {
@@ -64,16 +76,5 @@ public class SavedChatsActivity extends Activity {
             }
             return false;
         });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) return;
-
-        if (requestCode == 1337 && data.getBooleanExtra("net.devemperor.wristassist.chat_deleted", false)) {
-            savedChatsAdapter.getData().remove(currentEditPosition);
-            savedChatsAdapter.notifyItemRemoved(currentEditPosition);
-            findViewById(R.id.activity_saved_chats_no_saved_chats_tv).setVisibility(savedChatsAdapter.getData().isEmpty() ? android.view.View.VISIBLE : android.view.View.GONE);
-        }
     }
 }
