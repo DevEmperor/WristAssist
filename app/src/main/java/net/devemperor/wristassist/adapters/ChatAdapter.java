@@ -30,7 +30,6 @@ import net.devemperor.wristassist.R;
 import net.devemperor.wristassist.items.ChatItem;
 import net.devemperor.wristassist.util.WristAssistUtil;
 
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -48,7 +47,6 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
 
     TextToSpeech tts;
     LanguageIdentifier langId;
-    DecimalFormat df = new DecimalFormat("#.#");
     boolean showSystemMessage = false;
     boolean ttsEnabled = false;
     String lastText = "";
@@ -123,12 +121,6 @@ public class ChatAdapter extends ArrayAdapter<ChatItem> {
         assert icon != null;
         setLeadingMarginSpan(chatItem, icon);
 
-        long totalCost = objects.get(position).getTotalCost();
-        if (totalCost > 0 && sp.getBoolean("net.devemperor.wristassist.show_cost", false)) {
-            TextView chatItemCost = listItem.findViewById(R.id.item_chat_cost_tv);
-            chatItemCost.setText(df.format(totalCost / 1000.0) + " k");
-            chatItemCost.setVisibility(View.VISIBLE);
-        }
         return listItem;
     }
 

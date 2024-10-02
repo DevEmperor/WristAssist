@@ -45,11 +45,6 @@
             app:title="@string/wristassist_vibrate"
             android:defaultValue="true"/>
 
-        <SwitchPreference
-            app:key="net.devemperor.wristassist.show_cost"
-            app:title="@string/wristassist_show_cost"
-            android:defaultValue="false"/>
-
     </PreferenceCategory>
 
     <PreferenceCategory
