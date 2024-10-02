@@ -29,9 +29,9 @@
     <string name="wristassist_chat_reset">Chat zurückgesetzt</string>
     <string name="wristassist_chat_deleted">Chat gelöscht</string>
     <string name="wristassist_edit_chat_title">Chat Titel ändern</string>
-    <string name="wristassist_enter_prompt">Anweisung:</string>
+    <string name="wristassist_enter_prompt">Anweisung</string>
     <string name="wristassist_prompt">Schreibe einen Artikel …</string>
-    <string name="wristassist_enter_system_prompt">System-Anweisung:</string>
+    <string name="wristassist_enter_system_prompt">System-Anweisung</string>
     <string name="wristassist_system_prompt">Sprich wie Yoda</string>
     <string name="wristassist_set_api_key">API Schlüssel festlegen</string>
     <string name="wristassist_api_key">API Schlüssel</string>
@@ -68,8 +68,8 @@
     <string name="wristassist_menu_images">Bilder</string>
     <string name="wristassist_describe_image">Beschreibe das Bild</string>
     <string name="wristassist_image_hint">Ein süßer Hund mit einem Hut</string>
-    <string name="wristassist_last_modified">Zuletzt bearbeitet:</string>
-    <string name="wristassist_chat_cost">Token Verbrauch:</string>
+    <string name="wristassist_last_modified">Zuletzt bearbeitet</string>
+    <string name="wristassist_chat_cost">Token Verbrauch</string>
     <string name="wristassist_images_settings">Bilder Einstellungen</string>
     <string name="wristassist_select_image_model">Bilder-KI Modell</string>
     <string name="wristassist_select_image_quality">Bild Qualität</string>
@@ -77,13 +77,13 @@
     <string name="wristassist_select_image_style">Bild Stil</string>
     <string name="wristassist_image_quality_vivid">Lebendig</string>
     <string name="wristassist_image_quality_natural">Natürlich</string>
-    <string name="wristassist_open_image_prompt">Beschreibung:</string>
-    <string name="wristassist_open_image_revised_prompt">Überarbeitete Beschreibung:</string>
-    <string name="wristassist_open_image_model">Modell:</string>
-    <string name="wristassist_open_image_quality">Qualität:</string>
-    <string name="wristassist_open_image_size">Größe:</string>
-    <string name="wristassist_open_image_style">Stil:</string>
-    <string name="wristassist_open_image_created">Erstellt:</string>
+    <string name="wristassist_open_image_prompt">Beschreibung</string>
+    <string name="wristassist_open_image_revised_prompt">Überarbeitete Beschreibung</string>
+    <string name="wristassist_open_image_model">Modell</string>
+    <string name="wristassist_open_image_quality">Qualität</string>
+    <string name="wristassist_open_image_size">Größe</string>
+    <string name="wristassist_open_image_style">Stil</string>
+    <string name="wristassist_open_image_created">Erstellt</string>
     <string name="wristassist_images_count" formatted="false">Anzahl an Bildern: %1$s</string>
     <string name="wristassist_image_expires_in" formatted="false">Geteilter Link läuft in %1$d Minuten ab</string>
     <string name="wristassist_image_request_rejected">Die Anfrage wurde abgelehnt. Deine Anfrage enthält möglicherweise Text, der nicht erlaubt ist.</string>

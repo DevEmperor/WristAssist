@@ -12,7 +12,7 @@
     <string name="wristassist_chat_reset">Reset chat</string>
 
     <string name="wristassist_no_saved_chats">You haven\'t saved any chats yet.\nTouch the Save-Button in a new chat to save.</string>
-    <string name="wristassist_chat_cost">Token usage:</string>
+    <string name="wristassist_chat_cost">Token usage</string>
     <string name="wristassist_chat_deleted">Deleted chat</string>
 
     <string name="wristassist_change_api_key">Change API key</string>
@@ -37,9 +37,9 @@
     <string name="wristassist_welcome">Welcome to\nWristAssist</string>
     <string name="wristassist_welcome_info">Please scan the QR code for instructions on how to set up and use WristAssist.</string>
     <string name="wristassist_edit_chat_title">Edit chat title</string>
-    <string name="wristassist_enter_prompt">Prompt:</string>
+    <string name="wristassist_enter_prompt">Prompt</string>
     <string name="wristassist_prompt">Write an article …</string>
-    <string name="wristassist_enter_system_prompt">System prompt:</string>
+    <string name="wristassist_enter_system_prompt">System prompt</string>
     <string name="wristassist_system_prompt">Talk like Yoda</string>
     <string name="wristassist_set_api_key">Set API key</string>
     <string name="wristassist_api_key">API key</string>
@@ -78,7 +78,7 @@
     <string name="wristassist_menu_images">Images</string>
     <string name="wristassist_describe_image">Describe the image</string>
     <string name="wristassist_image_hint">A cute dog with a hat</string>
-    <string name="wristassist_last_modified">Last modified:</string>
+    <string name="wristassist_last_modified">Last modified</string>
     <string name="wristassist_images_settings">Images settings</string>
     <string name="wristassist_select_image_model">Images-AI model</string>
     <string name="wristassist_select_image_quality">Image quality</string>
@@ -86,13 +86,13 @@
     <string name="wristassist_select_image_style">Image style</string>
     <string name="wristassist_image_quality_vivid">Vivid</string>
     <string name="wristassist_image_quality_natural">Natural</string>
-    <string name="wristassist_open_image_prompt">Prompt:</string>
-    <string name="wristassist_open_image_revised_prompt">Revised prompt:</string>
-    <string name="wristassist_open_image_model">Model:</string>
-    <string name="wristassist_open_image_quality">Quality:</string>
-    <string name="wristassist_open_image_size">Size:</string>
-    <string name="wristassist_open_image_style">Style:</string>
-    <string name="wristassist_open_image_created">Created:</string>
+    <string name="wristassist_open_image_prompt">Prompt</string>
+    <string name="wristassist_open_image_revised_prompt">Revised prompt</string>
+    <string name="wristassist_open_image_model">Model</string>
+    <string name="wristassist_open_image_quality">Quality</string>
+    <string name="wristassist_open_image_size">Size</string>
+    <string name="wristassist_open_image_style">Style</string>
+    <string name="wristassist_open_image_created">Created</string>
     <string name="wristassist_images_count" formatted="false">Number of images: %1$s</string>
     <string name="wristassist_image_expires_in" formatted="false">Shared link will expire in %1$d minutes</string>
     <string name="wristassist_image_request_rejected">The request was rejected. Your prompt may contain text that is not allowed.</string>

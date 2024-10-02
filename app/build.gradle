@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.google.mlkit:language-id:17.0.6'
     implementation 'androidx.core:core-splashscreen:1.0.1'
     implementation 'androidx.wear.watchface:watchface-complications-data-source-ktx:1.2.1'
+    implementation 'androidx.activity:activity:1.9.2'
 
     implementation 'com.theokanning.openai-gpt3-java:service:0.18.2'
     implementation 'com.squareup.retrofit2:retrofit:2.11.0'
@@ -58,6 +59,6 @@ dependencies {
     implementation 'io.noties.markwon:ext-tables:4.6.2'
     implementation 'io.noties.markwon:ext-tasklist:4.6.2'
 
-    implementation(platform("com.google.firebase:firebase-bom:33.3.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
     implementation("com.google.firebase:firebase-crashlytics")
 }
