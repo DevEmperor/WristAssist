@@ -130,6 +130,8 @@ public class CreateImageActivity extends AppCompatActivity {
         if (thread != null) {
             thread.shutdownNow();
         }
+        usageDatabaseHelper.close();
+        imagesDatabaseHelper.close();
     }
 
     private void createAndDownloadImage() {

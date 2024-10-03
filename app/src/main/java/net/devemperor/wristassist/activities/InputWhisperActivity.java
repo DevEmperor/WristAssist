@@ -121,6 +121,8 @@ public class InputWhisperActivity extends AppCompatActivity {
         }
 
         if (speechApiThread != null) speechApiThread.shutdownNow();
+
+        usageDatabaseHelper.close();
     }
 
     @Override

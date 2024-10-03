@@ -180,6 +180,8 @@ public class ChatActivity extends Activity {
             thread.shutdownNow();
         }
         chatAdapter.shutdownServices();
+        usageDatabaseHelper.close();
+        chatHistoryDatabaseHelper.close();
     }
 
     @Override
