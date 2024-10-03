@@ -96,4 +96,5 @@
     <string name="wristassist_define_global_system_prompt">Lege eine globale System Anweisung fest</string>
     <string name="changelog_md_30">### Version 3.1.0  \n#### Globale System Anweisungen  \nDu kannst jetzt in den Einstellungen eine globale Systemrolle festlegen, die die KI in jedem Chat verwenden wird.  \n</string>
     <string name="changelog_md_31">### Version 3.1.1 \n#### Neues GPT-4 Omni Mini Modell \nOpenAI hat ihr neues Modell GPT-4o mini veröffentlicht, das ihr kostengünstigstes kleines Modell ist – intelligenter und billiger als GPT-3.5 Turbo und hat auch Vision-Fähigkeiten. Das Modell hat einen Kontext von 128K und eine Wissensgrenze bis Oktober 2023. Du kannst in den Einstellungen zu diesem Modell wechseln, das 60% günstiger ist als GPT-3.5 Turbo. \n</string>
+    <string name="wristassist_whisper_count" formatted="false">Transkriptionszeit:\n%1$d min, %2$d s</string>
 </resources>

@@ -41,9 +41,12 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
         if (dataProvider.getModelName().startsWith("gpt")) {
             tokensTv.setText(context.getString(R.string.wristassist_token_usage,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
-        } else {
+        } else if (dataProvider.getModelName().startsWith("dall-e")) {
             tokensTv.setText(context.getString(R.string.wristassist_images_count,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
+        } else if (dataProvider.getModelName().startsWith("whisper")) {
+            tokensTv.setText(context.getString(R.string.wristassist_whisper_count,
+                    dataProvider.getTokens() / 60, dataProvider.getTokens() % 60));
         }
 
         TextView costTv = listItem.findViewById(R.id.item_usage_cost_tv);

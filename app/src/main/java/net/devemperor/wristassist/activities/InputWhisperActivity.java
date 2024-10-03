@@ -30,6 +30,8 @@ import com.theokanning.openai.client.OpenAiApi;
 import com.theokanning.openai.service.OpenAiService;
 
 import net.devemperor.wristassist.R;
+import net.devemperor.wristassist.database.UsageDatabaseHelper;
+import net.devemperor.wristassist.util.WristAssistUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +57,7 @@ public class InputWhisperActivity extends AppCompatActivity {
     ImageView errorIv2;
 
     SharedPreferences sp;
+    UsageDatabaseHelper usageDatabaseHelper;
     MediaRecorder recorder;
     Runnable recordTimeRunnable;
     Handler recordTimeHandler;
@@ -76,6 +79,7 @@ public class InputWhisperActivity extends AppCompatActivity {
         errorIv2 = findViewById(R.id.activity_input_whisper_error_iv2);
 
         sp = getSharedPreferences("net.devemperor.wristassist", MODE_PRIVATE);
+        usageDatabaseHelper = new UsageDatabaseHelper(this);
 
         recordTimeHandler = new Handler(Looper.getMainLooper());
         recordTimeRunnable = new Runnable() {
@@ -221,7 +225,7 @@ public class InputWhisperActivity extends AppCompatActivity {
                         .build();
                 TranscriptionResult result = service.createTranscription(request, new File(getCacheDir(), "whisper_input_audio.mp3"));
 
-                // TODO: add usage to db
+                usageDatabaseHelper.edit("whisper-1", Math.round(result.getDuration()), WristAssistUtil.calcCostWhisper(result.getDuration()));
 
                 Intent data = new Intent();
                 data.putExtra("net.devemperor.wristassist.input.content", result.getText());
@@ -234,7 +238,6 @@ public class InputWhisperActivity extends AppCompatActivity {
                     fc.setCustomKey("settings", sp.getAll().toString());
                     fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
                     fc.recordException(e);
-                    fc.sendUnsentReports();
 
                     showError();
                 }

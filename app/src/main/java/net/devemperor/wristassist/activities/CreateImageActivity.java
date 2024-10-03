@@ -203,9 +203,7 @@ public class CreateImageActivity extends AppCompatActivity {
                 fc.setCustomKey("settings", sp.getAll().toString());
                 fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
                 fc.recordException(e);
-                fc.sendUnsentReports();
 
-                e.printStackTrace();
                 runOnUiThread(() -> {
                     imagePb.setVisibility(View.GONE);
                     errorTv.setVisibility(View.VISIBLE);
@@ -260,9 +258,7 @@ public class CreateImageActivity extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
             out.flush();
             out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException ignored) { }
         timer.cancel();
 
         Intent data = new Intent();

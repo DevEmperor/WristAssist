@@ -75,6 +75,10 @@ public class WristAssistUtil {
         return 0;
     }
 
+    public static double calcCostWhisper(double duration) {
+        return Math.round(duration) * 0.0001;
+    }
+
     public static String translate(Context context, String origin) {
         switch (origin) {
             case "gpt-4o-mini":
@@ -91,6 +95,8 @@ public class WristAssistUtil {
                 return "DALL-E 3";
             case "dall-e-2":
                 return "DALL-E 2";
+            case "whisper-1":
+                return "Whisper";
             case "hd":
                 return "HD";
             case "standard":

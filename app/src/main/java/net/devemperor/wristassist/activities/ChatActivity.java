@@ -317,14 +317,12 @@ public class ChatActivity extends Activity {
                 fc.setCustomKey("settings", sp.getAll().toString());
                 fc.setUserId(sp.getString("net.devemperor.wristassist.userid", "null"));
                 fc.recordException(e);
-                fc.sendUnsentReports();
 
                 runOnUiThread(() -> {
                     if (sp.getBoolean("net.devemperor.wristassist.vibrate", true)) {
                         vibrator.vibrate(VibrationEffect.createWaveform(new long[]{50, 50, 50, 50, 50}, new int[]{-1, 0, -1, 0, -1}, -1));
                     }
 
-                    e.printStackTrace();
                     if (Objects.requireNonNull(e.getMessage()).contains("SocketTimeoutException")) {
                         errorTv.setText(R.string.wristassist_timeout);
                     } else if (e.getMessage().contains("API key")) {
