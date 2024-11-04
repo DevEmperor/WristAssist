@@ -5,6 +5,8 @@
         <item name="gpt-4o">GPT-4 Omni</item>
         <item name="gpt-4-turbo">GPT-4 Turbo</item>
         <item name="gpt-4">GPT-4</item>
+        <item name="o1-preview">o1-preview</item>
+        <item name="o1-mini">o1-mini</item>
         <item name="gpt-3.5-turbo">GPT-3.5 Turbo</item>
     </string-array>
     <string-array name="models_chat_values">
@@ -12,6 +14,8 @@
         <item name="gpt-4o">gpt-4o</item>
         <item name="gpt-4-turbo">gpt-4-turbo</item>
         <item name="gpt-4">gpt-4</item>
+        <item name="o1-preview">o1-preview</item>
+        <item name="o1-mini">o1-mini</item>
         <item name="gpt-3.5-turbo">gpt-3.5-turbo</item>
     </string-array>
 

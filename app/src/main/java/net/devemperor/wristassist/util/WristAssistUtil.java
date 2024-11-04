@@ -45,6 +45,14 @@ public class WristAssistUtil {
                 inputPrice = 0.03;
                 outputPrice = 0.06;
                 break;
+            case "o1-preview":
+                inputPrice = 0.015;
+                outputPrice = 0.06;
+                break;
+            case "o1-mini":
+                inputPrice = 0.003;
+                outputPrice = 0.012;
+                break;
             case "gpt-3.5-turbo":
                 inputPrice = 0.0005;
                 outputPrice = 0.0015;

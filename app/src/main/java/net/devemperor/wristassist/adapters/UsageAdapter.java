@@ -38,7 +38,7 @@ public class UsageAdapter extends ArrayAdapter<UsageModel> {
         modelNameTv.setText(WristAssistUtil.translate(context, dataProvider.getModelName()));
 
         TextView tokensTv = listItem.findViewById(R.id.item_usage_tokens_tv);
-        if (dataProvider.getModelName().startsWith("gpt")) {
+        if (dataProvider.getModelName().startsWith("gpt") || dataProvider.getModelName().startsWith("o1")) {
             tokensTv.setText(context.getString(R.string.wristassist_token_usage,
                     String.format(Locale.getDefault(), "%,d", dataProvider.getTokens())));
         } else if (dataProvider.getModelName().startsWith("dall-e")) {
