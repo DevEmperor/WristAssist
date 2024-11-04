@@ -35,6 +35,7 @@ public class ChangelogActivity extends AppCompatActivity {
         int versionCode = BuildConfig.VERSION_CODE;
         lastVersionCode = sp.getInt("net.devemperor.wristassist.last_version_code", 0);
 
+        if (lastVersionCode < 32) md = md.concat(getString(R.string.changelog_md_32));
         if (lastVersionCode < 31) md = md.concat(getString(R.string.changelog_md_31));
         if (lastVersionCode < 30) md = md.concat(getString(R.string.changelog_md_30));
         if (lastVersionCode < 29) md = md.concat(getString(R.string.changelog_md_29));

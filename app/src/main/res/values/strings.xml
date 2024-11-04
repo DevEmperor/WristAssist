@@ -106,4 +106,5 @@
     <string name="changelog_md_30">### Version 3.1.0  \n#### Global system prompts  \nYou can now set a global system role in the settings, that the AI will use in every chat.  \n</string>
     <string name="changelog_md_31">### Version 3.1.1  \n#### New GPT-4 Omni mini model  \nOpenAI released their new model GPT-4o mini, which is their most cost-efficient small model that\'s smarter and cheaper than GPT-3.5 Turbo, and has vision capabilities. The model has 128K context and an October 2023 knowledge cutoff. You can switch to this model, which is 60% cheaper than GPT-3.5 Turbo, in the settings.  \n</string>
     <string name="wristassist_whisper_count" formatted="false">Transcription time:\n%1$d min, %2$d s</string>
+    <string name="changelog_md_32">### Version 3.2.0  \n#### Added Whisper transcription  \nIf you use hands-free input, WristAssist now uses OpenAI Whisper, which works more reliable than most transcription engines from different keyboards.  \n#### New chat models  \nOpenAI\'s new o1 models were added in this release.  \n#### Several bugfixes and design changes  \n</string>
 </resources>
