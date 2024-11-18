@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.wear.widget.BoxInsetLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,17 +7,13 @@
 
     <TextView
         android:id="@+id/viewpager_onboarding_info_tv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:lineSpacingExtra="4sp"
         android:text="@string/wristassist_welcome_info"
         android:textColor="@color/wristassist_purple"
         android:textSize="16sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_boxedEdges="all"/>
+</androidx.wear.widget.BoxInsetLayout>
