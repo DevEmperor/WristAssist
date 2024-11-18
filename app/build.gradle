@@ -15,8 +15,8 @@ android {
         applicationId 'net.devemperor.wristassist'
         minSdk 26
         targetSdk 34
-        versionCode 32
-        versionName "3.2.0"
+        versionCode 33
+        versionName "3.2.1"
     }
 
     buildTypes {
@@ -59,6 +59,6 @@ dependencies {
     implementation 'io.noties.markwon:ext-tables:4.6.2'
     implementation 'io.noties.markwon:ext-tasklist:4.6.2'
 
-    implementation(platform("com.google.firebase:firebase-bom:33.5.1"))
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.firebase:firebase-crashlytics")
 }
