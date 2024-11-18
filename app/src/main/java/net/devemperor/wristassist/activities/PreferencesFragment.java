@@ -70,8 +70,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
             apiKeyPreference.setSummaryProvider((Preference.SummaryProvider<EditTextPreference>) preference -> {
                 String key = preference.getText();
                 if (TextUtils.isEmpty(key)) return getString(R.string.wristassist_no_api_key);
-                if (key.length() <= 10) return key;
-                return key.substring(0, 10) + "...";
+                if (key.length() <= 40) return key;
+                return key.substring(0, 40) + "...";
             });
 
             apiKeyPreference.setOnBindEditTextListener(editText -> {
