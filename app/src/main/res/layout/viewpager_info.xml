@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:lineSpacingExtra="4sp"
         android:text="@string/wristassist_welcome_info"
         android:textColor="@color/wristassist_purple"
         android:textSize="16sp"

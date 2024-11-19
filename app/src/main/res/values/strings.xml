@@ -35,7 +35,7 @@
     <string name="wristassist_cancel">Cancel</string>
 
     <string name="wristassist_welcome">Welcome to\nWristAssist</string>
-    <string name="wristassist_welcome_info">Please scan the QR code for instructions on how to set up and use WristAssist.</string>
+    <string name="wristassist_welcome_info">Please scan the QR code for setup and usage instructions.</string>
     <string name="wristassist_edit_chat_title">Edit chat title</string>
     <string name="wristassist_enter_prompt">Prompt</string>
     <string name="wristassist_prompt">Write an article …</string>
