@@ -121,6 +121,9 @@
             app:title="@string/wristassist_custom_server"
             android:defaultValue="false"/>
 
+        <Preference
+            app:dependency="net.devemperor.wristassist.custom_server" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
