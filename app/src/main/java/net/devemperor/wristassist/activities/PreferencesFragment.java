@@ -68,10 +68,8 @@ public class PreferencesFragment extends PreferenceFragmentCompat {
         EditTextPreference apiKeyPreference = findPreference("net.devemperor.wristassist.api_key");
         if (apiKeyPreference != null) {
             apiKeyPreference.setSummaryProvider((Preference.SummaryProvider<EditTextPreference>) preference -> {
-                String key = preference.getText();
-                if (TextUtils.isEmpty(key)) return getString(R.string.wristassist_no_api_key);
-                if (key.length() <= 40) return key;
-                return key.substring(0, 40) + "...";
+                if (TextUtils.isEmpty(preference.getText())) return getString(R.string.wristassist_no_api_key);
+                return getString(R.string.wristassist_api_key_set);
             });
 
             apiKeyPreference.setOnBindEditTextListener(editText -> {

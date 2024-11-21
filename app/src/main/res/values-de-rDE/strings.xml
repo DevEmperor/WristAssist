@@ -98,4 +98,5 @@
     <string name="changelog_md_31">### Version 3.1.1 \n#### Neues GPT-4 Omni Mini Modell \nOpenAI hat ihr neues Modell GPT-4o mini veröffentlicht, das ihr kostengünstigstes kleines Modell ist – intelligenter und billiger als GPT-3.5 Turbo und hat auch Vision-Fähigkeiten. Das Modell hat einen Kontext von 128K und eine Wissensgrenze bis Oktober 2023. Du kannst in den Einstellungen zu diesem Modell wechseln, das 60% günstiger ist als GPT-3.5 Turbo. \n</string>
     <string name="wristassist_whisper_count" formatted="false">Transkriptionszeit:\n%1$d min, %2$d s</string>
     <string name="changelog_md_32">### Version 3.2.0  \n#### Whisper-Transkription hinzugefügt  \nWenn du die Freisprech-Eingabe nutzt, verwendet WristAssist jetzt OpenAI Whisper, das zuverlässiger ist als die meisten Transkriptions-Engines von verschiedenen Tastaturen.  \n#### Neue Chat-Modelle  \nDie neuen o1-Modelle von OpenAI wurden hinzugefügt.  \n#### Verschiedene Bugfixes und Designänderungen  \n</string>
+    <string name="wristassist_api_key_set">API-Schlüssel festgelegt</string>
 </resources>
