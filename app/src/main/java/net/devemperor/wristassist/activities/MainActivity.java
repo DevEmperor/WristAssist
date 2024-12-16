@@ -132,9 +132,11 @@ public class MainActivity extends AppCompatActivity {
 
         mainWrv.requestFocus();
         mainWrv.postDelayed(() -> {
-            View view = mainWrv.getChildAt(0);
-            if (view == null) return;
-            mainWrv.scrollBy(0, view.getHeight());
+            if (getResources().getConfiguration().isScreenRound()) {
+                View view = mainWrv.getChildAt(0);
+                if (view == null) return;
+                mainWrv.scrollBy(0, view.getHeight());
+            }
         }, 100);
     }
 
